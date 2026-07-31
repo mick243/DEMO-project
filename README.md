@@ -53,7 +53,6 @@ nextjs-portfolio-v2/
 
 ## 디자인 컨셉
 
-- **컬러**: 딥네이비 배경(`#0B1120`) + 블루(`#4C7EFF`) · 시안(`#33D2C0`) · 앰버(`#FFB84D`) 포인트
 - **타이포**: 제목 Space Grotesk / 본문 Inter / 코드·태그·날짜 JetBrains Mono
 - **시그니처 요소**: 히어로의 `profile.json` 터미널 패널 — 개발자 프로필을
   코드 형태로 보여주는 장치
