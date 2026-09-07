@@ -4,8 +4,6 @@ export const profile = {
   handle: "강정민",
   role: "Frontend Developer",
   tagline: "렌더 성능을 측정으로 검증합니다.",
-  summary:
-    "지도가 느렸을 때 원인을 짐작하는 대신 성능 계기판을 직접 만들어 붙입니다. 개인 프로젝트 오락실 파인더에서 초기 마커 동기화를 622ms → 156ms로 줄였고, 이미지 lazy 로딩이 조용히 실패하던 원인도 브라우저 휴리스틱까지 파고들어 잡았습니다.",
   location: "서울, 대한민국",
   email: "kjm3746@gmail.com",
   availability: "채용 지원 가능",
@@ -49,7 +47,6 @@ export const careers = [
   {
     period: "2026.08",
     company: "오락실 파인더 · 개인 프로젝트(1인)",
-    desc: "지도가 느렸을 때 원인을 짐작하는 대신 성능 계기판을 직접 만들어 붙였습니다. 렌더 최적화로 초기 마커 동기화 622ms → 156ms(−75%), 컴포넌트 35개 · 자동 테스트 522건 규모로 구현했습니다.",
     tags: ["Next.js", "React 19", "TypeScript", "PostgreSQL", "k6"],
   },
   {
@@ -76,8 +73,6 @@ export const projects = [
   {
     name: "오락실 파인더",
     period: "2026.08",
-    summary:
-      "내 주변 오락실의 위치·기체 컨디션·대기 인원을 점수 하나로 보여주는 지도 서비스. 렉의 원인을 계기판으로 직접 측정해 뷰포트 컬링·마커 풀링·translate3d 오버레이로 초기 마커 동기화를 622ms → 156ms(−75%)로 줄였고, 이미지 lazy 로딩이 조용히 실패하던 원인을 브라우저 휴리스틱 단위까지 파고들어 해결했습니다. 컴포넌트 35개 · API 라우트 28개 · 자동 테스트 522건.",
     tags: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL", "k6", "Vitest"],
     role: "기획 · 프론트엔드 · 백엔드 · 성능 측정 전 과정 (1인 개발)",
     github: "https://github.com/mick243",

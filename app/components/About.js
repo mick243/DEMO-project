@@ -22,7 +22,6 @@ export default function About() {
         <div className="about-grid">
           <Reveal delay={80}>
             <p className="about-text">
-              {profile.summary}<br/> 
               {profile.location} 기준으로 활동
             </p>
           </Reveal>
