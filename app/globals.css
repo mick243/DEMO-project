@@ -390,7 +390,17 @@ button { font-family: inherit; cursor: pointer; }
 .project-role { font-size: 12.5px; color: var(--accent-blue); margin-bottom: 10px; font-weight: 600; }
 .project-summary { color: var(--text-secondary); font-size: 14px; margin-bottom: 18px; flex-grow: 1; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
- 
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-blue);
+}
+.project-link:hover { text-decoration: underline; }
+
 /* ---------- Process ---------- */
 .process-grid {
   display: grid;

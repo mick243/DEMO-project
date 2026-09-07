@@ -8,7 +8,7 @@ export default function Career() {
         <Reveal>
           <span className="section-eyebrow">Career</span>
           <h2 className="section-title">경력</h2>
-          <p className="section-desc">더미 데이터로 구성된 예시 경력입니다.</p>
+          <p className="section-desc">개인 프로젝트와 외주 프로젝트를 함께 정리했습니다.</p>
         </Reveal>
         <div className="timeline">
           {careers.map((c, i) => (

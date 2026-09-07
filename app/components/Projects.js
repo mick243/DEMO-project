@@ -9,8 +9,7 @@ export default function Projects() {
           <span className="section-eyebrow">Projects</span>
           <h2 className="section-title">진행한 프로젝트</h2>
           <p className="section-desc">
-            실제 사진/사명 대신 더미 텍스트로 구성했습니다. 실제 배포 시 프로젝트별 스크린샷과
-            링크로 교체하세요.
+            직접 측정하고 검증하며 만든 개인 프로젝트입니다.
           </p>
         </Reveal>
         <div className="projects-grid">
@@ -29,6 +28,11 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
+              {p.github && (
+                <a href={p.github} target="_blank" rel="noreferrer" className="project-link">
+                  GitHub ↗
+                </a>
+              )}
             </Reveal>
           ))}
         </div>

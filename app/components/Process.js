@@ -7,8 +7,8 @@ export default function Process() {
       <div className="container">
         <Reveal>
           <span className="section-eyebrow">Process</span>
-          <h2 className="section-title">DEMO</h2>
-          <p className="section-desc">.</p>
+          <h2 className="section-title">일하는 방식</h2>
+          <p className="section-desc">오락실 파인더를 진행하며 굳어진 세 가지 원칙입니다.</p>
         </Reveal>
         <div className="process-grid">
           {process.map((p, i) => (

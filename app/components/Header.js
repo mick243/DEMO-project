@@ -5,7 +5,7 @@ import { useState } from "react";
 const NAV = [
   { href: "#about", label: "소개" },
   { href: "#skills", label: "기술 스택" },
-/*  { href: "#career", label: "경력" }, */
+  { href: "#career", label: "경력" },
   { href: "#projects", label: "프로젝트" },
   { href: "#process", label: "진행 방식" },
   { href: "#contact", label: "문의" },
@@ -18,7 +18,7 @@ export default function Header() {
     <header className="header">
       <div className="header-inner">
         <a href="#top" className="logo">
-          DEV
+          강정민
         </a>
         <nav className="nav-desktop">
           {NAV.map((n) => (

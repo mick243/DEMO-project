@@ -6,9 +6,9 @@ import { profile } from "../data/portfolioData";
   // { icon: "03", title: "확장을 고려한 구조", desc: "지금 당장의 요구뿐 아니라 이후 트래픽·기능 확장까지 고려해 설계합니다." },
 
 const HIGHLIGHTS = [
-  { icon: "", title: "", desc: "" },
-  { icon: "", title: "", desc: "" },
-  { icon: "", title: "", desc: "" },
+  { icon: "01", title: "측정 기반 개발", desc: "감이 아니라 계기판으로 성능을 확인하고, 개선 전후를 숫자로 남깁니다." },
+  { icon: "02", title: "접근성 우선", desc: "컴포넌트를 전수 조사해 접근성 격차를 우선순위로 정리하고 고칩니다." },
+  { icon: "03", title: "투명한 커뮤니케이션", desc: "일정이 흔들리면 숨기지 않고 상황과 리스크를 먼저 공유합니다." },
 ];
 
 export default function About() {
@@ -17,7 +17,7 @@ export default function About() {
       <div className="container">
         <Reveal>
           <span className="section-eyebrow">About</span>
-          <h2 className="section-title">문제를 구조화하는 개발자</h2>
+          <h2 className="section-title">렌더 성능을 측정으로 검증하는 개발자</h2>
         </Reveal>
         <div className="about-grid">
           <Reveal delay={80}>
