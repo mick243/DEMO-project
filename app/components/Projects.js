@@ -1,5 +1,6 @@
+import Link from "next/link";
 import Reveal from "./Reveal";
-import { projects } from "../data/portfolioData";
+import { projects } from "../data/projects";
 
 export default function Projects() {
   return (
@@ -9,30 +10,27 @@ export default function Projects() {
           <span className="section-eyebrow">Projects</span>
           <h2 className="section-title">진행한 프로젝트</h2>
           <p className="section-desc">
-            직접 측정하고 검증하며 만든 개인 프로젝트입니다.
+            개인 프로젝트와 외주 프로젝트입니다. 카드를 누르면 상세 내용을 볼 수 있습니다.
           </p>
         </Reveal>
         <div className="projects-grid">
           {projects.map((p, i) => (
-            <Reveal key={p.name} delay={(i % 2) * 100} className="project-card card">
-              <div className="project-top">
-                <div className="project-name">{p.name}</div>
-                <div className="project-period">{p.period}</div>
-              </div>
-              <div className="project-role">{p.role}</div>
-              <p className="project-summary">{p.summary}</p>
-              <div className="project-tags">
-                {p.tags.map((t) => (
-                  <span key={t} className="tag">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              {p.github && (
-                <a href={p.github} target="_blank" rel="noreferrer" className="project-link">
-                  GitHub ↗
-                </a>
-              )}
+            <Reveal key={p.slug} delay={(i % 3) * 100}>
+              <Link href={`/projects/${p.slug}`} className="project-card card">
+                <div className="project-media">
+                  <img src={p.thumbnail} alt="" />
+                </div>
+                <div className="project-body">
+                  <div className="project-name">{p.name}</div>
+                  <div className="project-tags">
+                    {p.tags.map((t) => (
+                      <span key={t} className="tag">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </Link>
             </Reveal>
           ))}
         </div>
