@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="외주 프로젝트">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#5f93ff"/>
+    </linearGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="675" fill="url(#g)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <circle cx="1010" cy="150" r="220" fill="rgba(255,255,255,.10)"/>
+  <circle cx="180" cy="590" r="150" fill="rgba(255,255,255,.08)"/>
+  <text x="80" y="330" font-family="'Space Grotesk', 'Segoe UI', system-ui, sans-serif"
+        font-size="76" font-weight="700" fill="#ffffff">외주 프로젝트</text>
+  <text x="80" y="392" font-family="'JetBrains Mono', ui-monospace, monospace"
+        font-size="26" fill="rgba(255,255,255,.75)">RANGE · Deeto · 2025.09 — 2026.03</text>
+</svg>

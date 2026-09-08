@@ -2,9 +2,9 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
-import Career from "./components/Career";
+import Education from "./components/Education";
 import Projects from "./components/Projects";
-import Process from "./components/Process";
+// import Process from "./components/Process";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -18,9 +18,9 @@ export default function Home() {
         </div>
         <About />
         <Skills />
-        <Career />
         <Projects />
-        <Process />
+        {/* <Process /> */}
+        <Education />
         <Contact />
       </main>
       <Footer />

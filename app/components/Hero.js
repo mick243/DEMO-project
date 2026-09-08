@@ -42,17 +42,6 @@ export default function Hero() {
             둘러보기
           </a>
         </div>
-        <div className="hero-stats">
-          {profile.stats.map((s) => (
-            <div key={s.label}>
-              <div className="hero-stat-value">
-                {s.value}
-                <span>{s.suffix}</span>
-              </div>
-              <div className="hero-stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
       </div>
 
       <div className="terminal">
