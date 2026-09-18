@@ -52,8 +52,8 @@ nextjs-portfolio-v2/
     같은 `skillGroups` 에서 생성됩니다. 한 곳만 고치면 둘 다 바뀝니다.
 - **프로젝트**: `app/data/projects.js`
   - `star` 는 Situation · Task · Action · Result 네 단계입니다.
-  - `gallery[].tech` 는 작동 화면마다 붙는 기술 설명이고, 온점 기준으로
-    줄바꿈해 렌더합니다 (`app/projects/[slug]/page.js` 의 `sentences()`).
+  - `gallery[].tech` 는 작동 화면마다 붙는 기술 설명이고, 상세 페이지에서
+    접이식 ‘구현 메모’ 로 렌더합니다.
   - 이미지는 `public/projects/<slug>/` 에 두고 경로만 적습니다.
 
 ## 남은 작업
