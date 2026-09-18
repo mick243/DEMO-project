@@ -13,17 +13,17 @@ export const skillGroups = [
   {
     key: "frontend",
     title: "Frontend",
-    items: ["React 19", "Next.js 16 App Router", "TypeScript", "Styled-components", "반응형 CSS"],
+    items: ["React 19", "Next.js 16 App Router", "TypeScript", "Styled-components"],
   },
   {
     key: "performance",
-    title: "렌더 성능 · 접근성",
-    items: ["뷰포트 컬링", "DOM 풀링", "translate3d 오버레이", "IntersectionObserver lazy", "ARIA 속성", "DevTools Performance"],
+    title: "렌더 성능",
+    items: ["뷰포트 컬링", "DOM 풀링", "translate3d 오버레이"],
   },
   {
     key: "backend",
     title: "Backend · DB",
-    items: ["Node.js", "RESTful API", "PostgreSQL", "MySQL", "Zod", "JWT"],
+    items: ["Node.js", "RESTful API", "PostgreSQL", "MySQL", "JWT"],
   },
   {
     key: "tools",
@@ -39,7 +39,7 @@ const stackJson = skillGroups
 
 export const profileJson = `{
   "role": "Frontend Developer",
-  "focus": ["렌더 성능", "접근성", "React / Next.js"],
+  "focus": ["렌더 성능", "React / Next.js"],
   "stack": {
 ${stackJson}
   },
