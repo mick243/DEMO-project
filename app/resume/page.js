@@ -111,10 +111,10 @@ export default function Resume() {
 
             <div className="detail-links">
               <a href={resume.pdf} target="_blank" rel="noreferrer" className="btn btn-ghost">
-                PDF로 보기 ↗
+                PDF로 보기
               </a>
               <Link href="/#about" className="btn btn-ghost">
-                ← 포트폴리오
+                포트폴리오
               </Link>
             </div>
           </div>

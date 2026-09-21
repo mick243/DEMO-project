@@ -343,11 +343,11 @@ export default function ProjectDetail({ params }) {
               <div className="detail-links">
                 {project.links.map((l) => (
                   <a key={l.href} href={l.href} target="_blank" rel="noreferrer" className="btn btn-ghost">
-                    {l.label} ↗
+                    {l.label}
                   </a>
                 ))}
                 <Link href="/#projects" className="btn btn-ghost">
-                  ← 프로젝트 목록
+                  프로젝트 목록
                 </Link>
               </div>
             )}
