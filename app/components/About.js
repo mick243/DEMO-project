@@ -26,7 +26,7 @@ export default function About() {
             </p>
             {/* 이력서 PDF 를 그대로 옮긴 /resume 페이지로 보냅니다. */}
             <Link href="/resume" className="btn btn-ghost about-resume-link">
-              이력서 전문 보기 →
+              이력서 전문 보기
             </Link>
           </Reveal>
           <Reveal delay={160} className="about-highlights">
