@@ -27,7 +27,7 @@ export default function Resume() {
         <article className="section detail resume" style={{ borderTop: "none" }}>
           <div className="container">
             <Link href="/#about" className="detail-back">
-              ← 포트폴리오
+              포트폴리오
             </Link>
 
             <span className="section-eyebrow">Resume</span>
@@ -63,7 +63,7 @@ export default function Resume() {
                   </ul>
                   {c.link && (
                     <a className="resume-entry-link" href={c.link.href} target="_blank" rel="noreferrer">
-                      {c.link.label} ↗
+                      {c.link.label}
                     </a>
                   )}
                 </li>
@@ -87,7 +87,7 @@ export default function Resume() {
                 <li key={l.label}>
                   <span className="resume-link-label">{l.label}</span>
                   <a href={l.href} target="_blank" rel="noreferrer">
-                    {l.value} ↗
+                    {l.value}
                   </a>
                 </li>
               ))}

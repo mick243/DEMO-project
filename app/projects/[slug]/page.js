@@ -158,7 +158,7 @@ export default function ProjectDetail({ params }) {
         <article className="section detail" style={{ borderTop: "none" }}>
           <div className="container">
             <Link href="/#projects" className="detail-back">
-              ← 프로젝트 목록
+              프로젝트 목록
             </Link>
 
             <span className="section-eyebrow">{project.type}</span>
@@ -199,7 +199,7 @@ export default function ProjectDetail({ params }) {
                     <div className="detail-meta-links">
                       {project.links.map((l) => (
                         <a key={l.href} href={l.href} target="_blank" rel="noreferrer">
-                          {l.label} ↗
+                          {l.label}
                         </a>
                       ))}
                     </div>
