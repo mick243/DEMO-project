@@ -2,54 +2,49 @@
 
 이력서(v2.2) 내용을 기반으로 실제 경력·프로젝트 정보를 채운 개인 포트폴리오입니다.
 
-## 실행 방법
+## 페이지 구조
 
-```bash
-npm install
-npm run dev
-```
+### `/` — 메인 (`app/page.js`)
 
-http://localhost:3000 접속.
+한 페이지에 섹션을 쌓은 구조입니다. 순서는 히어로 → 소개 → 기술 스택 → 프로젝트
+→ 교육 → 문의이고, 각 섹션은 `app/components/` 의 같은 이름 컴포넌트입니다.
 
-프로덕션 빌드로 검증 완료(정상 빌드 확인).
+- `Hero.js` — 히어로 + `profile.json` 터미널 패널(시그니처 요소)
+- `About.js` — 소개. `/resume` 로 가는 ‘이력서 전문 보기’ 링크가 여기 있습니다
+- `Skills.js` — 기술 스택 카드 그리드
+- `Projects.js` — 프로젝트 카드 그리드 (썸네일 · 이름 · 기술 스택)
+- `Education.js` — 교육 타임라인
+- `Contact.js` — 문의 폼 (데모, 실제 전송 없음)
+- `Process.js` — 진행 방식 3단계. `page.js` 에서 주석 처리돼 지금은 안 보입니다
 
-## 폴더 구조
+### `/resume` — 이력서 전문 (`app/resume/page.js`)
 
-```
-nextjs-portfolio-v2/
-├── app/
-│   ├── layout.js             # 루트 레이아웃, 메타데이터
-│   ├── page.js               # 메인 페이지 조합
-│   ├── globals.css           # 컬러 토큰 · 타이포 · 전 섹션 스타일
-│   ├── data/
-│   │   ├── portfolioData.js  # ★ 프로필 · 기술 스택 · 교육 · 진행 방식
-│   │   └── projects.js       # ★ 프로젝트 상세 (STAR · 수치 · 성능 · 갤러리)
-│   ├── projects/
-│   │   └── [slug]/page.js    # 프로젝트 상세 페이지 (정적 생성)
-│   └── components/
-│       ├── Header.js         # 상단 내비게이션 (모바일 햄버거 메뉴 포함)
-│       ├── Hero.js           # 히어로 + profile.json 터미널 패널(시그니처 요소)
-│       ├── About.js          # 소개
-│       ├── Skills.js         # 기술 스택 카드 그리드
-│       ├── Projects.js       # 프로젝트 카드 그리드 (썸네일 · 이름 · 기술 스택)
-│       ├── Education.js      # 교육 타임라인
-│       ├── Process.js        # 진행 방식 3단계 (page.js 에서 주석 처리됨)
-│       ├── Contact.js        # 문의 폼 (데모, 실제 전송 없음)
-│       ├── Footer.js
-│       └── Reveal.js         # 스크롤 시 등장하는 공용 애니메이션 래퍼
-├── public/
-│   └── projects/             # 카드 썸네일 · 작동 화면 스크린샷
-├── package.json
-└── next.config.mjs
-```
+이력서 PDF 를 그대로 옮긴 한 장짜리 페이지입니다. 자기소개 · 경력 · 학력 · 링크 ·
+보유 역량 순으로 싣고, 하단에서 `public/resume.pdf` 를 열 수 있습니다. 공개
+페이지라 연락처 줄과 PDF 양쪽에서 전화번호는 빼 두었습니다.
 
-메인 페이지 섹션 순서: 히어로 → 소개 → 기술 스택 → 프로젝트 → 교육 → 문의.
+### `/projects/<slug>` — 프로젝트 상세 (`app/projects/[slug]/page.js`)
+
+`app/data/projects.js` 의 항목마다 정적 생성합니다 (현재 `arcade-finder`,
+`outsourcing`). STAR · 작업 기록 · 진행한 작업 · 작동 화면 · 배운 것 중 데이터가
+있는 블록만 그리고, 목차도 그에 맞춰 만듭니다.
+
+### 페이지 밖
+
+- `app/layout.js` — 루트 레이아웃, 메타데이터
+- `app/globals.css` — 컬러 토큰 · 타이포 · 전 섹션 스타일
+- `app/components/Header.js` · `Footer.js` — 모든 페이지 공통
+- `app/components/Reveal.js` — 스크롤 시 등장하는 공용 애니메이션 래퍼
+- `public/projects/<slug>/` — 카드 썸네일 · 작동 화면 스크린샷
 
 ## 내용을 고치는 곳
 
 - **프로필 · 기술 스택 · 교육**: `app/data/portfolioData.js`
   - 히어로의 `profile.json` 터미널에 나오는 `stack` 은 기술 스택 섹션과
     같은 `skillGroups` 에서 생성됩니다. 한 곳만 고치면 둘 다 바뀝니다.
+- **이력서 페이지**: `app/data/resume.js`
+  - 내려받기용 PDF 는 `public/resume.pdf` 입니다. 이력서를 새로 쓰면 두 곳을
+    같이 맞추세요.
 - **프로젝트**: `app/data/projects.js`
   - `star` 는 Situation · Task · Action · Result 네 단계입니다.
   - `gallery[].tech` 는 작동 화면마다 붙는 기술 설명이고, 상세 페이지에서
