@@ -985,3 +985,104 @@ button { font-family: inherit; cursor: pointer; }
 
 /* 하단 링크 묶음 */
 .detail-links { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--border); }
+
+/* ---------- Resume ---------- */
+/* 업로드한 이력서 PDF 를 그대로 옮긴 /resume 페이지. 상세 페이지 골격을 그대로 씁니다. */
+.resume-role {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  color: var(--accent-cyan);
+  margin-top: -12px;
+  margin-bottom: 4px;
+}
+.resume-contacts { margin-bottom: 56px; }
+.resume-contacts dd a { border-bottom: 1px solid var(--border); padding-bottom: 1px; }
+.resume-contacts dd a:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+.resume-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 56px; }
+.resume-entry {
+  padding: 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.resume-entry-period {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-cyan);
+  display: block;
+  margin-bottom: 6px;
+}
+.resume-entry-name {
+  font-family: var(--font-display);
+  font-size: 16.5px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.resume-entry-desc { color: var(--text-secondary); font-size: 14.5px; }
+.resume-points { display: flex; flex-direction: column; gap: 6px; }
+.resume-points li {
+  position: relative;
+  padding-left: 16px;
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  line-height: 1.7;
+  max-width: 660px;
+  word-break: keep-all;
+}
+.resume-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+}
+.resume-entry-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.resume-entry-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+.resume-links { display: flex; flex-direction: column; gap: 10px; margin-bottom: 56px; }
+.resume-links li { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+.resume-link-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  min-width: 90px;
+}
+.resume-links a { font-size: 14.5px; border-bottom: 1px solid var(--border); padding-bottom: 1px; }
+.resume-links a:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+
+.resume-skills { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 760px) { .resume-skills { grid-template-columns: 1fr; } }
+.resume-skill-title {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.resume-skills .detail-tags { margin-bottom: 0; }
+
+/* 종이로 뽑을 때는 내비게이션과 버튼을 빼고 본문만 남깁니다. */
+@media print {
+  .resume .detail-back, .resume .detail-links, .header, .footer { display: none; }
+  .resume { padding-top: 0; }
+  .resume-entry { background: none; }
+}
+
+/* 소개 섹션에서 이력서 페이지로 보내는 줄 */
+.about-resume-link { margin-top: 18px; display: inline-flex; }
