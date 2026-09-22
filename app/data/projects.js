@@ -29,7 +29,7 @@ export const projects = [
     hero: "/projects/arcade-finder/01-map.jpg",
     tags: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL 18", "k6", "Vitest", "Gemini"],
     type: "개인 프로젝트 (1인 개발)",
-    role: "기획 · 프론트엔드 · 백엔드 · 데이터 수집 · 성능 측정 · 배포 준비 전 과정",
+    role: "기획 · 프론트엔드 · 백엔드 · 데이터 수집 · 성능 측정 전 과정",
     summary:
       "리듬게임 유저가 지금 갈 만한 오락실을 찾는 지도에서 시작해, 체감 난이도 서열표와 커뮤니티까지 한 앱에 담았습니다. 위치는 지도가 알려주고, 기기 상태는 유저 제보가 채웁니다.",
     links: [{ label: "GitHub 저장소", href: "https://github.com/mick243/Private_Project" }],
@@ -51,7 +51,7 @@ export const projects = [
         key: "T",
         label: "Task",
         title: "‘지금 어디로 갈까’에 점수 하나로 답하는 서비스를 11일 안에 — 그리고 그 뒤 4주",
-        body: "기획부터 프론트엔드 · 백엔드 · 데이터 수집 · 성능 측정까지 전 과정을 혼자 맡았습니다. 8월 24일 발표까지 11일, 그 뒤로 부하 · 보안 · 배포 준비를 4주 더 이어갔습니다. 스스로 세운 조건은 넷이었습니다.",
+        body: "기획부터 프론트엔드 · 백엔드 · 데이터 수집 · 성능 측정까지 전 과정을 혼자 맡았습니다. 8월 24일 발표까지 11일, 그 뒤로 부하 · 보안을 4주 더 이어갔습니다. 스스로 세운 조건은 넷이었습니다.",
         points: [
           "잘 안 변하는 정보(위치 · 보유 기종)와 계속 변하는 정보(대기 · 컨디션)를 구조로 분리할 것",
           "낡은 정보가 남아 있지 않게 할 것. 낡은 정보는 정보가 없는 것보다 나쁩니다",
@@ -100,7 +100,7 @@ export const projects = [
             ],
           },
           {
-            title: "배포 준비: Blocker 9개를 읽기 전용 감사로 찾아 닫았습니다",
+            title: "Blocker 9개를 읽기 전용 감사로 찾아 닫았습니다",
             points: [
               "약관 · 처리방침 · 탈퇴 API, 마이그레이션을 advisory lock 안에서, DB 폴백 중이면 /api/health 가 503 을 내 프록시가 인스턴스를 빼게 했습니다.",
               "챗봇은 사람당 하루 40회 · 전체 2,000회, 제보는 10분 창 제한, 가입 24시간 미만 계정은 임계값에 세지 않습니다.",
@@ -290,7 +290,7 @@ export const projects = [
         ],
       },
       {
-        phase: "배포 준비",
+        phase: "점검",
         range: "2026.09.13 ~ 09.15",
         summary: "읽기 전용 QA 감사로 Blocker 9개를 찾아 닫고, 홈 · 인증 · PWA 를 얹었습니다.",
         entries: [
@@ -476,7 +476,7 @@ export const projects = [
     galleryPortrait: true,
     tags: ["React 18", "TypeScript", "Vite", "Express", "MySQL 8", "k6", "Kakao Map"],
     type: "개인 프로젝트 (1인 재작성)",
-    role: "기획 재정리 · 프론트엔드 · 백엔드 · 데이터 수집 · 성능 측정 · 배포 준비",
+    role: "기획 재정리 · 프론트엔드 · 백엔드 · 데이터 수집 · 성능 측정",
     summary:
       "2024년 부트캠프에서 4인 팀으로 만든 반려동물 병원·약국 찾기 앱을 2년 뒤 혼자 처음부터 다시 만들었습니다. 같은 기능을 다시 쓰는 것이 목적이 아니라, 그때 넘어갔던 것들을 측정과 점검으로 닫는 것이 목적이었습니다.",
     links: [
@@ -686,7 +686,7 @@ export const projects = [
           },
           {
             date: "09.13",
-            title: "ESLint · Vitest · CI · 배포 구성",
+            title: "ESLint · Vitest · CI · 구성",
             desc: "서버 ESLint 를 들이고 그로 잡힌 것들을 고쳤습니다(logError 를 쓰면서 require 를 빠뜨린 곳 포함). 화면 쪽 Vitest, CI 워크플로, Dockerfile · compose · 환경변수 본보기, 백업 스크립트.",
           },
           {
