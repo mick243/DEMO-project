@@ -564,7 +564,7 @@ export const projects = [
     ],
 
     metrics: [
-      { value: "103", unit: "커밋", label: "2주간 1인 작업", note: "2026.09.09 ~ 09.16 · 원본 팀 프로젝트에서는 248커밋 중 18" },
+      { value: "103", unit: "커밋", label: "8일간 1인 작업", note: "2026.09.09 ~ 09.16 · 원본 팀 프로젝트에서는 248커밋 중 18" },
       { value: "7,120", unit: "곳", label: "시설 데이터", note: "병원 2,238 · 약국 4,882 · 오늘 실측" },
       { value: "78", unit: "건", label: "서버 자동 테스트", note: "node --test · 오늘 전부 통과" },
       { value: "24,251", unit: "줄", label: "TypeScript · JS", note: "184개 파일" },
