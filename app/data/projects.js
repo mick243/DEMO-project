@@ -96,7 +96,7 @@ export const projects = [
             points: [
               "로그인 시도 제한이 X-Forwarded-For 첫 값을 키로 쓰고 있었습니다. 헤더만 바꾸면 8회 제한이 무한히 풀립니다. 계정 단위로 세게 바꾸고, IP 는 신뢰할 수 있는 프록시 홉이 설정됐을 때만 씁니다.",
               "API 가 요청 본문의 playerId 를 그대로 믿고 있었습니다. 라우트 18곳의 신원을 세션 쿠키 하나로 모았고, 제보만 로그인 없이 받되 익명은 임계값에 세지 않습니다. 회귀 테스트 24건.",
-              "오픈 리다이렉트(next=/\\evil.com 이 통과), 보안 헤더 부재, 토큰 회수 불가를 배포 전에 닫았습니다. 세션 회수는 token_epoch 한 컬럼으로 — 비밀번호를 바꾸면 다른 기기 세션이 끊깁니다.",
+              "오픈 리다이렉트(next=/\\evil.com 이 통과), 보안 헤더 부재, 토큰 회수 불가를 닫았습니다. 세션 회수는 token_epoch 한 컬럼으로 — 비밀번호를 바꾸면 다른 기기 세션이 끊깁니다.",
             ],
           },
           {
@@ -296,7 +296,7 @@ export const projects = [
         entries: [
           {
             date: "09.13",
-            title: "배포 전 QA 감사 — Blocker 9",
+            title: "QA — Blocker 9",
             desc: "약관 · 처리방침 · 탈퇴, advisory lock 마이그레이션, 폴백 시 /api/health 503, 챗봇 · 제보 사용량 한도, 에러 화면 4종, 지도 SDK 인증 실패 폴백.",
           },
           {
@@ -371,7 +371,7 @@ export const projects = [
       {
         src: "/projects/arcade-finder/04-assistant.jpg",
         caption: "오락실 도우미. 앱 안쪽 데이터로 답하고, 범위 밖 질문에는 답하지 않습니다.",
-        tech: "Gemini 한 요청에 함수 선언과 내장 googleSearch 도구를 같이 물립니다. search_arcades · search_reports 같은 함수 선언을 주고 모델이 고르면 서버가 앱 DB를 직접 조회해 결과를 돌려줍니다. 범위 밖 질문은 systemInstruction이 고정 문구로 끊습니다. API 키는 서버 라우트에만 있고 클라이언트로 나가지 않습니다. 배포 전에 로그인 필수 · 사람당 하루 40회 · 전체 하루 2,000회 한도를 붙였습니다. 기종 추정 기능에서 알게 된 것 하나 — responseSchema와 googleSearch를 함께 주면 검색이 아예 돌지 않고 모델이 기억으로 답합니다. 그래서 검색으로 자유 문장을 받고, 그 문장을 스키마로 훑는 2단계로 나눕니다.",
+        tech: "Gemini 한 요청에 함수 선언과 내장 googleSearch 도구를 같이 물립니다. search_arcades · search_reports 같은 함수 선언을 주고 모델이 고르면 서버가 앱 DB를 직접 조회해 결과를 돌려줍니다. 범위 밖 질문은 systemInstruction이 고정 문구로 끊습니다. API 키는 서버 라우트에만 있고 클라이언트로 나가지 않습니다. 로그인 필수 · 사람당 하루 40회 · 전체 하루 2,000회 한도를 붙였습니다. 기종 추정 기능에서 알게 된 것 하나 — responseSchema와 googleSearch를 함께 주면 검색이 아예 돌지 않고 모델이 기억으로 답합니다. 그래서 검색으로 자유 문장을 받고, 그 문장을 스키마로 훑는 2단계로 나눕니다.",
       },
       {
         src: "/projects/arcade-finder/05-report.jpg",
