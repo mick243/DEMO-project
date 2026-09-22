@@ -311,7 +311,7 @@ export default function ProjectDetail({ params }) {
                 />
                 <div className="shots">
                   {project.gallery.map((g) => (
-                    <figure key={g.src} className="shot">
+                    <figure key={g.src} className={`shot${project.galleryPortrait ? " portrait" : ""}`}>
                       <img src={g.src} alt={g.caption} loading="lazy" />
                       <figcaption>
                         <p className="shot-caption">{g.caption}</p>
