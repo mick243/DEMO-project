@@ -564,7 +564,7 @@ export const projects = [
     ],
 
     metrics: [
-      { value: "103", unit: "커밋", label: "2주간 1인 작업", note: "2026.09.04 ~ 09.18 · 원본 팀 프로젝트에서는 248커밋 중 18" },
+      { value: "103", unit: "커밋", label: "2주간 1인 작업", note: "2026.09.09 ~ 09.16 · 원본 팀 프로젝트에서는 248커밋 중 18" },
       { value: "7,120", unit: "곳", label: "시설 데이터", note: "병원 2,238 · 약국 4,882 · 오늘 실측" },
       { value: "78", unit: "건", label: "서버 자동 테스트", note: "node --test · 오늘 전부 통과" },
       { value: "24,251", unit: "줄", label: "TypeScript · JS", note: "184개 파일" },
@@ -614,7 +614,7 @@ export const projects = [
     timeline: [
       {
         phase: "다시 세우기",
-        range: "2026.09.04 ~ 09.08",
+        range: "2026.09.09 ~ 09.10",
         summary: "빈 저장소에서 시작해, 물려받은 것 가운데 남길 수 없는 것부터 걷어냈습니다.",
         entries: [
           {
@@ -734,7 +734,7 @@ export const projects = [
       },
       {
         phase: "그 뒤",
-        range: "2026.09.16 ~ 09.18",
+        range: "2026.09.16",
         summary: "후기 AI 요약을 붙였고, QA 에서 나온 나머지는 아직 병합을 기다리고 있습니다.",
         entries: [
           {
