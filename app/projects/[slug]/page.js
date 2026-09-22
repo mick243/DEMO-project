@@ -42,10 +42,25 @@ function SectionHead({ id, eyebrow, title, desc }) {
   );
 }
 
+/**
+ * 성능 표. `href` 가 있으면 제목 전체가 딥다이브 링크가 되고, 제목 옆에 배지가 붙습니다.
+ *
+ * 제목과 배지를 한 링크 안에 넣습니다 — 둘을 따로 걸면 배지만 눌러야 하는 줄 알거나,
+ * 제목을 눌러 놓고 아무 일도 안 일어난 줄 압니다. 누를 곳은 하나여야 합니다.
+ */
 function PerfTable({ perf }) {
   return (
     <div className="perf">
-      <h3 className="star-group-title">{perf.title}</h3>
+      <h3 className="star-group-title">
+        {perf.href ? (
+          <Link href={perf.href} className="perf-title-link">
+            {perf.title}
+            <span className="perf-title-badge">{perf.badge ?? "자세히"}</span>
+          </Link>
+        ) : (
+          perf.title
+        )}
+      </h3>
       <div className="perf-table-wrap">
         <table className="perf-table">
           <thead>
