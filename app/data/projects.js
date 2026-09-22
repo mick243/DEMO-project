@@ -134,6 +134,10 @@ export const projects = [
     perf: [
       {
         title: "클라이언트 — 뷰포트 컬링 전후",
+        // 제목을 누르면 딥다이브로 갑니다 (app/projects/arcade-finder/viewport-culling).
+        // badge 는 제목 옆에 붙어 "눌러 볼 것이 있다" 를 알립니다.
+        href: "/projects/arcade-finder/viewport-culling",
+        badge: "수정 내용 보기",
         rows: [
           { what: "초기 마커 동기화", sub: "단일 블로킹 작업", was: "622 ms", now: "156 ms", delta: "−75%" },
           { what: "draw() 호출", sub: "로드 시 누적", was: "1,449회 · 68 ms", now: "337회 · 20 ms", delta: "−77%" },
