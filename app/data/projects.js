@@ -465,7 +465,7 @@ export const projects = [
     slug: "petmedisearch",
     name: "PetMediSearch",
     group: "personal",
-    period: "2026.09.04 ~ 09.18",
+    period: "2026.09.09 ~ 09.16",
     updated: "2026.09.22",
     thumbnail: "/projects/petmedisearch/thumb.jpg",
     // 세로로 긴 모바일 화면을 상세 상단에 그대로 쓰면 히어로가 3천 픽셀이 됩니다.
