@@ -1087,33 +1087,38 @@ button { font-family: inherit; cursor: pointer; }
 /* 소개 섹션에서 이력서 페이지로 보내는 줄 */
 .about-resume-link { margin-top: 18px; display: inline-flex; }
 
-/* ---------- 성능 표 제목 링크 (딥다이브로 가는 자리) ---------- */
-.perf-title-link {
-  display: inline-flex;
-  align-items: center;
+/* ---------- 성능 표 제목 + 딥다이브 배지 ---------- */
+/* 제목은 글이고, 누를 곳은 옆의 배지 하나입니다. */
+.perf-title {
+  display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
-  color: inherit;
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s ease, border-color 0.15s ease;
 }
-.perf-title-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
-.perf-title-link:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
-/* 배지는 제목 옆에서 "여기 눌러 볼 것이 있다" 만 말합니다. 색은 강조색 하나로. */
+/* 배지 — 작아도 버튼으로 읽히게 바탕을 채웁니다. 밑줄은 쓰지 않습니다. */
 .perf-title-badge {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 500;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.02em;
   white-space: nowrap;
-  color: var(--accent-blue);
-  background: var(--accent-blue-soft);
-  border: 1px solid var(--accent-blue);
+  color: #ffffff;
+  background: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
   border-radius: 999px;
-  padding: 2px 9px;
-  line-height: 1.6;
-  transform: translateY(-1px);
+  padding: 5px 13px;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
+/* 호버는 색을 뒤집어 알립니다 — 밑줄이나 글자 장식은 붙이지 않습니다. */
+.perf-title-badge:hover {
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.perf-title-badge:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
 
 /* ---------- 딥다이브 페이지 ---------- */
 .dd-summary { margin-top: 0; margin-bottom: 8px; }
@@ -1202,7 +1207,7 @@ button { font-family: inherit; cursor: pointer; }
 
 @media (max-width: 640px) {
   .dd-code code { font-size: 11.5px; }
-  .perf-title-link { gap: 8px; }
+  .perf-title { gap: 8px; }
 }
 
 /* ══ 한 줄 스크롤 줄 (app/components/ScrollStrip.js) ══════════════
@@ -1292,3 +1297,36 @@ button { font-family: inherit; cursor: pointer; }
 }
 .dd-toc a:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
 .dd-toc a:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
+
+/* ---------- 프로젝트 묶음 (개인 · 외주) ---------- */
+/* 섹션 안에서 성격이 다른 묶음을 가르는 머리입니다. 섹션 제목보다 한 단 작습니다. */
+.project-group + .project-group { margin-top: 64px; }
+.project-group-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.project-group-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.project-group-desc {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin: 12px 0 22px;
+}
+
+/* 모바일 앱 화면은 세로로 길어, 폭을 채우면 한 장이 페이지를 다 먹습니다.
+   높이를 묶고 칸 가운데에 세웁니다. */
+.shot.portrait img { max-height: 620px; width: auto; margin: 0 auto; }
+@media (max-width: 860px) {
+  .shot.portrait img { max-height: 540px; }
+}
