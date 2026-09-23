@@ -58,11 +58,9 @@
    (예: Resend, EmailJS)와 연결하세요.
 2. **오락실 파인더 저장소 공개**: 현재 GitHub 링크는 프로필 페이지로 연결됩니다.
    저장소를 공개하면 `projects.js` 의 `links` 를 실제 저장소 URL로 바꾸세요.
-3. **AI Native Career Camp**: `portfolioData.js` 의 `education` 에 임시 값
-   (`2026.09 ~ 진행 중`)이 들어 있습니다. 실제 기간과 내용으로 바꾸세요.
-4. **프로젝트 썸네일**: 외주 프로젝트 카드는 아직 SVG 플레이스홀더
+3. **프로젝트 썸네일**: 외주 프로젝트 카드는 아직 SVG 플레이스홀더
    (`public/projects/outsourcing.svg`)입니다. 실제 이미지로 교체하세요.
-5. **컬러/폰트**: `app/globals.css` 최상단 `:root` 변수만 바꾸면 전체 톤이
+4. **컬러/폰트**: `app/globals.css` 최상단 `:root` 변수만 바꾸면 전체 톤이
    바뀝니다 (`--bg-base`, `--accent-blue`, `--accent-cyan` 등).
 
 ## 디자인 컨셉
