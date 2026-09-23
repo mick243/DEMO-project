@@ -3,7 +3,8 @@
 export const profile = {
   handle: "강정민",
   role: "Frontend Developer",
-  tagline: "렌더 성능을 측정으로 검증합니다.",
+  tagline: "모르면 재고, 막히면 먼저 말합니다.",
+  headline: "혼자 끝까지, 함께 투명하게 일하는 개발자",
   location: "서울, 대한민국",
   email: "kjm3746@gmail.com",
   availability: "채용 지원 가능",

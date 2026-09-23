@@ -17,7 +17,7 @@ export default function About() {
       <div className="container">
         <Reveal>
           <span className="section-eyebrow">About</span>
-          <h2 className="section-title">렌더 성능을 측정으로 검증하는 개발자</h2>
+          <h2 className="section-title">{profile.headline}</h2>
         </Reveal>
         <div className="about-grid">
           <Reveal delay={80}>
