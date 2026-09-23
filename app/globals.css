@@ -484,6 +484,17 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 14px;
 }
 .detail-links { display: flex; flex-wrap: wrap; gap: 12px; }
+/* 카드 안 사이트 링크. 상단 메타 링크와 같은 밑줄 텍스트 링크입니다. */
+.detail-item-link {
+  display: inline-block;
+  margin-bottom: 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+}
+.detail-item-link:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
 
 
 /* ---------- Process ---------- */

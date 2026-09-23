@@ -288,6 +288,11 @@ export default function ProjectDetail({ params }) {
                       <span className="detail-item-period">{item.period}</span>
                       <h3 className="detail-item-name">{item.name}</h3>
                       <p className="detail-item-desc">{item.desc}</p>
+                      {item.link && (
+                        <a href={item.link.href} target="_blank" rel="noreferrer" className="detail-item-link">
+                          {item.link.label}
+                        </a>
+                      )}
                       <div className="detail-tags">
                         {item.tags.map((t) => (
                           <span key={t} className="tag">
