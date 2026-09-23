@@ -11,7 +11,7 @@ import { viewportCulling as dd } from "../../../data/viewportCulling";
 // /projects/arcade-finder 자체는 여전히 [slug] 가 처리합니다.
 
 export const metadata = {
-  title: "클라이언트 — 뷰포트 컬링 전후 | 오락실 파인더 | 강정민",
+  title: "클라이언트: 뷰포트 컬링 전후 | 오락실 파인더 | 강정민",
   description:
     "전국 마커 1,449개를 화면 안 337개로 줄인 작업의 코드와 원리. 무엇을 고쳤고 왜 그만큼 줄었는지, 그리고 이 수치가 SQL 과 무관한 이유.",
 };
