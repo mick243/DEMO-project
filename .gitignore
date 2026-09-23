@@ -32,4 +32,6 @@ yarn-error.log*
 next-env.d.ts
 
 # local tooling (Claude worktrees etc.)
-.claude/
+.claude/*
+# 단, 상시 규칙은 버전 관리에 남깁니다.
+!.claude/rules/
