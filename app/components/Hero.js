@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { profile, profileJson } from "../data/portfolioData";
 
 function renderJson(json) {
@@ -32,7 +33,14 @@ export default function Hero() {
         <h1 className="hero-title">
           {profile.role}
           <br />
-          <span className="accent">{profile.tagline}</span>
+          <span className="accent">
+            {profile.tagline.map((line, i) => (
+              <Fragment key={line}>
+                {i > 0 && <br />}
+                {line}
+              </Fragment>
+            ))}
+          </span>
         </h1>
         <div className="hero-actions">
           <a href="#contact" className="btn btn-primary">
