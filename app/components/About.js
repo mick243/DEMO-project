@@ -21,11 +21,8 @@ export default function About() {
         </Reveal>
         <div className="about-grid">
           <Reveal delay={80}>
-            <p className="about-text">
-              {profile.location} 기준으로 활동
-            </p>
             {/* 이력서 PDF 를 그대로 옮긴 /resume 페이지로 보냅니다. */}
-            <Link href="/resume" className="btn btn-ghost about-resume-link">
+            <Link href="/resume" className="btn btn-primary about-resume-link">
               이력서 전문 보기
             </Link>
           </Reveal>

@@ -4,8 +4,9 @@ export const profile = {
   handle: "강정민",
   role: "Frontend Developer",
   // 히어로 한 줄입니다. 배열 한 칸이 화면의 한 줄입니다.
-  tagline: ["끝까지 책임지며", "함께 일하는 개발자"],
-  headline: "끝까지 책임지며 함께 일하는 개발자",
+  tagline: ["강정민"],
+  // 소개(About) 섹션 제목입니다.
+  headline: "서울, 대한민국 기준으로 활동",
   location: "서울, 대한민국",
   email: "kjm3746@gmail.com",
   availability: "채용 지원 가능",

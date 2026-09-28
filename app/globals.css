@@ -292,7 +292,6 @@ button { font-family: inherit; cursor: pointer; }
   align-items: start;
 }
 @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
-.about-text { color: var(--text-secondary); font-size: 15.5px; }
 .about-highlights { display: grid; gap: 14px; }
 .about-highlight {
   padding: 16px 18px;
