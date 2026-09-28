@@ -18,11 +18,6 @@ export const skillGroups = [
     items: ["React 19", "Next.js 16 App Router", "TypeScript", "Styled-components"],
   },
   {
-    key: "performance",
-    title: "렌더 성능",
-    items: ["뷰포트 컬링", "DOM 풀링", "translate3d 오버레이"],
-  },
-  {
     key: "backend",
     title: "Backend · DB",
     items: ["Node.js", "RESTful API", "PostgreSQL", "MySQL", "JWT"],
