@@ -68,7 +68,6 @@ export const resume = {
         "RESTful API",
         "PostgreSQL",
         "MySQL",
-        "JWT",
       ],
     },
     {

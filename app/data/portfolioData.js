@@ -20,7 +20,7 @@ export const skillGroups = [
   {
     key: "backend",
     title: "Backend · DB",
-    items: ["Node.js", "RESTful API", "PostgreSQL", "MySQL", "JWT"],
+    items: ["Node.js", "RESTful API", "PostgreSQL", "MySQL"],
   },
   {
     key: "tools",
@@ -36,7 +36,7 @@ const stackJson = skillGroups
 
 export const profileJson = `{
   "role": "Frontend Developer",
-  "focus": ["렌더 성능", "React / Next.js"],
+  "focus": ["React / Next.js"],
   "stack": {
 ${stackJson}
   },
@@ -54,7 +54,7 @@ export const education = [
   {
     period: "2024.04 ~ 2024.10",
     name: "Programmers Dev-Course",
-    desc: "팀원 한 명이 초기에 이탈한 상황에서 업무를 재분담하고 데일리 워크타임으로 일정을 완주했습니다. JWT 인증 구현, Swagger API 문서화를 경험했습니다.",
+    desc: "팀원 한 명이 초기에 이탈한 상황에서 업무를 재분담하고 데일리 워크타임으로 일정을 완주했습니다. Swagger API 문서화를 경험했습니다.",
     tags: ["TypeScript", "Node.js", "MySQL", "Docker"],
   },
 ];
