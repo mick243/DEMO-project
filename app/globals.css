@@ -587,6 +587,8 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 760px) {
   .star-step { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
 }
+/* 성능 표가 칸을 밀어내지 않게 합니다. 넓은 표는 .perf-table-wrap 안에서 가로로 넘깁니다. */
+.star-body { min-width: 0; }
 .star-mark { position: sticky; top: 96px; align-self: start; }
 @media (max-width: 760px) { .star-mark { position: static; display: flex; align-items: baseline; gap: 10px; } }
 .star-key {
