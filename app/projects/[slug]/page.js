@@ -153,12 +153,13 @@ export default function ProjectDetail({ params }) {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) notFound();
 
-  const commitCount = project.timeline?.reduce((n, ph) => n + ph.entries.length, 0) ?? 0;
+  // 작업 기록은 일단 숨겨 둡니다. 되살릴 때는 이 줄, 목차의 "작업 기록" 줄, 본문의 작업 기록 블록 주석을 함께 풉니다.
+  // const commitCount = project.timeline?.reduce((n, ph) => n + ph.entries.length, 0) ?? 0;
 
   // 이 페이지에 실제로 있는 섹션만 목차에 올립니다.
   const toc = [
     project.star && { href: "#star", label: "STAR" },
-    project.timeline?.length > 0 && { href: "#timeline", label: "작업 기록" },
+    // project.timeline?.length > 0 && { href: "#timeline", label: "작업 기록" },
     project.items?.length > 0 && { href: "#items", label: "진행한 작업" },
     project.gallery?.length > 0 && { href: "#screens", label: "작동 화면" },
     project.learned?.length > 0 && { href: "#lessons", label: "배운 것과 남은 것" },
@@ -243,6 +244,7 @@ export default function ProjectDetail({ params }) {
               </div>
             )}
 
+            {/* 작업 기록 — 일단 숨겨 둡니다(데이터 project.timeline 은 그대로 있습니다).
             {project.timeline?.length > 0 && (
               <>
                 <SectionHead
@@ -278,6 +280,7 @@ export default function ProjectDetail({ params }) {
                 </ol>
               </>
             )}
+            */}
 
             {project.items?.length > 0 && (
               <>
