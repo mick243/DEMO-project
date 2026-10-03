@@ -12,6 +12,8 @@
 
 export const viewportCulling = {
   slug: "arcade-finder",
+  // 상세 페이지 성능 표의 href 와 같아야 그 표를 맨 위에 다시 싣습니다.
+  path: "/projects/arcade-finder/viewport-culling",
   eyebrow: "Deep dive",
   title: "클라이언트: 뷰포트 컬링 전후",
   lede: "전국 마커 1,449개를 화면 안 337개로 줄인 작업입니다. 무엇을 고쳤고, 왜 그만큼 줄었는지를 코드와 함께 정리했습니다.",
