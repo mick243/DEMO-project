@@ -89,6 +89,9 @@ export const projects = [
       },
       {
         title: "서버: k6, 프로덕션 빌드",
+        // 제목 옆 배지를 누르면 서버 작업 정리로 갑니다 (app/projects/arcade-finder/server).
+        href: "/projects/arcade-finder/server",
+        badge: "서버 작업 보기",
         rows: [
           { what: "20 VU p95", sub: "1부 · 풀 30 + 캐싱 + 총계 분리", was: "287 ms", now: "39 ms", delta: "−86%" },
           { what: "200 VU p95", sub: "2부 · 프로세스 1 → 8", was: "1.34 s", now: "87 ms", delta: "−94%" },

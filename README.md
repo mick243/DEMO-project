@@ -31,6 +31,13 @@
 이내 본문만 둡니다. 작업 기록(`timeline`)은 데이터는 남기고 페이지에서 주석 처리해
 두었습니다.
 
+### `/projects/arcade-finder/viewport-culling` · `/projects/arcade-finder/server` — 딥다이브
+
+오락실 파인더 상세의 Result 단계에서 성능 표 제목 옆 배지로 들어오는 페이지입니다.
+클라이언트(뷰포트 컬링)와 서버(부하 시험 · 보안 · 출시 감사 · Prisma 이관 · 실서버)
+두 편이고, 둘 다 `app/components/DeepDive.js` 가 그립니다. 맨 위에는 상세 페이지에서
+그 페이지로 링크한 성능 표(`perf[].href` 가 데이터의 `path` 와 같은 표)를 다시 싣습니다.
+
 ### 페이지 밖
 
 - `app/layout.js` — 루트 레이아웃, 메타데이터
@@ -52,6 +59,10 @@
   - `gallery[].tech` 는 작동 화면마다 붙는 기술 설명이고, 상세 페이지에서
     접이식 ‘구현 메모’ 로 렌더합니다.
   - 이미지는 `public/projects/<slug>/` 에 두고 경로만 적습니다.
+- **딥다이브**: `app/data/viewportCulling.js` · `app/data/arcadeServer.js`
+  - 절(`sections`)마다 블록을 쌓습니다. 블록 종류는 text · list · code · table · note 입니다.
+  - 오락실 파인더 수치는 원본 저장소(`Desktop/claude/개인 프로젝트`)의 문서에서 옮긴
+    값입니다. 여기서 다시 재지 말고, 파일 머리 주석의 출처를 확인하세요.
 
 ## 남은 작업
 
