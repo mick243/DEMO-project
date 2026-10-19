@@ -3,23 +3,24 @@ import Reveal from "./Reveal";
 import { projects } from "../data/projects";
 
 /**
- * 프로젝트 섹션. 개인 프로젝트를 위에, 외주 프로젝트를 아래에 따로 묶습니다.
+ * 프로젝트 섹션. 개인 · 팀 · 외주 프로젝트를 위에서부터 따로 묶습니다.
  *
  * 묶음은 projects.js 의 `group` 이 정하고, 순서는 아래 GROUPS 가 정합니다.
- * group 이 없는 항목은 빠지지 않고 개인 프로젝트로 들어갑니다 — 새 프로젝트를
- * 추가할 때 group 을 빠뜨려도 화면에서 사라지지 않게.
+ * group 이 없거나 GROUPS 에 없는 값인 항목은 빠지지 않고 개인 프로젝트로 들어갑니다 —
+ * 새 프로젝트를 추가할 때 group 을 빠뜨리거나 잘못 적어도 화면에서 사라지지 않게.
  */
 const GROUPS = [
   { key: "personal", title: "개인 프로젝트", desc: "기획부터 배포까지 혼자 맡은 것들입니다." },
+  { key: "team", title: "팀 프로젝트", desc: "팀 안에서 맡은 몫을 끝까지 붙여 돌게 만든 것들입니다." },
   { key: "outsourcing", title: "외주 프로젝트", desc: "클라이언트·디자이너와 함께 기한 안에 납품한 것들입니다." },
 ];
+
+const groupOf = (p) => (GROUPS.some((g) => g.key === p.group) ? p.group : "personal");
 
 export default function Projects() {
   const grouped = GROUPS.map((g) => ({
     ...g,
-    items: projects.filter((p) =>
-      g.key === "personal" ? p.group !== "outsourcing" : p.group === "outsourcing"
-    ),
+    items: projects.filter((p) => groupOf(p) === g.key),
   })).filter((g) => g.items.length > 0);
 
   return (
@@ -29,7 +30,7 @@ export default function Projects() {
           <span className="section-eyebrow">Projects</span>
           <h2 className="section-title">진행한 프로젝트</h2>
           <p className="section-desc">
-            개인 프로젝트와 외주 프로젝트입니다. 카드를 누르면 상세 내용을 볼 수 있습니다.
+            개인 · 팀 · 외주 프로젝트입니다. 카드를 누르면 상세 내용을 볼 수 있습니다.
           </p>
         </Reveal>
 

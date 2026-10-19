@@ -26,9 +26,9 @@
 ### `/projects/<slug>` — 프로젝트 상세 (`app/projects/[slug]/page.js`)
 
 `app/data/projects.js` 의 항목마다 정적 생성합니다 (현재 `arcade-finder`,
-`petmedisearch`, `outsourcing`). STAR · 진행한 작업 · 작동 화면 · 배운 것 중 데이터가
-있는 블록만 그리고, 목차도 그에 맞춰 만듭니다. STAR 는 단계마다 제목 한 줄과 두 줄
-이내 본문만 둡니다. 작업 기록(`timeline`)은 데이터는 남기고 페이지에서 주석 처리해
+`petmedisearch`, `bandit`, `outsourcing`). STAR · 진행한 작업 · 작동 화면 · 배운 것 중
+데이터가 있는 블록만 그리고, 목차도 그에 맞춰 만듭니다. STAR 는 단계마다 제목 한 줄과
+두 줄 이내 본문만 둡니다. 작업 기록(`timeline`)은 데이터는 남기고 페이지에서 주석 처리해
 두었습니다.
 
 ### `/projects/arcade-finder/viewport-culling` · `/projects/arcade-finder/server` — 딥다이브
@@ -55,6 +55,8 @@
   - 내려받기용 PDF 는 `public/resume.pdf` 입니다. 이력서를 새로 쓰면 두 곳을
     같이 맞추세요.
 - **프로젝트**: `app/data/projects.js`
+  - `group` 이 프로젝트 섹션의 묶음을 정합니다: `personal`(개인) · `team`(팀) ·
+    `outsourcing`(외주). 빠뜨리거나 모르는 값이면 개인 프로젝트로 들어갑니다.
   - `star` 는 Situation · Task · Action · Result 네 단계입니다.
   - `gallery[].tech` 는 작동 화면마다 붙는 기술 설명이고, 상세 페이지에서
     접이식 ‘구현 메모’ 로 렌더합니다.
