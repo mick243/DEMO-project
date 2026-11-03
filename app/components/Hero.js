@@ -42,6 +42,7 @@ export default function Hero() {
             ))}
           </span>
         </h1>
+        <p className="hero-summary">{profile.summary}</p>
         <div className="hero-actions">
           <a href="#contact" className="btn btn-primary">
             문의하기

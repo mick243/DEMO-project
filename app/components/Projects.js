@@ -48,10 +48,12 @@ export default function Projects() {
                 <Reveal key={p.slug} delay={(i % 3) * 100}>
                   <Link href={`/projects/${p.slug}`} className="project-card card">
                     <div className="project-media">
-                      <img src={p.thumbnail} alt="" />
+                      <img src={p.thumbnail} alt={`${p.name} 화면`} />
                     </div>
                     <div className="project-body">
                       <div className="project-name">{p.name}</div>
+                      {p.cardSummary && <p className="project-summary">{p.cardSummary}</p>}
+                      {p.cardHighlight && <p className="project-highlight">{p.cardHighlight}</p>}
                       <div className="project-tags">
                         {p.tags.map((t) => (
                           <span key={t} className="tag">
