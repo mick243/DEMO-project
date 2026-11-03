@@ -31,6 +31,9 @@ export const projects = [
     period: "2026.08.14 ~ 진행 중",
     updated: "2026.09.18",
     thumbnail: "/projects/arcade-finder/thumb.jpg",
+    // 홈 프로젝트 카드에 쓰는 한 줄 설명과 대표 성과입니다.
+    cardSummary: "리듬게임 유저를 위한 오락실 지도와 실시간 제보 서비스",
+    cardHighlight: "지도 첫 렌더 −75% · 서버 응답 p95 −86%",
     hero: "/projects/arcade-finder/01-map.jpg",
     tags: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL 18", "k6", "Vitest", "Gemini"],
     type: "개인 프로젝트 (1인 개발)",
@@ -405,6 +408,8 @@ export const projects = [
     period: "2026.09.09 ~ 09.16",
     updated: "2026.09.22",
     thumbnail: "/projects/petmedisearch/thumb.jpg",
+    cardSummary: "팀으로 만든 반려동물 병원 · 약국 찾기 앱을 2년 뒤 혼자 다시 만든 프로젝트",
+    cardHighlight: "목록 응답 30.7MB → 4.6KB · 동시 200명 부하에서 실패 0",
     // 세로로 긴 모바일 화면을 상세 상단에 그대로 쓰면 히어로가 3천 픽셀이 됩니다.
     // 실제 화면 두 장을 16:10 으로 세워 둔 같은 이미지를 씁니다.
     hero: "/projects/petmedisearch/thumb.jpg",
@@ -745,6 +750,8 @@ export const projects = [
     period: "2026.10.08 ~ 10.15",
     updated: "2026.10.16",
     thumbnail: "/projects/bandit/thumb.jpg",
+    cardSummary: "팀 결정 사항이 바뀌면 관련 담당자에게만 알리는 AI 에이전트용 팀 위키",
+    cardHighlight: "6인 팀 통합환경 담당 · 자동 배포 28번 모두 성공",
     hero: "/projects/bandit/01-main.jpg",
     tags: ["TypeScript 6", "Node 24", "MCP", "Supabase", "PostgreSQL 17", "Cloud Run", "Vite 7", "PWA"],
     type: "팀 프로젝트 (통합환경 담당)",
@@ -938,6 +945,8 @@ export const projects = [
     group: "outsourcing",
     period: "2025.09 ~ 2026.03",
     thumbnail: "/projects/outsourcing.svg",
+    cardSummary: "카페24 기반 쇼핑몰 두 곳의 UI/UX 구현과 퍼블리싱",
+    cardHighlight: "RANGE · Deeto 모두 기한 안에 오픈",
     tags: ["UI/UX", "카페24", "Figma", "퍼블리싱"],
     type: "외주 프로젝트",
     role: "UI/UX · 퍼블리싱",

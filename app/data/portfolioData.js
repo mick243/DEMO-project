@@ -5,11 +5,20 @@ export const profile = {
   role: "Frontend Developer",
   // 히어로 한 줄입니다. 배열 한 칸이 화면의 한 줄입니다.
   tagline: ["강정민"],
+  // 히어로 제목 아래 소개 문장입니다.
+  summary:
+    "사용자가 느끼는 화면의 속도와 편함을 측정으로 개선하는 프론트엔드 개발자입니다. 필요하면 서버와 데이터까지 따라가 원인을 찾습니다.",
   // 소개(About) 섹션 제목입니다.
   headline: "서울, 대한민국 기준으로 활동",
   location: "서울, 대한민국",
   email: "kjm3746@gmail.com",
   availability: "채용 지원 가능",
+};
+
+// 없는 주소로 들어왔을 때 보이는 화면(app/not-found.js)의 문구입니다.
+export const notFound = {
+  title: "찾는 페이지가 없습니다",
+  desc: "주소가 바뀌었거나 잘못 입력된 것 같습니다. 아래에서 포트폴리오로 돌아가실 수 있습니다.",
 };
 
 export const skillGroups = [

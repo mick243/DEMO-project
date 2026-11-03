@@ -49,6 +49,32 @@ export default function Resume() {
 
             <SectionHead id="summary" eyebrow="Summary" title="자기소개" />
             <p className="detail-text">{resume.summary}</p>
+            <ul className="resume-points resume-strengths">
+              {resume.strengths.map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
+
+            <SectionHead id="projects" eyebrow="Projects" title="프로젝트" />
+            <ol className="resume-list">
+              {resume.projects.map((p) => (
+                <li key={p.name} className="resume-entry">
+                  <span className="resume-entry-period">{p.period}</span>
+                  <h3 className="resume-entry-name">{p.name}</h3>
+                  <p className="resume-entry-type">{p.type}</p>
+                  <p className="resume-entry-desc">{p.desc}</p>
+                  <ul className="resume-points">
+                    {p.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                  <p className="resume-entry-stack">사용 기술: {p.stack}</p>
+                  <Link className="resume-entry-link" href={p.link.href}>
+                    {p.link.label}
+                  </Link>
+                </li>
+              ))}
+            </ol>
 
             <SectionHead id="career" eyebrow="Career" title="경력" />
             <ol className="resume-list">
@@ -70,7 +96,7 @@ export default function Resume() {
               ))}
             </ol>
 
-            <SectionHead id="education" eyebrow="Education" title="학력" />
+            <SectionHead id="education" eyebrow="Education" title="교육 · 학력" />
             <ol className="resume-list">
               {resume.education.map((e) => (
                 <li key={e.name} className="resume-entry">
@@ -110,7 +136,7 @@ export default function Resume() {
             </div>
 
             <div className="detail-links">
-              <a href={resume.pdf} target="_blank" rel="noreferrer" className="btn btn-ghost">
+              <a href={resume.pdf} target="_blank" rel="noreferrer" className="btn btn-primary">
                 PDF로 보기
               </a>
               <Link href="/#about" className="btn btn-ghost">

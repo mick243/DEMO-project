@@ -231,6 +231,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 16px;
   max-width: 480px;
   margin-bottom: 32px;
+  word-break: keep-all;
 }
  
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -397,7 +398,25 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: 600;
   margin-bottom: 12px;
 }
+.project-summary {
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: -6px 0 8px;
+  word-break: keep-all;
+}
+.project-highlight {
+  color: var(--text-primary);
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  word-break: keep-all;
+}
 .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ---------- 404 ---------- */
+.not-found { padding: 200px 0 160px; min-height: 70vh; }
+.not-found .section-desc { margin-bottom: 32px; }
 
 /* ---------- Project detail ---------- */
 .detail { padding-top: 140px; }
@@ -738,6 +757,33 @@ button { font-family: inherit; cursor: pointer; }
 .perf-table .was { color: var(--text-muted); text-decoration: line-through; }
 .perf-table .now { color: var(--text-primary); font-weight: 500; }
 .perf-table .delta { color: var(--accent-blue); font-weight: 600; }
+/* 휴대폰에서는 표를 옆으로 넘기지 않고 줄마다 "이전 → 이후 · 증감" 한 묶음으로 쌓습니다.
+   표로 두면 결과인 이후 · 증감 열이 화면 밖으로 밀려 이전 값만 보입니다. */
+@media (max-width: 600px) {
+  .perf-table-wrap { overflow-x: visible; }
+  .perf-table, .perf-table tbody { display: block; min-width: 0; }
+  .perf-table thead {
+    position: absolute;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .perf-table tbody tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 8px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .perf-table tbody tr:last-child { border-bottom: none; }
+  .perf-table tbody th,
+  .perf-table td { padding: 0; border-bottom: none; text-align: left; }
+  .perf-table tbody th { flex-basis: 100%; margin-bottom: 4px; }
+  .perf-table td.now::before { content: "→ "; color: var(--text-muted); font-weight: 400; }
+  .perf-table td.delta { margin-left: auto; }
+}
 .perf-extra { font-size: 13.5px; line-height: 1.7; color: var(--text-secondary); margin-top: 14px; max-width: 680px; }
 
 /* 작동 화면 */
@@ -1034,6 +1080,10 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 10px;
 }
 .resume-entry-desc { color: var(--text-secondary); font-size: 14.5px; }
+.resume-entry-type { color: var(--text-secondary); font-size: 13.5px; margin: -4px 0 10px; }
+.resume-entry .resume-entry-desc + .resume-points { margin-top: 12px; }
+.resume-entry-stack { color: var(--text-secondary); font-size: 13.5px; margin-top: 12px; }
+.resume-strengths { margin: 16px 0 56px; }
 .resume-points { display: flex; flex-direction: column; gap: 6px; }
 .resume-points li {
   position: relative;
