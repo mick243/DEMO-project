@@ -756,6 +756,9 @@ export const projects = [
     period: "2026.10.25 ~ 11.10",
     updated: "2026.11.10",
     thumbnail: "/projects/one-line-desk/thumb.jpg",
+    // 홈 카드 한 줄 설명과 대표 성과(열린 PR #35 의 칸). 그 PR 이 병합되기 전에는 화면에 쓰이지 않습니다.
+    cardSummary: "회의실 · 탕비실 · 문의를 한 줄로 묻고 확인 카드로 받는 사내 안내 데스크",
+    cardHighlight: "자동 테스트 1,400건 통과 · 담당 카드 오답 5 → 0",
     hero: "/projects/one-line-desk/01-home.jpg",
     tags: ["TypeScript 7", "React 19", "Fastify 5", "PostgreSQL", "PGlite", "Vitest", "MCP", "Fly.io"],
     type: "개인 프로젝트 (1인 개발 · 에이전트 팀)",
