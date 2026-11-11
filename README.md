@@ -10,7 +10,7 @@
 → 교육 → 문의이고, 각 섹션은 `app/components/` 의 같은 이름 컴포넌트입니다.
 
 - `Hero.js` — 히어로 + `profile.json` 터미널 패널(시그니처 요소)
-- `About.js` — 소개. `/resume` 로 가는 ‘이력서 전문 보기’ 링크가 여기 있습니다
+- `About.js` — 소개. 큰 카드 ‘이력서 전문 보기’(`/resume`) + 작은 카드 Github · Notion. 카드 문구와 주소는 `portfolioData.js` 의 `aboutCards`
 - `Skills.js` — 기술 스택 카드 그리드
 - `Projects.js` — 프로젝트 카드 그리드 (썸네일 · 이름 · 한 줄 설명 · 대표 성과 · 기술 스택)
 - `Education.js` — 교육 타임라인
@@ -19,8 +19,9 @@
 
 ### `/resume` — 이력서 전문 (`app/resume/page.js`)
 
-이력서 v4 를 옮긴 페이지입니다. 자기소개(핵심역량) · 프로젝트 · 경력 · 교육 · 학력 · 링크 ·
-보유 역량 순으로 싣고, 하단에서 `public/resume.pdf` 를 열 수 있습니다. 공개
+이력서 PDF(v6)를 그대로 옮긴 한 장짜리 페이지입니다. 첫머리(걸어온 길 · 나아갈 길) ·
+핵심역량 표 · 성장 과정 · 스킬 · 프로젝트 4건(Task · Action · Result · Stack) · 기타 경험 ·
+교육 이수 순으로 싣고, 하단에서 `public/resume.pdf` 를 열 수 있습니다. 공개
 페이지라 연락처 줄과 PDF 양쪽에서 전화번호를 빼고, PDF 에서는 증명사진도 뺐습니다.
 
 ### 없는 주소 — `app/not-found.js`

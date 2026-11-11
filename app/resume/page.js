@@ -5,7 +5,7 @@ import { resume } from "../data/resume";
 
 export const metadata = {
   title: `이력서 | ${resume.name}`,
-  description: resume.summary,
+  description: resume.headline.join(" "),
 };
 
 /** 프로젝트 상세와 같은 모양의 섹션 머리를 씁니다. */
@@ -18,6 +18,34 @@ function SectionHead({ id, eyebrow, title, desc }) {
     </header>
   );
 }
+
+/** 기타 경험 · 교육 이수처럼 "인정받고 싶은 점 + 점 목록" 모양의 항목 */
+function PointEntry({ item }) {
+  return (
+    <li className="resume-entry">
+      <span className="resume-entry-period">{item.period}</span>
+      <h3 className="resume-entry-name">
+        {item.name}
+        {item.sub && <span className="resume-entry-sub">{item.sub}</span>}
+      </h3>
+      <p className="resume-strength">
+        <b>인정받고 싶은 점</b> {item.strength}
+      </p>
+      <ul className="resume-points">
+        {item.points.map((p) => (
+          <li key={p}>{p}</li>
+        ))}
+      </ul>
+    </li>
+  );
+}
+
+const STAR = [
+  ["task", "Task"],
+  ["action", "Action"],
+  ["result", "Result"],
+  ["stack", "Stack"],
+];
 
 export default function Resume() {
   return (
@@ -47,79 +75,60 @@ export default function Resume() {
               ))}
             </dl>
 
-            <SectionHead id="summary" eyebrow="Summary" title="자기소개" />
-            <p className="detail-text">{resume.summary}</p>
-            <ul className="resume-points resume-strengths">
-              {resume.strengths.map((s) => (
-                <li key={s}>{s}</li>
+            <p className="resume-headline">
+              {resume.headline.map((line) => (
+                <span key={line}>{line}</span>
               ))}
-            </ul>
+            </p>
+            <dl className="resume-path">
+              {resume.path.map((p) => (
+                <div key={p.label}>
+                  <dt>{p.label}</dt>
+                  <dd>{p.text}</dd>
+                </div>
+              ))}
+            </dl>
 
-            <SectionHead id="projects" eyebrow="Projects" title="프로젝트" />
-            <ol className="resume-list">
-              {resume.projects.map((p) => (
-                <li key={p.name} className="resume-entry">
-                  <span className="resume-entry-period">{p.period}</span>
-                  <h3 className="resume-entry-name">{p.name}</h3>
-                  <p className="resume-entry-type">{p.type}</p>
-                  <p className="resume-entry-desc">{p.desc}</p>
-                  <ul className="resume-points">
-                    {p.points.map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
-                  <p className="resume-entry-stack">사용 기술: {p.stack}</p>
-                  <Link className="resume-entry-link" href={p.link.href}>
-                    {p.link.label}
-                  </Link>
+            <SectionHead id="competencies" eyebrow="Competencies" title="핵심역량" desc="채용 공고에서 찾는 역량과 제 사례" />
+            <div className="perf-table-wrap resume-table-wrap">
+              <table className="perf-table resume-table">
+                <thead>
+                  <tr>
+                    <th>요구 역량 · 일하는 원칙</th>
+                    <th>사례</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {resume.competencies.map((c) => (
+                    <tr key={c.skill}>
+                      <td>
+                        <b className="resume-comp-skill">{c.skill}</b>
+                        <span className="resume-comp-principle">{c.principle}</span>
+                      </td>
+                      <td>{c.example}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <SectionHead id="growth" eyebrow="Growth" title="성장 과정" desc="학교 · 교육 · 외주 · 프로젝트를 한 흐름으로" />
+            <ol className="resume-growth">
+              {resume.growth.map((g) => (
+                <li key={g.period}>
+                  <span className="resume-growth-stage">{g.stage}</span>
+                  <span className="resume-entry-period">{g.period}</span>
+                  <b className="resume-growth-name">{g.name}</b>
+                  <p className="resume-growth-desc">{g.desc}</p>
+                  {g.stack && <p className="resume-growth-stack">{g.stack}</p>}
                 </li>
               ))}
             </ol>
+            <p className="star-note resume-reached">
+              <b>지금 도달한 지점</b> : {resume.reached}
+            </p>
 
-            <SectionHead id="career" eyebrow="Career" title="경력" />
-            <ol className="resume-list">
-              {resume.career.map((c) => (
-                <li key={c.name} className="resume-entry">
-                  <span className="resume-entry-period">{c.period}</span>
-                  <h3 className="resume-entry-name">{c.name}</h3>
-                  <ul className="resume-points">
-                    {c.points.map((p) => (
-                      <li key={p}>{p}</li>
-                    ))}
-                  </ul>
-                  {c.link && (
-                    <a className="resume-entry-link" href={c.link.href} target="_blank" rel="noreferrer">
-                      {c.link.label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ol>
-
-            <SectionHead id="education" eyebrow="Education" title="교육 · 학력" />
-            <ol className="resume-list">
-              {resume.education.map((e) => (
-                <li key={e.name} className="resume-entry">
-                  <span className="resume-entry-period">{e.period}</span>
-                  <h3 className="resume-entry-name">{e.name}</h3>
-                  <p className="resume-entry-desc">{e.desc}</p>
-                </li>
-              ))}
-            </ol>
-
-            <SectionHead id="links" eyebrow="Links" title="링크" />
-            <ul className="resume-links">
-              {resume.links.map((l) => (
-                <li key={l.label}>
-                  <span className="resume-link-label">{l.label}</span>
-                  <a href={l.href} target="_blank" rel="noreferrer">
-                    {l.value}
-                  </a>
-                </li>
-              ))}
-            </ul>
-
-            <SectionHead id="skills" eyebrow="Skills" title="보유 역량과 도구" />
+            <SectionHead id="skills" eyebrow="Skills" title="스킬" />
             <div className="resume-skills">
               {resume.skillGroups.map((g) => (
                 <div key={g.title} className="resume-skill-group">
@@ -134,6 +143,52 @@ export default function Resume() {
                 </div>
               ))}
             </div>
+
+            <SectionHead id="projects" eyebrow="Projects" title="프로젝트" />
+            <ol className="resume-list">
+              {resume.projects.map((p) => (
+                <li key={p.name} className="resume-entry">
+                  <span className="resume-entry-period">{p.period}</span>
+                  <h3 className="resume-entry-name">
+                    {p.name}
+                    <span className="resume-entry-sub">{p.kind}</span>
+                  </h3>
+                  <p className="resume-strength">
+                    <b>보여 주는 역량</b> {p.strength}
+                  </p>
+                  <dl className="resume-star">
+                    {STAR.map(([key, label]) => (
+                      <div key={key}>
+                        <dt>{label}</dt>
+                        <dd>{p[key]}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                  <div className="resume-entry-links">
+                    <Link className="resume-entry-link" href={p.detail}>
+                      프로젝트 자세히
+                    </Link>
+                    <a className="resume-entry-link" href={p.link.href} target="_blank" rel="noreferrer">
+                      {p.link.label}
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            <SectionHead id="experience" eyebrow="Experience" title="기타 경험" />
+            <ol className="resume-list">
+              {resume.experience.map((e) => (
+                <PointEntry key={e.name} item={e} />
+              ))}
+            </ol>
+
+            <SectionHead id="training" eyebrow="Training" title="교육 이수" />
+            <ol className="resume-list">
+              {resume.training.map((t) => (
+                <PointEntry key={t.name} item={t} />
+              ))}
+            </ol>
 
             <div className="detail-links">
               <a href={resume.pdf} target="_blank" rel="noreferrer" className="btn btn-primary">

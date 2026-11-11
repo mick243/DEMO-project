@@ -1,40 +1,33 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
-import { profile } from "../data/portfolioData";
-
-  // { icon: "01", title: "설계부터 운영까지", desc: "요구사항 정의, 아키텍처 설계, 개발, 배포, 운영까지 전 과정을 책임집니다." },
-  // { icon: "02", title: "투명한 커뮤니케이션", desc: "주 단위 진행 상황 공유와 명확한 문서화로 신뢰할 수 있는 협업을 지향합니다." },
-  // { icon: "03", title: "확장을 고려한 구조", desc: "지금 당장의 요구뿐 아니라 이후 트래픽·기능 확장까지 고려해 설계합니다." },
-
-const HIGHLIGHTS = [
-  { icon: "01", title: "측정 기반 개발", desc: "감이 아니라 계기판으로 성능을 확인하고, 개선 전후를 숫자로 남깁니다." },
-  { icon: "02", title: "투명한 커뮤니케이션", desc: "일정이 흔들리면 숨기지 않고 상황과 리스크를 먼저 공유합니다." },
-];
+import { aboutCards } from "../data/portfolioData";
 
 export default function About() {
+  const { resume, links } = aboutCards;
   return (
     <section id="about" className="section">
       <div className="container">
         <Reveal>
           <span className="section-eyebrow">About</span>
-          <h2 className="section-title">{profile.headline}</h2>
         </Reveal>
         <div className="about-grid">
+          {/* 큰 카드: 이력서 PDF 를 그대로 옮긴 /resume 페이지로 보냅니다. */}
           <Reveal delay={80}>
-            {/* 이력서 PDF 를 그대로 옮긴 /resume 페이지로 보냅니다. */}
-            <Link href="/resume" className="btn btn-primary about-resume-link">
-              이력서 전문 보기
+            <Link href={resume.href} className="about-card about-card-lg card">
+              <span className="about-card-label">{resume.eyebrow}</span>
+              <span className="about-card-title">{resume.title}</span>
+              <span className="about-card-desc">{resume.desc}</span>
+              <span className="about-card-arrow" aria-hidden="true">→</span>
             </Link>
           </Reveal>
-          <Reveal delay={160} className="about-highlights">
-            {HIGHLIGHTS.map((h) => (
-              <div key={h.icon} className="about-highlight card">
-                <div className="about-highlight-icon">{h.icon}</div>
-                <div>
-                  <div className="about-highlight-title">{h.title}</div>
-                  <div className="about-highlight-desc">{h.desc}</div>
-                </div>
-              </div>
+          {/* 작은 카드: 외부 링크 */}
+          <Reveal delay={160} className="about-links">
+            {links.map((l) => (
+              <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="about-card card">
+                <span className="about-card-label">{l.label}</span>
+                <span className="about-card-value">{l.value}</span>
+                <span className="about-card-arrow" aria-hidden="true">↗</span>
+              </a>
             ))}
           </Reveal>
         </div>
