@@ -190,7 +190,7 @@ export const resume = {
   training: [
     {
       name: "AI 네이티브 커리어 캠프",
-      period: "2026.07 ~ 진행 중",
+      period: "2026.07 ~ 2026.11",
       strength: "AI에게 일을 맡기고 결과를 직접 검증하는 개발 방식",
       points: [
         "프롬프트 설계(Few-shot · 단계별 사고 · 반복 개선)와 템플릿 · 체이닝으로 반복 작업 자산화",

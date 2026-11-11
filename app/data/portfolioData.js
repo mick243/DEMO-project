@@ -68,9 +68,9 @@ ${stackJson}
 
 export const education = [
   {
-    period: "2026.07 ~ 진행 중",
+    period: "2026.07 ~ 2026.11",
     name: "AI Native Career Camp",
-    desc: "AI에게 일을 맡기고 결과를 검증하는 방식을 익히고 있습니다. 프롬프트 설계와 반복 작업의 템플릿화, AI 답변의 사실 검증을 실습했습니다.",
+    desc: "AI에게 일을 맡기고 결과를 검증하는 방식을 익혔습니다. 프롬프트 설계와 반복 작업의 템플릿화, AI 답변의 사실 검증을 실습했습니다.",
     tags: ["AI Native", "생산성"],
   },
   {
