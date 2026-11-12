@@ -6,7 +6,6 @@ export default function Skills() {
     <section id="skills" className="section">
       <div className="container">
         <Reveal>
-          <span className="section-eyebrow">Skills</span>
           <h2 className="section-title">기술 스택</h2>
           <p className="section-desc">{skillsIntro.desc}</p>
         </Reveal>

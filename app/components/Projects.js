@@ -10,9 +10,9 @@ import { projects } from "../data/projects";
  * 새 프로젝트를 추가할 때 group 을 빠뜨리거나 잘못 적어도 화면에서 사라지지 않게.
  */
 const GROUPS = [
-  { key: "personal", title: "개인 프로젝트", desc: "기획부터 배포까지 혼자 맡은 것들입니다." },
-  { key: "team", title: "팀 프로젝트", desc: "팀 안에서 맡은 몫을 끝까지 붙여 돌게 만든 것들입니다." },
-  { key: "outsourcing", title: "외주 프로젝트", desc: "클라이언트·디자이너와 함께 기한 안에 납품한 것들입니다." },
+  { key: "personal", title: "개인 프로젝트", desc: "기획부터 배포까지 혼자 맡았어요." },
+  { key: "team", title: "팀 프로젝트", desc: "팀에서 맡은 부분을 끝까지 붙여 실제로 돌게 만들었어요." },
+  { key: "outsourcing", title: "외주 프로젝트", desc: "클라이언트, 디자이너와 함께 기한 안에 납품했어요." },
 ];
 
 const groupOf = (p) => (GROUPS.some((g) => g.key === p.group) ? p.group : "personal");
@@ -27,10 +27,9 @@ export default function Projects() {
     <section id="projects" className="section">
       <div className="container">
         <Reveal>
-          <span className="section-eyebrow">Projects</span>
           <h2 className="section-title">진행한 프로젝트</h2>
           <p className="section-desc">
-            개인 · 팀 · 외주 프로젝트입니다. 카드를 누르면 상세 내용을 볼 수 있습니다.
+            카드를 누르면 만든 과정과 바뀐 숫자를 자세히 볼 수 있어요.
           </p>
         </Reveal>
 

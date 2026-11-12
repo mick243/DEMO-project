@@ -7,16 +7,33 @@ export const profile = {
   tagline: ["강정민"],
   // 히어로 제목 아래 소개 문장입니다.
   summary:
-    "사용자가 느끼는 화면의 속도와 편함을 측정으로 개선하는 프론트엔드 개발자입니다. 필요하면 서버와 데이터까지 따라가 원인을 찾습니다.",
+    "화면이 느린 이유를 직접 재서 찾고 고치는 프론트엔드 개발자예요. 원인이 서버에 있으면 거기까지 따라가요.",
   location: "서울, 대한민국",
   email: "kjm3746@gmail.com",
-  availability: "채용 지원 가능",
+  availability: "지금 채용 지원을 받고 있어요",
+};
+
+// 히어로 버튼. 주 행동은 프로젝트 보기 하나입니다(DESIGN_PROMPT.md 1화면 1행동).
+export const heroActions = {
+  primary: "프로젝트 보기",
+  secondary: "연락처 보기",
+};
+
+// 소개 섹션 제목입니다.
+export const aboutIntro = {
+  title: "소개",
+};
+
+// 연락처 섹션 제목과 안내입니다. 답장 시간은 profileJson 의 response_time 과 같습니다.
+export const contactIntro = {
+  title: "연락처",
+  desc: "메일 주시면 하루 안에 답장해요.",
 };
 
 // 없는 주소로 들어왔을 때 보이는 화면(app/not-found.js)의 문구입니다.
 export const notFound = {
-  title: "찾는 페이지가 없습니다",
-  desc: "주소가 바뀌었거나 잘못 입력된 것 같습니다. 아래에서 포트폴리오로 돌아가실 수 있습니다.",
+  title: "찾는 페이지가 없어요",
+  desc: "주소가 바뀌었을 수 있어요. 홈이나 프로젝트 목록에서 다시 찾아보세요.",
 };
 
 // 소개 섹션 카드. 큰 카드 하나(이력서) + 작은 카드 둘(외부 링크)입니다.
@@ -26,7 +43,7 @@ export const aboutCards = {
     icon: "resume",
     eyebrow: "Resume",
     title: "이력서 전문 보기",
-    desc: "핵심역량 · 성장 과정 · 프로젝트 4건의 Task · Action · Result 를 한 페이지에 정리했습니다.",
+    desc: "핵심역량, 성장 과정, 프로젝트 4건의 과정과 결과를 한 페이지에 모았어요.",
   },
   links: [
     { label: "GitHub", icon: "github", value: "github.com/mick243", href: "https://github.com/mick243" },
@@ -37,7 +54,7 @@ export const aboutCards = {
 // 기술 스택 섹션. 진행한 프로젝트에서 실제로 쓴 기술을 모았고, 버전은 적지 않습니다.
 // 주력은 프론트엔드이고(primary), 나머지는 원인을 따라 서버 · 배포까지 내려가며 함께 다룬 기술입니다.
 export const skillsIntro = {
-  desc: "화면은 React · Next.js 로 만들고, 화면이 느린 원인이 서버에 있으면 서버 · DB · 배포까지 따라갑니다.",
+  desc: "화면은 React와 Next.js로 만들어요. 느린 원인이 서버에 있으면 서버, DB, 배포까지 따라가요.",
 };
 
 export const skillGroups = [
@@ -81,13 +98,13 @@ export const education = [
   {
     period: "2026.07 ~ 2026.11",
     name: "AI Native Career Camp",
-    desc: "AI에게 일을 맡기고 결과를 검증하는 방식을 익혔습니다. 프롬프트 설계와 반복 작업의 템플릿화, AI 답변의 사실 검증을 실습했습니다.",
+    desc: "AI에게 일을 맡기고 결과를 직접 검증하는 방식을 익혔어요. 프롬프트 설계, 반복 작업 템플릿화, AI 답변 사실 확인을 실습했어요.",
     tags: ["AI Native", "생산성"],
   },
   {
     period: "2024.04 ~ 2024.10",
     name: "Programmers Dev-Course",
-    desc: "팀원 한 명이 초기에 이탈한 상황에서 업무를 재분담하고 데일리 워크타임으로 일정을 완주했습니다. Swagger API 문서화를 경험했습니다.",
+    desc: "팀원 한 명이 초기에 빠지자 업무를 다시 나누고 매일 함께 일하는 시간을 정해 일정을 지켰어요. Swagger로 API 문서도 만들었어요.",
     tags: ["TypeScript", "Node.js", "MySQL", "Docker"],
   },
 ];

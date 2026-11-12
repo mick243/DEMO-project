@@ -6,9 +6,8 @@ export default function Education() {
     <section id="education" className="section">
       <div className="container">
         <Reveal>
-          <span className="section-eyebrow">Education</span>
           <h2 className="section-title">교육</h2>
-          <p className="section-desc">개발 역량을 쌓은 교육 과정입니다.</p>
+          <p className="section-desc">개발 역량을 쌓은 교육 과정이에요.</p>
         </Reveal>
         <div className="timeline">
           {education.map((e, i) => (
