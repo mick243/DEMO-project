@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { projects } from "../../data/projects";
-import DataFlow from "../../components/DataFlow";
+import DataFlowViews from "../../components/DataFlowViews";
 import TroubleVisual from "../../components/TroubleVisual";
 
 export function generateStaticParams() {
@@ -259,7 +259,7 @@ export default function ProjectDetail({ params }) {
             {project.dataflow && (
               <>
                 <SectionHead id="dataflow" eyebrow="Data Flow" title="데이터 흐름" desc={project.dataflow.desc} />
-                <DataFlow flow={project.dataflow} />
+                <DataFlowViews flow={project.dataflow} id={project.slug} />
               </>
             )}
 
