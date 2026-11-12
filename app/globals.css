@@ -288,30 +288,50 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- About ---------- */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 18px;
+  align-items: stretch;
 }
 @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
-.about-highlights { display: grid; gap: 14px; }
-.about-highlight {
-  padding: 16px 18px;
+.about-grid > .reveal { display: flex; }
+.about-links { gap: 18px; grid-template-rows: 1fr 1fr; }
+.about-grid > .about-links { display: grid; }
+.about-card {
+  position: relative;
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 22px 56px 22px 24px;
+  color: inherit;
 }
-.about-highlight-icon {
-  width: 34px; height: 34px;
-  border-radius: 9px;
-  background: var(--accent-blue-soft);
-  color: var(--accent-blue);
-  display: flex; align-items: center; justify-content: center;
+.about-card-lg { padding: 36px 64px 36px 32px; min-height: 240px; justify-content: flex-end; }
+.about-card-label {
   font-family: var(--font-mono);
-  font-weight: 600;
-  flex-shrink: 0;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
-.about-highlight-title { font-weight: 600; font-size: 14.5px; margin-bottom: 2px; }
-.about-highlight-desc { font-size: 13.5px; color: var(--text-secondary); }
+.about-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.about-card-desc { font-size: 14.5px; color: var(--text-secondary); max-width: 440px; word-break: keep-all; }
+.about-card-value { font-size: 15.5px; font-weight: 600; word-break: break-all; }
+.about-card-arrow {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.about-card:hover .about-card-arrow { color: var(--accent-blue); transform: translate(2px, -2px); }
+.about-card:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
  
 /* ---------- Skills ---------- */
 .skills-grid {
@@ -1055,6 +1075,7 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 4px;
 }
 .resume-contacts { margin-bottom: 56px; }
+.resume-contacts dd { overflow-wrap: anywhere; }
 .resume-contacts dd a { border-bottom: 1px solid var(--border); padding-bottom: 1px; }
 .resume-contacts dd a:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
 
@@ -1080,10 +1101,6 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 10px;
 }
 .resume-entry-desc { color: var(--text-secondary); font-size: 14.5px; }
-.resume-entry-type { color: var(--text-secondary); font-size: 13.5px; margin: -4px 0 10px; }
-.resume-entry .resume-entry-desc + .resume-points { margin-top: 12px; }
-.resume-entry-stack { color: var(--text-secondary); font-size: 13.5px; margin-top: 12px; }
-.resume-strengths { margin: 16px 0 56px; }
 .resume-points { display: flex; flex-direction: column; gap: 6px; }
 .resume-points li {
   position: relative;
@@ -1146,8 +1163,69 @@ button { font-family: inherit; cursor: pointer; }
   .resume-entry { background: none; }
 }
 
-/* 소개 섹션에서 이력서 페이지로 보내는 줄 */
-.about-resume-link { margin-top: 18px; display: inline-flex; }
+/* v6 이력서: 첫머리 · 핵심역량 표 · 성장 과정 · 프로젝트 STAR */
+.resume-headline {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.4vw, 22px);
+  font-weight: 700;
+  line-height: 1.55;
+  margin-bottom: 18px;
+  word-break: keep-all;
+}
+.resume-headline span { display: block; }
+.resume-path { display: flex; flex-direction: column; gap: 8px; margin-bottom: 56px; max-width: 760px; }
+.resume-path div { display: flex; gap: 12px; }
+.resume-path dt { flex-shrink: 0; font-weight: 600; color: var(--accent-blue); font-size: 14.5px; }
+.resume-path dd { color: var(--text-secondary); font-size: 14.5px; line-height: 1.7; word-break: keep-all; }
+@media (max-width: 560px) { .resume-path div { flex-direction: column; gap: 2px; } }
+
+.resume-table-wrap { margin-bottom: 56px; }
+.resume-table th, .resume-table td { text-align: left !important; vertical-align: top; font-family: var(--font-body); letter-spacing: normal; }
+.resume-table td { color: var(--text-secondary); line-height: 1.7; word-break: keep-all; }
+.resume-table td:first-child { width: 34%; }
+.resume-comp-skill { display: block; color: var(--text-primary); font-weight: 600; }
+.resume-comp-principle { display: block; font-size: 13px; color: var(--accent-blue); margin-top: 2px; }
+
+.resume-growth {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+@media (max-width: 960px) { .resume-growth { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .resume-growth { grid-template-columns: 1fr; } }
+.resume-growth li {
+  padding: 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--accent-blue);
+  border-radius: var(--radius);
+}
+.resume-growth-stage { display: block; font-size: 12.5px; font-weight: 600; color: var(--accent-blue); margin-bottom: 10px; }
+.resume-growth-name { display: block; font-size: 15px; margin-bottom: 6px; }
+.resume-growth-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; word-break: keep-all; }
+.resume-growth-stack { font-size: 12.5px; color: var(--text-muted); margin-top: 8px; }
+.resume-reached { margin: 0 0 56px; }
+.resume .resume-skills { margin-bottom: 56px; }
+
+.resume-entry-sub { font-family: var(--font-body, inherit); font-size: 13px; font-weight: 400; color: var(--text-muted); margin-left: 10px; }
+.resume-strength { font-size: 14px; color: var(--accent-blue); margin-bottom: 14px; word-break: keep-all; }
+.resume-strength b { color: var(--text-primary); margin-right: 6px; }
+.resume-entry-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.resume-star { display: flex; flex-direction: column; gap: 8px; }
+.resume-star div { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: baseline; }
+.resume-star dt {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-align: center;
+  padding: 2px 0;
+  border-radius: 4px;
+  background: var(--accent-blue-soft);
+  color: var(--accent-blue);
+}
+.resume-star dd { font-size: 14.5px; line-height: 1.7; color: var(--text-secondary); word-break: keep-all; }
 
 /* ---------- 성능 표 제목 + 딥다이브 배지 ---------- */
 /* 제목은 글이고, 누를 곳은 옆의 배지 하나입니다. */

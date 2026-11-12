@@ -8,8 +8,6 @@ export const profile = {
   // 히어로 제목 아래 소개 문장입니다.
   summary:
     "사용자가 느끼는 화면의 속도와 편함을 측정으로 개선하는 프론트엔드 개발자입니다. 필요하면 서버와 데이터까지 따라가 원인을 찾습니다.",
-  // 소개(About) 섹션 제목입니다.
-  headline: "서울, 대한민국 기준으로 활동",
   location: "서울, 대한민국",
   email: "kjm3746@gmail.com",
   availability: "채용 지원 가능",
@@ -19,6 +17,20 @@ export const profile = {
 export const notFound = {
   title: "찾는 페이지가 없습니다",
   desc: "주소가 바뀌었거나 잘못 입력된 것 같습니다. 아래에서 포트폴리오로 돌아가실 수 있습니다.",
+};
+
+// 소개 섹션 카드. 큰 카드 하나(이력서) + 작은 카드 둘(외부 링크)입니다.
+export const aboutCards = {
+  resume: {
+    href: "/resume",
+    eyebrow: "Resume",
+    title: "이력서 전문 보기",
+    desc: "핵심역량 · 성장 과정 · 프로젝트 4건의 Task · Action · Result 를 한 페이지에 정리했습니다.",
+  },
+  links: [
+    { label: "GitHub", value: "github.com/mick243", href: "https://github.com/mick243" },
+    { label: "Notion", value: "Notion 페이지", href: "https://app.notion.com/p/18458dde847f82b8a88b811ec6238245" },
+  ],
 };
 
 export const skillGroups = [
@@ -56,9 +68,9 @@ ${stackJson}
 
 export const education = [
   {
-    period: "2026.07 ~ 진행 중",
+    period: "2026.07 ~ 2026.11",
     name: "AI Native Career Camp",
-    desc: "AI에게 일을 맡기고 결과를 검증하는 방식을 익히고 있습니다. 프롬프트 설계와 반복 작업의 템플릿화, AI 답변의 사실 검증을 실습했습니다.",
+    desc: "AI에게 일을 맡기고 결과를 검증하는 방식을 익혔습니다. 프롬프트 설계와 반복 작업의 템플릿화, AI 답변의 사실 검증을 실습했습니다.",
     tags: ["AI Native", "생산성"],
   },
   {
