@@ -106,7 +106,7 @@ export const resume = {
     "화면 성능 개선을 중심으로 서버 · DB 병목 추적, 팀 배포 파이프라인, AI 결과 검증까지 경험한 신입 프론트엔드 개발자",
 
   skillGroups: [
-    { title: "주력 기술", items: ["React", "Next.js", "TypeScript", "Styled-components", "Vitest", "Chrome DevTools"] },
+    { title: "주력 기술", items: ["React", "Next.js", "TypeScript", "Styled-components", "Vitest"] },
     {
       title: "함께 쓴 기술",
       items: ["Node.js", "Express", "Fastify", "PostgreSQL", "MySQL", "Supabase", "Docker", "k6", "MCP", "Git", "Figma"],
