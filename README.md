@@ -33,7 +33,7 @@ Next.js 기본 영어 404 대신, 같은 머리글 · 바닥글에 한국어 안
 
 `app/data/projects.js` 의 항목마다 정적 생성합니다 (현재 `arcade-finder`,
 `petmedisearch`, `one-line-desk`, `bandit`, `outsourcing`). STAR · 진행한 작업 ·
-작동 화면 · 배운 것 중 데이터가 있는 블록만 그리고, 목차도 그에 맞춰 만듭니다. STAR 는 단계마다 제목 한 줄과
+작동 화면 · 트러블슈팅 · 배운 것 중 데이터가 있는 블록만 그리고, 목차도 그에 맞춰 만듭니다. STAR 는 단계마다 제목 한 줄과
 두 줄 이내 본문만 둡니다. 작업 기록(`timeline`)은 데이터는 남기고 페이지에서 주석 처리해
 두었습니다.
 
@@ -67,6 +67,13 @@ Next.js 기본 영어 404 대신, 같은 머리글 · 바닥글에 한국어 안
   - `gallery[].tech` 는 작동 화면마다 붙는 기술 설명이고, 상세 페이지에서
     접이식 ‘구현 메모’ 로 렌더합니다.
   - 이미지는 `public/projects/<slug>/` 에 두고 경로만 적습니다.
+  - `troubles` 는 트러블슈팅입니다. 한 건이 `title` · `problem` · `cause` · `fix` · `result`
+    이고, 상세 페이지에서 문제 · 원인 · 해결 · 결과 순서로 렌더합니다(빈 칸은 건너뜁니다).
+    내용은 Notion 의 회고 · 작업 기록에서 옮겼습니다.
+    `visual` 은 그 아래 시각 자료입니다(`app/components/TroubleVisual.js`). `type: "compare"` 는
+    `rows[]`(label · before · after · beforeText · afterText) 를 전 · 후 막대로, `type: "flow"` 는
+    `before[]` · `after[]` 단계를 화살표 흐름으로 그립니다. 변화율은 자동 계산하고, 본문 숫자와
+    반올림이 어긋나면 행에 `change` 를 적어 덮어씁니다.
 - **딥다이브**: `app/data/viewportCulling.js` · `app/data/arcadeServer.js`
   - 절(`sections`)마다 블록을 쌓습니다. 블록 종류는 text · list · code · table · note 입니다.
   - 오락실 파인더 수치는 원본 저장소(`Desktop/claude/개인 프로젝트`)의 문서에서 옮긴

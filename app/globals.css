@@ -860,6 +860,93 @@ button { font-family: inherit; cursor: pointer; }
   margin-top: 0;
 }
 
+/* 트러블슈팅 — 문제 · 원인 · 해결 · 결과 */
+.troubles { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; list-style: none; padding: 0; }
+.trouble {
+  padding: 22px 24px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.trouble-no {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.11em;
+  color: var(--accent-blue);
+  display: block;
+  margin-bottom: 6px;
+}
+.trouble-title { font-size: 16.5px; font-weight: 600; line-height: 1.45; margin-bottom: 14px; }
+@media (max-width: 560px) {
+  .trouble { padding: 18px 16px; }
+  .trouble-steps div { grid-template-columns: 52px 1fr; gap: 10px; }
+}
+
+/* 트러블슈팅 시각 자료 — 이전은 중립 회색, 이후는 강조색. 막대마다 이름과 값을 글로 달아 색만으로 읽지 않게 합니다. */
+.trouble { --tv-before: #b4bfcf; --tv-after: #138a81; }
+.tv {
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tv-row-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.tv-row-label { font-size: 13.5px; font-weight: 600; color: var(--text-primary); }
+.tv-change {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(19, 138, 129, 0.1);
+  white-space: nowrap;
+}
+.tv-bar-line { display: grid; grid-template-columns: 34px 1fr minmax(84px, auto); align-items: center; gap: 10px; }
+.tv-bar-line + .tv-bar-line { margin-top: 2px; }
+.tv-bar-name { font-size: 12px; color: var(--text-muted); }
+.tv-track { display: block; height: 14px; }
+.tv-bar { display: block; height: 100%; min-width: 2px; border-radius: 0 4px 4px 0; background: var(--tv-before); }
+.tv-bar-line.after .tv-bar { background: var(--tv-after); }
+.tv-bar-value { font-family: var(--font-mono); font-size: 12.5px; color: var(--text-secondary); text-align: right; white-space: nowrap; }
+.tv-bar-line.after .tv-bar-value { color: var(--text-primary); font-weight: 600; }
+.tv-note { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+.tv-flow { gap: 10px; }
+.tv-flow-line { display: grid; grid-template-columns: 34px 1fr; align-items: center; gap: 10px; }
+.tv-flow-name { font-size: 12px; color: var(--text-muted); }
+.tv-flow-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 0; }
+.tv-flow-item { display: inline-flex; align-items: center; }
+.tv-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  word-break: keep-all;
+}
+.tv-arrow { color: var(--text-muted); font-size: 13px; margin: 0 6px; }
+.tv-step-mark { font-size: 12px; font-weight: 700; }
+.tv-flow-line.before .tv-step.end { border-color: #e7b9b9; background: #fbf1f1; color: #9b2c2c; }
+.tv-flow-line.after .tv-step.end { border-color: rgba(19, 138, 129, 0.35); background: rgba(19, 138, 129, 0.08); color: #0d6b64; font-weight: 600; }
+@media (max-width: 560px) {
+  .tv { padding: 14px 12px; }
+  .tv-bar-line { grid-template-columns: 30px 1fr auto; gap: 8px; }
+  .tv-flow-line { grid-template-columns: 1fr; gap: 6px; }
+  .tv-flow-steps { flex-direction: column; align-items: flex-start; gap: 0; }
+  .tv-flow-item { flex-direction: column; align-items: flex-start; }
+  .tv-arrow { transform: rotate(90deg); margin: 2px 0 2px 12px; }
+}
+
 /* 배운 것 · 남은 것 */
 .lessons {
   display: grid;

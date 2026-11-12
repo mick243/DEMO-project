@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { projects } from "../../data/projects";
+import TroubleVisual from "../../components/TroubleVisual";
 
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
@@ -149,6 +150,14 @@ function StarBlock({ step, project }) {
   );
 }
 
+/** 트러블슈팅 한 건을 이 순서로 보여 줍니다. 값이 없는 칸은 건너뜁니다. */
+const TROUBLE_STEPS = [
+  ["problem", "문제"],
+  ["cause", "원인"],
+  ["fix", "해결"],
+  ["result", "결과"],
+];
+
 export default function ProjectDetail({ params }) {
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) notFound();
@@ -162,6 +171,7 @@ export default function ProjectDetail({ params }) {
     // project.timeline?.length > 0 && { href: "#timeline", label: "작업 기록" },
     project.items?.length > 0 && { href: "#items", label: "진행한 작업" },
     project.gallery?.length > 0 && { href: "#screens", label: "작동 화면" },
+    project.troubles?.length > 0 && { href: "#troubles", label: "트러블슈팅" },
     project.learned?.length > 0 && { href: "#lessons", label: "배운 것과 남은 것" },
   ].filter(Boolean);
 
@@ -337,6 +347,34 @@ export default function ProjectDetail({ params }) {
                     </figure>
                   ))}
                 </div>
+              </>
+            )}
+
+            {project.troubles?.length > 0 && (
+              <>
+                <SectionHead
+                  id="troubles"
+                  eyebrow="Troubleshooting"
+                  title="트러블슈팅"
+                  desc="막혔던 문제를 무엇이 보였고 · 원인이 무엇이었고 · 어떻게 고쳤는지 순서로 적었습니다."
+                />
+                <ol className="troubles">
+                  {project.troubles.map((t, i) => (
+                    <li key={t.title} className="trouble">
+                      <span className="trouble-no">{String(i + 1).padStart(2, "0")}</span>
+                      <h3 className="trouble-title">{t.title}</h3>
+                      <dl className="resume-star trouble-steps">
+                        {TROUBLE_STEPS.filter(([key]) => t[key]).map(([key, label]) => (
+                          <div key={key}>
+                            <dt>{label}</dt>
+                            <dd>{t[key]}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                      <TroubleVisual visual={t.visual} />
+                    </li>
+                  ))}
+                </ol>
               </>
             )}
 
