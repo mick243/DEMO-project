@@ -34,21 +34,31 @@ export const aboutCards = {
   ],
 };
 
+// 기술 스택 섹션. 진행한 프로젝트에서 실제로 쓴 기술을 모았고, 버전은 적지 않습니다.
+// 주력은 프론트엔드이고(primary), 나머지는 원인을 따라 서버 · 배포까지 내려가며 함께 다룬 기술입니다.
+export const skillsIntro = {
+  desc: "화면은 React · Next.js 로 만들고, 화면이 느린 원인이 서버에 있으면 서버 · DB · 배포까지 따라갑니다.",
+};
+
 export const skillGroups = [
   {
     key: "frontend",
     title: "Frontend",
-    items: ["React 19", "Next.js 16 App Router", "TypeScript", "Styled-components"],
+    sub: "주력",
+    primary: true,
+    items: ["React", "Next.js", "TypeScript", "Styled-components", "Vite", "Vitest"],
   },
   {
     key: "backend",
     title: "Backend · DB",
-    items: ["Node.js", "RESTful API", "PostgreSQL", "MySQL"],
+    sub: "함께 다룬 기술",
+    items: ["Node.js", "Express", "Fastify", "RESTful API", "PostgreSQL", "MySQL", "Supabase", "PGlite"],
   },
   {
-    key: "tools",
-    title: "Tool & Test",
-    items: ["Git", "Docker", "Figma", "Swagger", "Vitest", "k6"],
+    key: "infra_tools",
+    title: "AI · Infra · Tool",
+    sub: "함께 다룬 기술",
+    items: ["MCP", "Gemini", "Docker", "Cloud Run", "Fly.io", "Vercel", "Git", "Figma", "Swagger", "k6"],
   },
 ];
 

@@ -6,6 +6,7 @@
 /** 전 · 후 변화를 한 줄로. 95% 넘게 줄면 "N분의 1" 이 퍼센트보다 읽기 쉽습니다. */
 function changeLabel(before, after) {
   if (!before || before === after) return null;
+  if (after === 0) return "모두 없앰";
   const ratio = after / before;
   if (ratio < 0.05) return `${Math.round(before / after).toLocaleString("ko-KR")}분의 1`;
   const pct = (ratio - 1) * 100;
