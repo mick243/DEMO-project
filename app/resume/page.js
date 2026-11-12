@@ -93,16 +93,15 @@ export default function Resume() {
               <table className="perf-table resume-table">
                 <thead>
                   <tr>
-                    <th>요구 역량 · 일하는 원칙</th>
+                    <th className="resume-comp-head">요구 역량</th>
                     <th>사례</th>
                   </tr>
                 </thead>
                 <tbody>
                   {resume.competencies.map((c) => (
                     <tr key={c.skill}>
-                      <td>
+                      <td className="resume-comp-cell">
                         <b className="resume-comp-skill">{c.skill}</b>
-                        <span className="resume-comp-principle">{c.principle}</span>
                       </td>
                       <td>
                         {c.example}

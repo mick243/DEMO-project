@@ -40,40 +40,34 @@ export const resume = {
   competencies: [
     {
       skill: "React · TypeScript 개발",
-      principle: "끝까지 완성",
       example:
         "키 입력 · GPS 갱신마다 부모와 함께 다시 그려지던 목록 · 상세 패널을, 콜백 11개를 useCallback으로 고정한 뒤 memo로 분리해 막음",
       ref: "오락실 파인더",
     },
     {
       skill: "웹 성능 최적화",
-      principle: "짐작 대신 측정",
       example: "지도가 느리다는 체감을 DevTools로 재어 원인을 마커 동기화로 특정하고, 뷰포트 컬링으로 초기 마커 동기화 622 → 156ms",
       ref: "오락실 파인더",
     },
     {
       skill: "테스트와 품질 검증",
-      principle: "작게 만들고 크게 재보기",
       example:
         "자동 테스트 1,400건(웹 71건)을 CI로 돌리고, 가입자 1만 규모 시드로 다시 재어 빈 DB에선 안 보이던 지연(p95 22 → 152ms)을 찾고 원인이 응답 크기임을 확인",
       ref: "한 줄 데스크 · 오락실 파인더",
     },
     {
       skill: "협업과 코드 통합",
-      principle: "팀원 기능이 실제로 돌게",
       example:
         "6인 팀에서 공통 타입 · DB · 배포를 맡아 팀원 PR의 테스트 12장면을 SQL로 옮겨 두 구현을 맞췄고, main 머지 자동 배포 28번 모두 성공",
       ref: "BANDIT",
     },
     {
       skill: "AI 도구 활용",
-      principle: "AI 결과도 재서 확인",
       example: "AI를 붙이기 전에 규칙부터 고쳐 담당 부서 오답 5건 → 0건(검증 문장 32개), AI는 해석만 맡기고 쓰기는 사람이 확인",
       ref: "한 줄 데스크",
     },
     {
       skill: "커뮤니케이션",
-      principle: "상황은 먼저 공유",
       example: "외주에서 페이지당 1~2일 기준으로 일정을 세우고 클라이언트 · 디자이너와 먼저 소통해 기한 안에 오픈",
       ref: "외주 쇼핑몰",
     },
