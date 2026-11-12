@@ -1859,7 +1859,8 @@ export const projects = [
     name: "외주 프로젝트",
     group: "outsourcing",
     period: "2025.09 ~ 2026.03",
-    thumbnail: "/projects/outsourcing.svg",
+    // RANGE(range8.kr) 데스크톱 메인 화면을 1600x1000 으로 찍어 900x563 으로 줄인 것입니다.
+    thumbnail: "/projects/outsourcing/thumb.jpg",
     cardSummary: "카페24 기반 쇼핑몰 두 곳의 UI/UX 구현과 퍼블리싱",
     cardHighlight: "RANGE · Deeto 모두 기한 안에 오픈",
     tags: ["UI/UX", "카페24", "Figma", "퍼블리싱"],
