@@ -12,7 +12,9 @@
 - `Hero.js` — 히어로 + `profile.json` 터미널 패널(시그니처 요소)
 - `About.js` — 소개. 큰 카드 ‘이력서 전문 보기’(`/resume`) + 작은 카드 Github · Notion. 카드 문구와 주소는 `portfolioData.js` 의 `aboutCards`
 - `Skills.js` — 기술 스택 카드 그리드. `primary` 인 묶음(프론트엔드)이 한 줄을 다 쓰고 강조됩니다
-- `Projects.js` — 프로젝트 카드 그리드 (썸네일 · 이름 · 한 줄 설명 · 대표 성과 · 기술 스택)
+- `Projects.js` — 왼쪽 프로젝트 목록 + 오른쪽 카드 무대 (썸네일 · 이름 · 한 줄 설명 · 대표 성과 · 기술 스택).
+  카드는 한 장씩 보입니다: 목록을 누르거나, 무대 위에서 휠 한 번에 한 장 넘어갑니다(첫 · 끝 장에서는 페이지가 이어서 스크롤).
+  860px 이하에서는 목록이 위쪽 칩 줄이 되고 카드는 가로로 넘깁니다
 - `Education.js` — 교육 타임라인
 - `Contact.js` — 문의 폼 (데모, 실제 전송 없음)
 - `Process.js` — 진행 방식 3단계. `page.js` 에서 주석 처리돼 지금은 안 보입니다
@@ -86,8 +88,8 @@ Next.js 기본 영어 404 대신, 같은 머리글 · 바닥글에 한국어 안
    (예: Resend, EmailJS)와 연결하세요.
 2. **오락실 파인더 저장소 공개**: 현재 GitHub 링크는 프로필 페이지로 연결됩니다.
    저장소를 공개하면 `projects.js` 의 `links` 를 실제 저장소 URL로 바꾸세요.
-3. **프로젝트 썸네일**: 외주 프로젝트 카드는 아직 SVG 플레이스홀더
-   (`public/projects/outsourcing.svg`)입니다. 실제 이미지로 교체하세요.
+3. ~~**프로젝트 썸네일**: 외주 프로젝트 카드는 아직 SVG 플레이스홀더입니다.~~ ✅ 2026-11-12
+   RANGE(range8.kr) 메인 화면 스크린샷 `public/projects/outsourcing/thumb.jpg` 로 교체했습니다.
 4. **컬러/폰트**: `app/globals.css` 최상단 `:root` 변수만 바꾸면 전체 톤이
    바뀝니다 (`--bg-base`, `--accent-blue`, `--accent-cyan` 등).
 
