@@ -9,10 +9,10 @@ export const metadata = {
 };
 
 /** 프로젝트 상세와 같은 모양의 섹션 머리를 씁니다. */
+// eyebrow 는 예전 호출과 맞추려고 받기만 하고 그리지 않습니다(영문 머리말 대신 한글 제목이 섹션 이름입니다).
 function SectionHead({ id, eyebrow, title, desc }) {
   return (
     <header id={id} className="dsec-head">
-      <span className="dsec-eyebrow">{eyebrow}</span>
       <h2 className="dsec-title">{title}</h2>
       {desc && <p className="dsec-desc">{desc}</p>}
     </header>
@@ -58,7 +58,6 @@ export default function Resume() {
               포트폴리오
             </Link>
 
-            <span className="section-eyebrow">Resume</span>
             <h1 className="detail-title">{resume.name}</h1>
             <p className="resume-role">{resume.role}</p>
 

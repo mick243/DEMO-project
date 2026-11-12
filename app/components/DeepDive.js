@@ -82,7 +82,6 @@ export default function DeepDive({ dd }) {
               {project?.name ?? "프로젝트"} 상세
             </Link>
 
-            <span className="section-eyebrow">{dd.eyebrow}</span>
             <h1 className="detail-title">{dd.title}</h1>
             <p className="detail-lede">{dd.lede}</p>
 

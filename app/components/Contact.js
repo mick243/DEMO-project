@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "./Reveal";
-import { profile } from "../data/portfolioData";
+import { profile, contactIntro } from "../data/portfolioData";
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
@@ -22,18 +22,23 @@ export default function Contact() {
           <p className="section-desc">간단한 요구사항만 남겨주셔도 좋습니다. 24시간 내 회신합니다.</p>
         </Reveal> */}
 
+        <Reveal>
+          <h2 className="section-title">{contactIntro.title}</h2>
+          <p className="section-desc">{contactIntro.desc}</p>
+        </Reveal>
+
         <div className="contact-grid">
           <Reveal>
             <div className="contact-info-item">
-              <div className="contact-info-label">Email</div>
-              <div className="contact-info-value">{profile.email}</div>
+              <div className="contact-info-label">이메일</div>
+              <a className="contact-info-value" href={`mailto:${profile.email}`}>{profile.email}</a>
             </div>
             <div className="contact-info-item">
               <div className="contact-info-label">위치</div>
               <div className="contact-info-value">{profile.location}</div>
             </div>
             <div className="contact-info-item">
-              <div className="contact-info-label">가능 여부</div>
+              <div className="contact-info-label">채용</div>
               <div className="contact-info-value">{profile.availability}</div>
             </div>
           </Reveal>

@@ -15,7 +15,6 @@ export default function NotFound() {
       <main>
         <section className="section not-found" style={{ borderTop: "none" }}>
           <div className="container">
-            <span className="section-eyebrow">404</span>
             <h1 className="section-title">{notFound.title}</h1>
             <p className="section-desc">{notFound.desc}</p>
             <div className="hero-actions">

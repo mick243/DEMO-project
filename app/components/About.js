@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Reveal from "./Reveal";
 import Icon from "./Icons";
-import { aboutCards } from "../data/portfolioData";
+import { aboutCards, aboutIntro } from "../data/portfolioData";
 
 export default function About() {
   const { resume, links } = aboutCards;
@@ -9,7 +9,7 @@ export default function About() {
     <section id="about" className="section">
       <div className="container">
         <Reveal>
-          <span className="section-eyebrow">About</span>
+          <h2 className="section-title">{aboutIntro.title}</h2>
         </Reveal>
         <div className="about-grid">
           {/* 큰 카드: 이력서 PDF 를 그대로 옮긴 /resume 페이지로 보냅니다. */}

@@ -34,10 +34,10 @@ function sentences(text) {
 }
 
 /** 상세 페이지의 큰 섹션 머리. 눈썹(mono) · 제목 · 한 줄 설명을 같은 모양으로 맞춥니다. */
+// eyebrow 는 예전 호출과 맞추려고 받기만 하고 그리지 않습니다(영문 머리말 대신 한글 제목이 섹션 이름입니다).
 function SectionHead({ id, eyebrow, title, desc }) {
   return (
     <header id={id} className="dsec-head">
-      <span className="dsec-eyebrow">{eyebrow}</span>
       <h2 className="dsec-title">{title}</h2>
       {desc && <p className="dsec-desc">{desc}</p>}
     </header>
@@ -187,8 +187,8 @@ export default function ProjectDetail({ params }) {
               프로젝트 목록
             </Link>
 
-            <span className="section-eyebrow">{project.type}</span>
             <h1 className="detail-title">{project.name}</h1>
+            <p className="detail-kind">{project.type}</p>
             <p className="detail-lede">{project.summary}</p>
 
             <dl className="detail-meta">
