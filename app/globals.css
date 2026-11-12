@@ -1341,9 +1341,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .resume-table-wrap { margin-bottom: 56px; }
 .resume-table th, .resume-table td { text-align: left !important; vertical-align: top; font-family: var(--font-body); letter-spacing: normal; }
 .resume-table td { color: var(--text-secondary); line-height: 1.7; word-break: keep-all; }
-.resume-table td:first-child { width: 34%; }
+.resume-table td:first-child { width: 26%; }
+.resume-table th.resume-comp-head, .resume-table td.resume-comp-cell { text-align: center !important; vertical-align: middle; }
+/* 휴대폰 폭에서는 표가 세로로 쌓이므로 요구 역량을 한 줄 제목처럼 왼쪽에 둡니다. */
+@media (max-width: 600px) {
+  .resume-table td:first-child { width: auto; }
+  .resume-table th.resume-comp-head, .resume-table td.resume-comp-cell { text-align: left !important; flex-basis: 100%; }
+}
 .resume-comp-skill { display: block; color: var(--text-primary); font-weight: 600; }
-.resume-comp-principle { display: block; font-size: 13px; color: var(--accent-blue); margin-top: 2px; }
 .resume-comp-ref { display: inline-block; margin-left: 8px; font-size: 12.5px; color: var(--text-muted); white-space: nowrap; }
 .resume-shot { margin: 18px 0 4px; }
 .resume-shot img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; border: 1px solid var(--border); border-radius: 10px; }
