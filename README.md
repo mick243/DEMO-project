@@ -11,7 +11,7 @@
 
 - `Hero.js` — 히어로 + `profile.json` 터미널 패널(시그니처 요소)
 - `About.js` — 소개. 큰 카드 ‘이력서 전문 보기’(`/resume`) + 작은 카드 Github · Notion. 카드 문구와 주소는 `portfolioData.js` 의 `aboutCards`
-- `Skills.js` — 기술 스택 카드 그리드
+- `Skills.js` — 기술 스택 카드 그리드. `primary` 인 묶음(프론트엔드)이 한 줄을 다 쓰고 강조됩니다
 - `Projects.js` — 프로젝트 카드 그리드 (썸네일 · 이름 · 한 줄 설명 · 대표 성과 · 기술 스택)
 - `Education.js` — 교육 타임라인
 - `Contact.js` — 문의 폼 (데모, 실제 전송 없음)
