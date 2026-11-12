@@ -1304,6 +1304,10 @@ button { font-family: inherit; cursor: pointer; }
 .resume-table td:first-child { width: 34%; }
 .resume-comp-skill { display: block; color: var(--text-primary); font-weight: 600; }
 .resume-comp-principle { display: block; font-size: 13px; color: var(--accent-blue); margin-top: 2px; }
+.resume-comp-ref { display: inline-block; margin-left: 8px; font-size: 12.5px; color: var(--text-muted); white-space: nowrap; }
+.resume-shot { margin: 18px 0 4px; }
+.resume-shot img { display: block; width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; border: 1px solid var(--border); border-radius: 10px; }
+.resume-shot figcaption { margin-top: 8px; font-size: 13px; color: var(--text-muted); text-align: center; }
 
 .resume-growth {
   list-style: none;

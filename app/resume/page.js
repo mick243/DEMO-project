@@ -19,7 +19,7 @@ function SectionHead({ id, eyebrow, title, desc }) {
   );
 }
 
-/** 기타 경험 · 교육 이수처럼 "인정받고 싶은 점 + 점 목록" 모양의 항목 */
+/** 외주 경험 · 교육처럼 "인정받고 싶은 점 + 점 목록" 모양의 항목 */
 function PointEntry({ item }) {
   return (
     <li className="resume-entry">
@@ -105,7 +105,10 @@ export default function Resume() {
                         <b className="resume-comp-skill">{c.skill}</b>
                         <span className="resume-comp-principle">{c.principle}</span>
                       </td>
-                      <td>{c.example}</td>
+                      <td>
+                        {c.example}
+                        {c.ref && <span className="resume-comp-ref">{c.ref}</span>}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -164,6 +167,12 @@ export default function Resume() {
                       </div>
                     ))}
                   </dl>
+                  {p.shot && (
+                    <figure className="resume-shot">
+                      <img src={p.shot.src} alt={p.shot.alt} loading="lazy" width={1000} height={500} />
+                      <figcaption>{p.shot.caption}</figcaption>
+                    </figure>
+                  )}
                   <div className="resume-entry-links">
                     <Link className="resume-entry-link" href={p.detail}>
                       프로젝트 자세히
@@ -176,14 +185,14 @@ export default function Resume() {
               ))}
             </ol>
 
-            <SectionHead id="experience" eyebrow="Experience" title="기타 경험" />
+            <SectionHead id="experience" eyebrow="Experience" title="외주 경험" />
             <ol className="resume-list">
               {resume.experience.map((e) => (
                 <PointEntry key={e.name} item={e} />
               ))}
             </ol>
 
-            <SectionHead id="training" eyebrow="Training" title="교육 이수" />
+            <SectionHead id="training" eyebrow="Training" title="교육" />
             <ol className="resume-list">
               {resume.training.map((t) => (
                 <PointEntry key={t.name} item={t} />
