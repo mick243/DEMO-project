@@ -82,6 +82,7 @@ export const projects = [
     ],
 
     // 2026.09.18 기준. 데이터 건수는 개발 DB 조회, 코드 수치는 git 추적 파일 집계입니다.
+    // dataflow : 목록 보기와 흐름도 보기가 함께 씁니다. node.kind(entity · process · store)가 없으면 칸으로 모양을 정합니다.
     dataflow: {
       desc: "지도 마커를 읽는 길, 제보를 쓰는 길, AI와 데이터 수집 길을 나눠 그렸습니다. 번호는 성능을 고친 자리입니다.",
       lanes: [
@@ -95,9 +96,9 @@ export const projects = [
         pool: { label: "Prisma · pg 풀", lane: "server", note: "커넥션 풀, 참조 데이터는 5분 메모리 캐시" },
         collector: { label: "수집 스크립트", lane: "server", note: "사람이 직접 실행하는 적재 배치" },
         db: { label: "PostgreSQL", lane: "store", note: "오락실 · 기종 · 제보" },
-        naver: { label: "Naver Maps", lane: "store", note: "지도 타일과 SDK" },
-        gemini: { label: "Gemini API", lane: "store", note: "챗봇 · 리뷰 요약 · 기종 추정" },
-        sources: { label: "외부 원천 API", lane: "store", note: "네이버 지역검색 · 지오코딩, 공공데이터포털" },
+        naver: { label: "Naver Maps", lane: "store", kind: "entity", note: "지도 타일과 SDK" },
+        gemini: { label: "Gemini API", lane: "store", kind: "entity", note: "챗봇 · 리뷰 요약 · 기종 추정" },
+        sources: { label: "외부 원천 API", lane: "store", kind: "entity", note: "네이버 지역검색 · 지오코딩, 공공데이터포털" },
       },
       paths: [
         { name: "마커 읽기", steps: ["map", "좌표 · 반경 · 검색어", "api", "목록 쿼리", "pool", "반경 검색(TypedSQL)", "db"] },
@@ -653,17 +654,18 @@ export const projects = [
         map: { label: "지도 검색 화면", lane: "client", note: "지도가 멈추면 화면 범위 · 줌을 읽어 조회" },
         board: { label: "게시판 · 홈", lane: "client", note: "page · limit 단위로 글 요청 (홈은 3건)" },
         login: { label: "로그인 화면", lane: "client", note: "OAuth state 발급과 대조" },
-        store: { label: "Redux 스토어", lane: "client", note: "검색 결과 · 로그인 토큰" },
+        store: { label: "Redux 스토어", lane: "client", kind: "store", note: "검색 결과 · 로그인 토큰" },
         api: { label: "Express API", lane: "server", note: "/facilities · /facilities/clusters · /category · /auth" },
         job: { label: "시설 적재 잡", lane: "server", note: "공공데이터 동기화 · 좌표 변환 · 주소 지오코딩" },
         db: { label: "MySQL 8", lane: "store", note: "시설(lat · lng 인덱스) · 글 · 사용자" },
-        kakao: { label: "Kakao Map", lane: "store", note: "지도 렌더링과 화면 범위 · 줌 레벨" },
-        oauth: { label: "소셜 로그인", lane: "store", note: "카카오 · 네이버 · 구글" },
+        kakao: { label: "Kakao Map", lane: "store", kind: "entity", note: "지도 렌더링과 화면 범위 · 줌 레벨" },
+        oauth: { label: "소셜 로그인", lane: "store", kind: "entity", note: "카카오 · 네이버 · 구글" },
       },
       paths: [
         { name: "지도 넓게", steps: ["map", "bbox + 정밀도", "api", "범위 조회 + 격자 GROUP BY", "db"] },
         { name: "지도 확대", steps: ["map", "bbox + limit", "api", "범위 안 시설만", "db"] },
         { name: "결과 표시", steps: ["api", "격자 집계 · 시설 목록", "map", "검색 결과 저장", "store"] },
+        { name: "지도 그리기", steps: ["kakao", "지도 타일 · 화면 범위", "map"] },
         { name: "게시판", steps: ["board", "category · page · limit", "api", "LIMIT / OFFSET + 총계", "db"] },
         {
           name: "소셜 로그인",
@@ -1168,7 +1170,7 @@ export const projects = [
         gateway: { label: "AI 게이트웨이", lane: "server", note: "자료 등급 · 하루 상한 · 응답 구조 검증, 쓰기 도구 없음" },
         plan: { label: "확인 카드", lane: "server", note: "사람이 확인하면 한 번만 실행" },
         mcp: { label: "읽기 전용 MCP", lane: "server", note: "도구 전부 읽기, 예약자 · 본문 칸은 내보내지 않음" },
-        llm: { label: "LLM", lane: "store", note: "분류와 슬롯 추출만 (시연은 Gemini Flash)" },
+        llm: { label: "LLM", lane: "store", kind: "entity", note: "분류와 슬롯 추출만 (시연은 Gemini Flash)" },
         db: { label: "PostgreSQL · PGlite", lane: "store", note: "예약 · 확인 카드 · 감사 로그 · AI 사용량(본문 없이)" },
       },
       paths: [
@@ -1557,7 +1559,7 @@ export const projects = [
         mcp: { label: "MCP 서버", lane: "server", note: "Cloud Run, /mcp · /hooks, 팀 토큰 확인" },
         core: { label: "공통 DB 계층", lane: "server", note: "모든 앱이 SQL 대신 부르는 함수 (@sil/core)" },
         deploy: { label: "Cloud Build", lane: "server", note: "main 머지마다 빌드해 Cloud Run에 올림" },
-        fn: { label: "쓰기 함수 8개", lane: "store", note: "공용 키로 쓸 수 있는 유일한 통로, 트리거로 지우기 · 고치기 막음" },
+        fn: { label: "쓰기 함수 8개", lane: "store", kind: "process", note: "공용 키로 쓸 수 있는 유일한 통로, 트리거로 지우기 · 고치기 막음" },
         checks: { label: "확인할 변경", lane: "store", note: "결정이 바뀐 트랜잭션 안에서 담당자에게만 생성" },
       },
       paths: [

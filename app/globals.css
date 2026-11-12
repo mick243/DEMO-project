@@ -1007,6 +1007,53 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .df-chip { white-space: normal; }
 }
 
+/* 데이터 흐름 보기 전환 : 기본은 목록, 스크립트가 있을 때만 버튼이 보입니다. */
+.df-toggle { display: none; gap: 8px; margin: 0 0 16px; }
+.js .df-toggle { display: flex; flex-wrap: wrap; }
+.df-toggle-btn {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-base);
+  color: var(--text-secondary);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.df-toggle-btn:hover { border-color: var(--accent-cyan); color: var(--text-primary); }
+.df-toggle-btn:active { background: var(--bg-surface); }
+.df-toggle-btn[aria-pressed="true"] { background: var(--accent-strong); border-color: var(--accent-strong); color: var(--on-accent); }
+
+/* 흐름도 보기(DFD 표기) */
+.dfd-scroll { overflow-x: auto; background: var(--bg-base); border: 1px solid var(--border); border-radius: 10px; }
+.dfd-svg { display: block; width: 100%; min-width: 720px; height: auto; font-family: var(--font-body); }
+.dfd-lane { font-size: 13px; font-weight: 600; }
+.dfd-lane.lane-0 { fill: var(--lane-0); }
+.dfd-lane.lane-1 { fill: var(--lane-1); }
+.dfd-lane.lane-2 { fill: var(--lane-2); }
+.dfd-node.lane-0 { --dfd-c: var(--lane-0); --dfd-bg: var(--lane-0-tint); }
+.dfd-node.lane-1 { --dfd-c: var(--lane-1); --dfd-bg: var(--lane-1-tint); }
+.dfd-node.lane-2 { --dfd-c: var(--lane-2); --dfd-bg: var(--lane-2-tint); }
+.dfd-shape { fill: var(--dfd-bg); stroke: var(--dfd-c); stroke-width: 2; }
+.dfd-store-fill { fill: var(--dfd-bg); stroke: none; }
+.dfd-label { font-size: 13px; font-weight: 600; fill: var(--text-primary); }
+.dfd-no { font-family: var(--font-mono); font-size: 12px; font-weight: 500; fill: var(--text-secondary); }
+.dfd-badge { font-size: 16px; font-weight: 700; fill: var(--accent-amber); }
+.dfd-edge { stroke: var(--text-secondary); stroke-width: 1.4; fill: none; }
+.dfd-arrowhead { fill: var(--text-secondary); }
+.dfd-edge-label rect { fill: var(--bg-base); opacity: 0.94; }
+.dfd-edge-label text { font-size: 11.5px; fill: var(--text-secondary); }
+.dfd-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; color: var(--text-secondary); }
+.dfd-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.dfd-key { display: inline-block; width: 18px; height: 12px; border: 2px solid var(--text-secondary); }
+.dfd-key.process { width: 14px; height: 14px; border-radius: 50%; }
+.dfd-key.store { border-left: none; border-right: none; }
+.dfd-hint { display: none; font-size: 13px; color: var(--text-secondary); }
+@media (max-width: 760px) {
+  .dfd-legend { font-size: 12.5px; }
+  .dfd-hint { display: block; }
+}
+
 /* 배운 것 · 남은 것 */
 .lessons {
   display: grid;
