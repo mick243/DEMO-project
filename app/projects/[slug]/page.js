@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { projects } from "../../data/projects";
+import DataFlow from "../../components/DataFlow";
 import TroubleVisual from "../../components/TroubleVisual";
 
 export function generateStaticParams() {
@@ -168,6 +169,7 @@ export default function ProjectDetail({ params }) {
   // 이 페이지에 실제로 있는 섹션만 목차에 올립니다.
   const toc = [
     project.star && { href: "#star", label: "STAR" },
+    project.dataflow && { href: "#dataflow", label: "데이터 흐름" },
     // project.timeline?.length > 0 && { href: "#timeline", label: "작업 기록" },
     project.items?.length > 0 && { href: "#items", label: "진행한 작업" },
     project.gallery?.length > 0 && { href: "#screens", label: "작동 화면" },
@@ -252,6 +254,13 @@ export default function ProjectDetail({ params }) {
                   <StarBlock key={step.key} step={step} project={project} />
                 ))}
               </div>
+            )}
+
+            {project.dataflow && (
+              <>
+                <SectionHead id="dataflow" eyebrow="Data Flow" title="데이터 흐름" desc={project.dataflow.desc} />
+                <DataFlow flow={project.dataflow} />
+              </>
             )}
 
             {/* 작업 기록 — 일단 숨겨 둡니다(데이터 project.timeline 은 그대로 있습니다).

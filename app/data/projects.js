@@ -82,6 +82,43 @@ export const projects = [
     ],
 
     // 2026.09.18 기준. 데이터 건수는 개발 DB 조회, 코드 수치는 git 추적 파일 집계입니다.
+    dataflow: {
+      desc: "지도 마커를 읽는 길, 제보를 쓰는 길, AI와 데이터 수집 길을 나눠 그렸습니다. 번호는 성능을 고친 자리입니다.",
+      lanes: [
+        { key: "client", label: "화면 (브라우저)" },
+        { key: "server", label: "서버 (Next.js)" },
+        { key: "store", label: "저장소 · 외부" },
+      ],
+      nodes: {
+        map: { label: "지도 화면", lane: "client", note: "목록을 받아 마커를 그리고, 제보 · 리뷰를 입력" },
+        api: { label: "API 라우트", lane: "server", note: "조회 · 제보 처리, 응답 압축" },
+        pool: { label: "Prisma · pg 풀", lane: "server", note: "커넥션 풀, 참조 데이터는 5분 메모리 캐시" },
+        collector: { label: "수집 스크립트", lane: "server", note: "사람이 직접 실행하는 적재 배치" },
+        db: { label: "PostgreSQL", lane: "store", note: "오락실 · 기종 · 제보" },
+        naver: { label: "Naver Maps", lane: "store", note: "지도 타일과 SDK" },
+        gemini: { label: "Gemini API", lane: "store", note: "챗봇 · 리뷰 요약 · 기종 추정" },
+        sources: { label: "외부 원천 API", lane: "store", note: "네이버 지역검색 · 지오코딩, 공공데이터포털" },
+      },
+      paths: [
+        { name: "마커 읽기", steps: ["map", "좌표 · 반경 · 검색어", "api", "목록 쿼리", "pool", "반경 검색(TypedSQL)", "db"] },
+        { name: "응답", steps: ["api", "brotli 압축 JSON", "map"] },
+        { name: "지도 그리기", steps: ["naver", "지도 타일 · SDK", "map"] },
+        { name: "제보 쓰기", steps: ["map", "제보 JSON", "api", "제보 · 보유 기종 한 트랜잭션", "db"] },
+        { name: "AI", steps: ["map", "기종 추정 · 챗 질문", "api", "요청(하루 한도)", "gemini"] },
+        { name: "데이터 수집", steps: ["sources", "오락실 목록 · 좌표", "collector", "upsert", "db"] },
+      ],
+      fixes: [
+        {
+          node: "map",
+          text: "화면 범위(여백 20%) 안 마커만 그리고 빠진 마커는 최대 200개까지 숨겨 두었다 다시 써서 초기 마커 동기화 622ms → 156ms",
+        },
+        {
+          node: "api",
+          text: "가입자 1만 규모 시드로 다시 재어 찾은 진짜 병목, 압축 안 된 1.2MB 응답에 brotli 적용 → 90KB",
+        },
+      ],
+      note: "화면 범위는 브라우저에서만 자릅니다. 서버는 좌표 · 반경 기준 목록을 보내고, 지도에 필요한 칸만 보내도록 줄이는 일은 남아 있습니다.",
+    },
     metrics: [
       { value: "926", unit: "곳", label: "등록된 오락실", note: "네이버 526 · 공공데이터 398 · 수동 2" },
       { value: "24,413", unit: "개", label: "채보", note: "5기종 · 4,888곡 · 서열표는 3기종 운영" },
@@ -605,6 +642,43 @@ export const projects = [
       },
     ],
 
+    dataflow: {
+      desc: "지도 검색, 게시판, 소셜 로그인, 시설 데이터 적재 길을 나눠 그렸습니다. 번호는 다시 만들며 고친 자리입니다.",
+      lanes: [
+        { key: "client", label: "화면 (React)" },
+        { key: "server", label: "서버 (Express)" },
+        { key: "store", label: "저장소 · 외부" },
+      ],
+      nodes: {
+        map: { label: "지도 검색 화면", lane: "client", note: "지도가 멈추면 화면 범위 · 줌을 읽어 조회" },
+        board: { label: "게시판 · 홈", lane: "client", note: "page · limit 단위로 글 요청 (홈은 3건)" },
+        login: { label: "로그인 화면", lane: "client", note: "OAuth state 발급과 대조" },
+        store: { label: "Redux 스토어", lane: "client", note: "검색 결과 · 로그인 토큰" },
+        api: { label: "Express API", lane: "server", note: "/facilities · /facilities/clusters · /category · /auth" },
+        job: { label: "시설 적재 잡", lane: "server", note: "공공데이터 동기화 · 좌표 변환 · 주소 지오코딩" },
+        db: { label: "MySQL 8", lane: "store", note: "시설(lat · lng 인덱스) · 글 · 사용자" },
+        kakao: { label: "Kakao Map", lane: "store", note: "지도 렌더링과 화면 범위 · 줌 레벨" },
+        oauth: { label: "소셜 로그인", lane: "store", note: "카카오 · 네이버 · 구글" },
+      },
+      paths: [
+        { name: "지도 넓게", steps: ["map", "bbox + 정밀도", "api", "범위 조회 + 격자 GROUP BY", "db"] },
+        { name: "지도 확대", steps: ["map", "bbox + limit", "api", "범위 안 시설만", "db"] },
+        { name: "결과 표시", steps: ["api", "격자 집계 · 시설 목록", "map", "검색 결과 저장", "store"] },
+        { name: "게시판", steps: ["board", "category · page · limit", "api", "LIMIT / OFFSET + 총계", "db"] },
+        {
+          name: "소셜 로그인",
+          steps: ["login", "인가 요청 + state", "oauth", "code + state(대조)", "login", "인가 code", "api", "소셜 ID 조회 · 가입", "db"],
+        },
+        { name: "시설 적재", steps: ["job", "변경분 시설 + 좌표", "db"] },
+      ],
+      fixes: [
+        { node: "map", text: "전국을 한 번에 받던 지도를 화면 범위 조회로 바꾸고, 넓게 볼 때는 서버가 격자로 묶어 보냄" },
+        { node: "api", text: "게시글 목록을 페이지 단위로 바꿔 응답 30.7MB → 4.6KB(글 2만 건 시드)" },
+        { node: "login", text: "저장된 값이 없어도 통과하던 state 검증을 거부하도록 고치고, 한 번 쓴 값은 지움(CSRF 방지)" },
+        { node: "db", text: "DB · 서버 · 연결의 시간대를 +09:00으로 맞춰 시각 9시간 오차를 바로잡음" },
+      ],
+      note: "state 대조는 화면에서 합니다. 시설 적재 잡은 사람이 실행하거나 cron으로 돌립니다(주기 예시는 README).",
+    },
     metrics: [
       { value: "103", unit: "커밋", label: "8일간 1인 작업", note: "2026.09.09 ~ 09.16 · 원본 팀 프로젝트에서는 248커밋 중 18" },
       { value: "7,120", unit: "곳", label: "시설 데이터", note: "병원 2,238 · 약국 4,882 · 오늘 실측" },
@@ -1079,6 +1153,44 @@ export const projects = [
     ],
 
     // 2026.11.10 main f8521c0 기준. 시험 수는 CI, 코드 수치는 git 추적 파일 집계입니다.
+    dataflow: {
+      desc: "AI는 문장을 해석만 하고, 실제 쓰기는 사람이 확인한 카드로만 일어나도록 길을 나눴습니다. 번호는 설계에서 지킨 자리입니다.",
+      lanes: [
+        { key: "client", label: "화면" },
+        { key: "server", label: "서버 (Fastify)" },
+        { key: "store", label: "저장소 · 외부" },
+      ],
+      nodes: {
+        web: { label: "웹 화면", lane: "client", note: "한 줄 입력 · 후보 카드 · 확인 시트 (React)" },
+        aiapp: { label: "바깥 AI 앱", lane: "client", note: "Claude 등이 OAuth로 붙어 읽기 도구만 호출" },
+        api: { label: "API", lane: "server", note: "/api/ask 는 읽기만, 쓰기는 /api/plans 로만" },
+        rules: { label: "규칙 엔진", lane: "server", note: "낱말 규칙과 날짜 · 인원 슬롯 해석" },
+        gateway: { label: "AI 게이트웨이", lane: "server", note: "자료 등급 · 하루 상한 · 응답 구조 검증, 쓰기 도구 없음" },
+        plan: { label: "확인 카드", lane: "server", note: "사람이 확인하면 한 번만 실행" },
+        mcp: { label: "읽기 전용 MCP", lane: "server", note: "도구 전부 읽기, 예약자 · 본문 칸은 내보내지 않음" },
+        llm: { label: "LLM", lane: "store", note: "분류와 슬롯 추출만 (시연은 Gemini Flash)" },
+        db: { label: "PostgreSQL · PGlite", lane: "store", note: "예약 · 확인 카드 · 감사 로그 · AI 사용량(본문 없이)" },
+      },
+      paths: [
+        { name: "묻기", steps: ["web", "한 줄 문장", "api", "빈 방 · 행 읽기", "db"] },
+        { name: "AI 해석", steps: ["api", "문장 + 오늘 날짜", "gateway", "분류 요청", "llm"] },
+        { name: "AI 없을 때", steps: ["api", "낱말 · 슬롯", "rules", "후보 카드 + 제안 토큰", "web"] },
+        { name: "확인 후 쓰기", steps: ["web", "확인 누름", "plan", "예약 · 요청 한 번 쓰기", "db"] },
+        { name: "바깥 읽기", steps: ["aiapp", "읽기 요청(OAuth)", "mcp", "빈 방 · 공지 조회", "db"] },
+      ],
+      fixes: [
+        { node: "rules", text: "AI를 붙이기 전에 규칙부터 고쳐 담당 팀 안내 오답 5건 → 0건(검증 문장 32개)" },
+        {
+          node: "gateway",
+          text: "모델 응답은 정해진 JSON 구조로 검증하고, 상한 · 실패 · 꺼짐이면 규칙 결과로 돌아가 카드를 그대로 보여 줍니다.",
+        },
+        {
+          node: "plan",
+          text: "쓰기는 확인한 카드로만 일어납니다. 예외는 회의실 채팅에서 직접 시킨 예약 · 장비 대여뿐이고, 운영 스위치와 하루 상한 안에서 규칙과 모델 해석이 같을 때만 서버가 계산한 값으로 실행합니다.",
+        },
+      ],
+      note: "시연 배포 기준 : 웹은 Vercel, API는 Fly.io 한 대, DB는 PGlite입니다. MCP는 운영자 스위치로 열며 시연에서는 꺼 두었습니다.",
+    },
     metrics: [
       { value: "48", unit: "개", label: "병합한 PR", note: "커밋 163개 · 2026.10.25 ~ 11.10" },
       { value: "1,400", unit: "건", label: "자동 테스트", note: "서버 1,150 · 공용 179 · 웹 71 · 11.10 CI 전부 통과" },
@@ -1430,6 +1542,41 @@ export const projects = [
       },
     ],
 
+    dataflow: {
+      desc: "팀 결정을 AI 도구가 MCP로 읽고, 결정이 바뀌면 담당자에게만 확인할 변경이 생기는 흐름입니다. 번호는 제가 맡은 자리입니다.",
+      lanes: [
+        { key: "client", label: "팀원 PC · 브라우저" },
+        { key: "server", label: "서버 · 배포" },
+        { key: "store", label: "DB (Supabase)" },
+      ],
+      nodes: {
+        cc: { label: "Claude Code", lane: "client", note: "AI가 MCP 도구로 결정을 읽고 저장" },
+        hooks: { label: "Claude Code hooks", lane: "client", note: "세션 이벤트를 서버로 보내고 알림 글을 띄움" },
+        pwa: { label: "PWA 웹 앱", lane: "client", note: "공용 키로 DB에 바로 연결, 창이 열려 있으면 OS 알림" },
+        cli: { label: "CLI", lane: "client", note: "team-wiki 결정을 미리 보고 DB에 넣음" },
+        mcp: { label: "MCP 서버", lane: "server", note: "Cloud Run, /mcp · /hooks, 팀 토큰 확인" },
+        core: { label: "공통 DB 계층", lane: "server", note: "모든 앱이 SQL 대신 부르는 함수 (@sil/core)" },
+        deploy: { label: "Cloud Build", lane: "server", note: "main 머지마다 빌드해 Cloud Run에 올림" },
+        fn: { label: "쓰기 함수 8개", lane: "store", note: "공용 키로 쓸 수 있는 유일한 통로, 트리거로 지우기 · 고치기 막음" },
+        checks: { label: "확인할 변경", lane: "store", note: "결정이 바뀐 트랜잭션 안에서 담당자에게만 생성" },
+      },
+      paths: [
+        { name: "결정 읽기", steps: ["cc", "결정 조회(MCP 도구)", "mcp", "읽기 함수", "core"] },
+        { name: "결정 바꾸기", steps: ["cc", "변경 저장(허락 뒤)", "mcp", "save_standard", "fn", "같은 트랜잭션", "checks"] },
+        { name: "터미널 알림", steps: ["checks", "내 확인할 변경", "mcp", "알림 글", "hooks"] },
+        { name: "웹 알림", steps: ["checks", "Realtime 구독", "pwa", "답 저장(SQL 함수)", "fn"] },
+        { name: "위키 가져오기", steps: ["cli", "--apply 일 때만", "core", "save_standard", "fn"] },
+        { name: "배포", steps: ["deploy", "main 머지마다", "mcp"] },
+      ],
+      fixes: [
+        { node: "core", text: "공통 타입과 DB 읽기 · 쓰기 함수를 만들어 팀원 앱이 모두 같은 함수를 쓰게 함" },
+        { node: "fn", text: "쓰기 규칙을 SQL 함수와 트리거로 강제해 앱이 규칙을 건너뛸 수 없게 함" },
+        { node: "mcp", text: "MCP 서버와 위키 도구(조회 · 검색 · 저장 · 되돌리기)" },
+        { node: "pwa", text: "오프라인으로 처음 열면 빈 화면이 뜨던 서비스 워커를, 빌드 파일 목록을 설치 때 모두 저장하도록 고침" },
+        { node: "deploy", text: "Cloud Run 배포 실패를 한글 파일 이름 깨짐(5개 → 0개)까지 추적해 풀고 자동 배포 구성, 28번 모두 성공" },
+      ],
+      note: "알림 대상은 DB 함수가 정합니다(바꾼 본인과 담당자 없는 결정은 제외). 웹 알림은 창이 열려 있을 때만 오고 웹 푸시는 아직 없습니다. 배포 트리거는 저장소가 아니라 GCP에 설정했습니다.",
+    },
     metrics: [
       { value: "12", unit: "개", label: "올린 PR", note: "팀 전체 60개 중 · 10개 머지 · 2개 닫음" },
       { value: "211", unit: "개", label: "SQL 검사", note: "전부 ROLLBACK 으로 끝나 팀 DB 에도 흔적 없음" },

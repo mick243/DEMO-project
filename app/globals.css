@@ -958,6 +958,72 @@ button { font-family: inherit; cursor: pointer; }
   .tv-arrow { transform: rotate(90deg); margin: 2px 0 2px 12px; }
 }
 
+/* 데이터 흐름 : 자리(화면 · 서버 · 저장소 등)마다 색을 하나씩 두고, 칸 머리와 칩 글로도 자리를 적습니다. */
+.df {
+  --df-0: #2f6fed; --df-0-bg: rgba(47, 111, 237, 0.08);
+  --df-1: #138a81; --df-1-bg: rgba(19, 138, 129, 0.08);
+  --df-2: #b7791f; --df-2-bg: rgba(183, 121, 31, 0.09);
+  --df-3: #6b5bd2; --df-3-bg: rgba(107, 91, 210, 0.08);
+  margin: 0 0 56px;
+  padding: 22px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.df-lanes { display: grid; grid-template-columns: repeat(var(--df-cols), minmax(0, 1fr)); gap: 12px; }
+.df-lane { background: var(--bg-base); border: 1px solid var(--border); border-top: 3px solid var(--df-c); border-radius: 10px; padding: 14px 14px 12px; }
+.df-lane.lane-0, .df-chip.lane-0 { --df-c: var(--df-0); --df-bg: var(--df-0-bg); }
+.df-lane.lane-1, .df-chip.lane-1 { --df-c: var(--df-1); --df-bg: var(--df-1-bg); }
+.df-lane.lane-2, .df-chip.lane-2 { --df-c: var(--df-2); --df-bg: var(--df-2-bg); }
+.df-lane.lane-3, .df-chip.lane-3 { --df-c: var(--df-3); --df-bg: var(--df-3-bg); }
+.df-lane-name { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--df-c); margin-bottom: 10px; }
+.df-nodes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.df-node { display: flex; flex-direction: column; gap: 3px; }
+.df-node-label { font-size: 14px; font-weight: 600; color: var(--text-primary); line-height: 1.4; word-break: keep-all; }
+.df-node-note { font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; word-break: keep-all; }
+.df-fix-badge { margin-left: 4px; font-size: 13px; color: var(--accent-amber); font-weight: 700; cursor: help; }
+
+.df-paths { display: flex; flex-direction: column; gap: 12px; }
+.df-path { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: start; }
+.df-path-name { font-size: 13px; font-weight: 600; color: var(--text-primary); padding-top: 6px; word-break: keep-all; }
+.df-path-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 0; }
+.df-path-node, .df-path-edge { display: inline-flex; align-items: center; }
+.df-chip {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--df-c);
+  background: var(--df-bg);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.df-path-edge { margin: 0 8px; gap: 4px; }
+.df-edge-arrow { color: var(--text-muted); font-size: 13px; }
+.df-edge-label { font-size: 12px; color: var(--text-secondary); word-break: keep-all; }
+
+.df-fixes { list-style: none; margin: 0; padding: 14px 0 0; border-top: 1px dashed var(--border); display: flex; flex-direction: column; gap: 6px; }
+.df-fixes li { display: flex; gap: 8px; font-size: 13.5px; line-height: 1.6; color: var(--text-secondary); word-break: keep-all; }
+.df-fixes b { color: var(--text-primary); font-weight: 600; }
+.df-fix-no { color: var(--accent-amber); font-weight: 700; flex-shrink: 0; }
+.df-note { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+@media (max-width: 760px) {
+  .df { padding: 16px 14px; }
+  .df-lanes { grid-template-columns: 1fr; }
+  .df-path { grid-template-columns: 1fr; gap: 6px; }
+  .df-path-name { padding-top: 0; }
+  .df-path-steps { flex-direction: column; align-items: flex-start; gap: 0; }
+  .df-path-edge { margin: 4px 0 4px 12px; }
+  .df-edge-arrow { display: inline-block; transform: rotate(90deg); }
+  .df-chip { white-space: normal; }
+}
+
 /* 배운 것 · 남은 것 */
 .lessons {
   display: grid;
