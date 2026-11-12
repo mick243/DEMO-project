@@ -23,13 +23,14 @@ export const notFound = {
 export const aboutCards = {
   resume: {
     href: "/resume",
+    icon: "resume",
     eyebrow: "Resume",
     title: "이력서 전문 보기",
     desc: "핵심역량 · 성장 과정 · 프로젝트 4건의 Task · Action · Result 를 한 페이지에 정리했습니다.",
   },
   links: [
-    { label: "GitHub", value: "github.com/mick243", href: "https://github.com/mick243" },
-    { label: "Notion", value: "Notion 페이지", href: "https://app.notion.com/p/18458dde847f82b8a88b811ec6238245" },
+    { label: "GitHub", icon: "github", value: "github.com/mick243", href: "https://github.com/mick243" },
+    { label: "Notion", icon: "notion", value: "Notion 페이지", href: "https://app.notion.com/p/18458dde847f82b8a88b811ec6238245" },
   ],
 };
 

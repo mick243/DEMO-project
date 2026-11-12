@@ -1,4 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+/* 본문 · 제목: Pretendard(한글 · 라틴 모두), 라벨 · 숫자: Geist Mono */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap");
  
 :root {
   --bg-base: #ffffff;
@@ -17,9 +19,9 @@
   --accent-amber: #FFA500;
   --radius: 14px;
   --max-w: 1080px;
-  --font-display: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-display: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
+  --font-body: "Pretendard Variable", Pretendard, -apple-system, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Pretendard Variable", ui-monospace, monospace;
 }
  
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -68,7 +70,7 @@ button { font-family: inherit; cursor: pointer; }
   font-family: var(--font-display);
   font-size: clamp(24px, 3.4vw, 34px);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin-bottom: 14px;
 }
  
@@ -297,40 +299,59 @@ button { font-family: inherit; cursor: pointer; }
 .about-links { gap: 18px; grid-template-rows: 1fr 1fr; }
 .about-grid > .about-links { display: grid; }
 .about-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: "icon label" "icon value";
+  align-content: center;
+  column-gap: 16px;
+  row-gap: 2px;
   width: 100%;
-  padding: 22px 56px 22px 24px;
+  padding: 22px 24px;
   color: inherit;
 }
-.about-card-lg { padding: 36px 64px 36px 32px; min-height: 240px; justify-content: flex-end; }
+.about-card-icon {
+  grid-area: icon;
+  align-self: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(57, 197, 187, 0.12);
+  color: var(--accent-blue);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.about-card-icon svg { width: 24px; height: 24px; }
+.about-card:hover .about-card-icon { background: var(--accent-blue); color: #fff; }
 .about-card-label {
+  grid-area: label;
   font-family: var(--font-mono);
   font-size: 12px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
+.about-card-value { grid-area: value; font-size: 16px; font-weight: 600; word-break: break-all; }
+/* 큰 카드: 아이콘은 위, 글은 아래로 쌓습니다. */
+.about-card-lg {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 32px;
+  min-height: 240px;
+}
+.about-card-lg .about-card-icon { align-self: flex-start; width: 56px; height: 56px; border-radius: 14px; margin-bottom: auto; }
+.about-card-lg .about-card-icon svg { width: 28px; height: 28px; }
+.about-card-lg .about-card-label { margin-top: 28px; }
 .about-card-title {
   font-family: var(--font-display);
   font-size: clamp(22px, 3vw, 28px);
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
 }
 .about-card-desc { font-size: 14.5px; color: var(--text-secondary); max-width: 440px; word-break: keep-all; }
-.about-card-value { font-size: 15.5px; font-weight: 600; word-break: break-all; }
-.about-card-arrow {
-  position: absolute;
-  right: 22px;
-  top: 22px;
-  font-size: 20px;
-  color: var(--text-muted);
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-.about-card:hover .about-card-arrow { color: var(--accent-blue); transform: translate(2px, -2px); }
 .about-card:focus-visible { outline: 2px solid var(--accent-cyan); outline-offset: 3px; }
  
 /* ---------- Skills ---------- */
