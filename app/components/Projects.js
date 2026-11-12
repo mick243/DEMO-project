@@ -53,7 +53,18 @@ export default function Projects() {
                     <div className="project-body">
                       <div className="project-name">{p.name}</div>
                       {p.cardSummary && <p className="project-summary">{p.cardSummary}</p>}
-                      {p.cardHighlight && <p className="project-highlight">{p.cardHighlight}</p>}
+                      {p.cardHighlight && (
+                        <p className="project-highlight">
+                          {/* 대표 성과는 " · " 마다 한 줄씩 끊습니다. 외주는 한 문장이라 그대로 둡니다. */}
+                          {groupOf(p) === "outsourcing"
+                            ? p.cardHighlight
+                            : p.cardHighlight.split(" · ").map((line) => (
+                                <span key={line} className="project-highlight-line">
+                                  {line}
+                                </span>
+                              ))}
+                        </p>
+                      )}
                       <div className="project-tags">
                         {p.tags.map((t) => (
                           <span key={t} className="tag">

@@ -464,6 +464,7 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 14px;
   word-break: keep-all;
 }
+.project-highlight-line { display: block; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
 /* ---------- 404 ---------- */

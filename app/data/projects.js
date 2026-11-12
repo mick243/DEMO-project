@@ -47,7 +47,7 @@ export const projects = [
     cardSummary: "리듬게임 유저를 위한 오락실 지도와 실시간 제보 서비스",
     cardHighlight: "지도 첫 렌더 −75% · 서버 응답 p95 −86%",
     hero: "/projects/arcade-finder/01-map.jpg",
-    tags: ["Next.js 16", "React 19", "TypeScript", "PostgreSQL 18", "k6", "Vitest", "Gemini"],
+    tags: ["Next.js", "React", "TypeScript", "PostgreSQL", "k6", "Vitest", "Gemini"],
     type: "개인 프로젝트 (1인 개발)",
     role: "기획 · 프론트엔드 · 백엔드 · 데이터 수집 · 성능 측정 전 과정",
     summary:
@@ -605,7 +605,7 @@ export const projects = [
     // 실제 화면 두 장을 16:10 으로 세워 둔 같은 이미지를 씁니다.
     hero: "/projects/petmedisearch/thumb.jpg",
     galleryPortrait: true,
-    tags: ["React 18", "TypeScript", "Vite", "Express", "MySQL 8", "k6", "Kakao Map"],
+    tags: ["React", "TypeScript", "Vite", "Express", "MySQL", "k6", "Kakao Map"],
     type: "개인 프로젝트 (1인 재작성)",
     role: "기획 재정리 · 프론트엔드 · 백엔드 · 데이터 수집 · 성능 측정",
     summary:
@@ -1115,7 +1115,7 @@ export const projects = [
     cardSummary: "회의실 · 탕비실 · 문의를 한 줄로 묻고 확인 카드로 받는 사내 안내 데스크",
     cardHighlight: "확인 카드로만 실행되는 화면 · 담당 카드 오답 5 → 0 · 자동 테스트 1,400건",
     hero: "/projects/one-line-desk/01-home.jpg",
-    tags: ["TypeScript 7", "React 19", "Fastify 5", "PostgreSQL", "PGlite", "Vitest", "MCP", "Fly.io"],
+    tags: ["TypeScript", "React", "Fastify", "PostgreSQL", "PGlite", "Vitest", "MCP", "Fly.io"],
     type: "개인 프로젝트 (1인 개발 · 에이전트 팀)",
     role: "기획 · 설계 결정(ADR) · 프론트엔드 · 백엔드 · 보안 · 배포 전 과정",
     summary:
@@ -1508,7 +1508,7 @@ export const projects = [
     cardSummary: "팀 결정 사항이 바뀌면 관련 담당자에게만 알리는 AI 에이전트용 팀 위키",
     cardHighlight: "6인 팀 통합환경 담당 · 자동 배포 28번 모두 성공",
     hero: "/projects/bandit/01-main.jpg",
-    tags: ["TypeScript 6", "Node 24", "MCP", "Supabase", "PostgreSQL 17", "Cloud Run", "Vite 7", "PWA"],
+    tags: ["TypeScript", "Node.js", "MCP", "Supabase", "PostgreSQL", "Cloud Run", "Vite", "PWA"],
     type: "팀 프로젝트 (통합환경 담당)",
     role: "저장소 구조 · 공통 타입 · DB 구조와 규칙 · MCP 서버 · 웹 앱(PWA) 뼈대 · 배포 파이프라인",
     summary:
