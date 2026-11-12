@@ -86,6 +86,6 @@ Next.js 기본 영어 404 대신, 같은 머리글 · 바닥글에 한국어 안
 
 ## 디자인 컨셉
 
-- **타이포**: 제목 Space Grotesk / 본문 Inter / 코드·태그·날짜 JetBrains Mono
+- **타이포**: 제목 · 본문 Pretendard(한글 · 라틴) / 코드 · 태그 · 날짜 Geist Mono (한글은 Pretendard 로 대체)
 - **시그니처 요소**: 히어로의 `profile.json` 터미널 패널. 개발자 프로필을
   코드 형태로 보여주는 장치입니다.
