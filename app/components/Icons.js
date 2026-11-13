@@ -1,4 +1,4 @@
-// 소개 카드에 쓰는 아이콘. 데이터의 icon 값(resume · github · notion)으로 고릅니다.
+// 소개 카드에 쓰는 아이콘. 데이터의 icon 값(resume · github)으로 고릅니다.
 // 색은 currentColor 를 따르므로 CSS 의 color 로 칠합니다.
 
 function Resume(props) {
@@ -19,17 +19,7 @@ function Github(props) {
   );
 }
 
-/** 노션 로고를 흉내 낸 단순한 표식: 둥근 네모 안의 N */
-function Notion(props) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" {...props}>
-      <rect x="3.5" y="3" width="17" height="18" rx="3" />
-      <path d="M8.5 16.5v-9l7 9v-9" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-const ICONS = { resume: Resume, github: Github, notion: Notion };
+const ICONS = { resume: Resume, github: Github };
 
 export default function Icon({ name, ...props }) {
   const Svg = ICONS[name];
