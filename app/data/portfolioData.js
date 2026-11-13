@@ -36,20 +36,25 @@ export const notFound = {
   desc: "주소가 바뀌었을 수 있어요. 홈이나 프로젝트 목록에서 다시 찾아보세요.",
 };
 
-// 소개 섹션 카드. 큰 카드 하나(이력서) + 작은 카드 둘(외부 링크)입니다.
-export const aboutCards = {
-  resume: {
+// 소개 섹션 카드. 이력서와 GitHub 두 장을 같은 크기로 나란히 둡니다(1:1).
+// external 이 true 면 새 탭으로 엽니다.
+export const aboutCards = [
+  {
     href: "/resume",
     icon: "resume",
     eyebrow: "Resume",
     title: "이력서 전문 보기",
     desc: "핵심역량, 성장 과정, 프로젝트 4건의 과정과 결과를 한 페이지에 모았어요.",
   },
-  links: [
-    { label: "GitHub", icon: "github", value: "github.com/mick243", href: "https://github.com/mick243" },
-    { label: "Notion", icon: "notion", value: "Notion 페이지", href: "https://app.notion.com/p/18458dde847f82b8a88b811ec6238245" },
-  ],
-};
+  {
+    href: "https://github.com/mick243",
+    external: true,
+    icon: "github",
+    eyebrow: "GitHub",
+    title: "코드 저장소 보기",
+    desc: "github.com/mick243 에서 프로젝트 코드와 커밋 기록을 볼 수 있어요.",
+  },
+];
 
 // 기술 스택 섹션. 진행한 프로젝트에서 실제로 쓴 기술을 모았고, 버전은 적지 않습니다.
 // 주력은 프론트엔드이고(primary), 나머지는 원인을 따라 서버 · 배포까지 내려가며 함께 다룬 기술입니다.

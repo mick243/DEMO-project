@@ -3,38 +3,42 @@ import Reveal from "./Reveal";
 import Icon from "./Icons";
 import { aboutCards, aboutIntro } from "../data/portfolioData";
 
+/** 카드 안쪽. 두 카드가 같은 모양이라 링크 종류(사이트 안 · 밖)만 다릅니다. */
+function CardBody({ card }) {
+  return (
+    <>
+      <span className="about-card-icon">
+        <Icon name={card.icon} />
+      </span>
+      <span className="about-card-label">{card.eyebrow}</span>
+      <span className="about-card-title">{card.title}</span>
+      <span className="about-card-desc">{card.desc}</span>
+    </>
+  );
+}
+
 export default function About() {
-  const { resume, links } = aboutCards;
   return (
     <section id="about" className="section">
       <div className="container">
         <Reveal>
           <h2 className="section-title">{aboutIntro.title}</h2>
         </Reveal>
+        {/* 이력서 · GitHub 두 카드를 같은 크기로 나란히 둡니다(1:1). */}
         <div className="about-grid">
-          {/* 큰 카드: 이력서 PDF 를 그대로 옮긴 /resume 페이지로 보냅니다. */}
-          <Reveal delay={80}>
-            <Link href={resume.href} className="about-card about-card-lg card">
-              <span className="about-card-icon">
-                <Icon name={resume.icon} />
-              </span>
-              <span className="about-card-label">{resume.eyebrow}</span>
-              <span className="about-card-title">{resume.title}</span>
-              <span className="about-card-desc">{resume.desc}</span>
-            </Link>
-          </Reveal>
-          {/* 작은 카드: 외부 링크 */}
-          <Reveal delay={160} className="about-links">
-            {links.map((l) => (
-              <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className="about-card card">
-                <span className="about-card-icon">
-                  <Icon name={l.icon} />
-                </span>
-                <span className="about-card-label">{l.label}</span>
-                <span className="about-card-value">{l.value}</span>
-              </a>
-            ))}
-          </Reveal>
+          {aboutCards.map((card, i) => (
+            <Reveal key={card.href} delay={80 * (i + 1)}>
+              {card.external ? (
+                <a href={card.href} target="_blank" rel="noreferrer" className="about-card card">
+                  <CardBody card={card} />
+                </a>
+              ) : (
+                <Link href={card.href} className="about-card card">
+                  <CardBody card={card} />
+                </Link>
+              )}
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

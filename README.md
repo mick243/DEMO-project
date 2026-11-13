@@ -10,7 +10,7 @@
 → 교육 → 문의이고, 각 섹션은 `app/components/` 의 같은 이름 컴포넌트입니다.
 
 - `Hero.js` — 히어로 + `profile.json` 터미널 패널(시그니처 요소)
-- `About.js` — 소개. 큰 카드 ‘이력서 전문 보기’(`/resume`) + 작은 카드 Github · Notion. 카드 문구와 주소는 `portfolioData.js` 의 `aboutCards`
+- `About.js` — 소개. ‘이력서 전문 보기’(`/resume`)와 GitHub 두 카드를 같은 크기로 나란히(1:1) 둡니다. 카드 문구와 주소는 `portfolioData.js` 의 `aboutCards`
 - `Skills.js` — 기술 스택 카드 그리드. `primary` 인 묶음(프론트엔드)이 한 줄을 다 쓰고 강조됩니다
 - `Projects.js` — 왼쪽 프로젝트 목록 + 오른쪽 카드 무대 (썸네일 · 이름 · 한 줄 설명 · 대표 성과 · 기술 스택).
   카드는 한 장씩 보입니다: 목록을 누르거나, 무대 위에서 휠 한 번에 한 장 넘어갑니다(첫 · 끝 장에서는 페이지가 이어서 스크롤).
@@ -34,14 +34,16 @@ Next.js 기본 영어 404 대신, 같은 머리글 · 바닥글에 한국어 안
 ### `/projects/<slug>` — 프로젝트 상세 (`app/projects/[slug]/page.js`)
 
 `app/data/projects.js` 의 항목마다 정적 생성합니다 (현재 `arcade-finder`,
-`petmedisearch`, `one-line-desk`, `bandit`, `outsourcing`). STAR · 진행한 작업 ·
-작동 화면 · 트러블슈팅 · 배운 것 중 데이터가 있는 블록만 그리고, 목차도 그에 맞춰 만듭니다. STAR 는 단계마다 제목 한 줄과
-두 줄 이내 본문만 둡니다. 작업 기록(`timeline`)은 데이터는 남기고 페이지에서 주석 처리해
-두었습니다.
+`petmedisearch`, `one-line-desk`, `bandit`, `outsourcing`). 순서는 가장 중요하게 본 것 ·
+STAR(목차 이름 ‘문제와 해결’) · 트러블슈팅 · 데이터 흐름 · 진행한 작업 · 작동 화면 · 배운 것이고,
+데이터가 있는 블록만 그리고 목차도 그에 맞춰 만듭니다. STAR 는 문제 상황 · 목표 · 해결 과정 · 결과
+네 단계이고, 결과는 핵심 수치를 목록으로 적은 뒤 바로 아래 트러블슈팅으로 이어 줍니다.
+결과의 성능 표(`perf`)와 작업 기록(`timeline`)은 데이터는 남기고 페이지에서 주석 처리해
+두었습니다. 결과 수치판(`metrics`)은 지웠습니다.
 
 ### `/projects/arcade-finder/viewport-culling` · `/projects/arcade-finder/server` — 딥다이브
 
-오락실 파인더 상세의 Result 단계에서 성능 표 제목 옆 배지로 들어오는 페이지입니다.
+오락실 파인더 상세의 트러블슈팅 카드 아래 ‘자세히 보기’ 링크(`troubles[].more`)로 들어오는 페이지입니다.
 클라이언트(뷰포트 컬링)와 서버(부하 시험 · 보안 · 출시 감사 · Prisma 이관 · 실서버)
 두 편이고, 둘 다 `app/components/DeepDive.js` 가 그립니다. 맨 위에는 상세 페이지에서
 그 페이지로 링크한 성능 표(`perf[].href` 가 데이터의 `path` 와 같은 표)를 다시 싣습니다.
@@ -65,7 +67,12 @@ Next.js 기본 영어 404 대신, 같은 머리글 · 바닥글에 한국어 안
 - **프로젝트**: `app/data/projects.js`
   - `group` 이 프로젝트 섹션의 묶음을 정합니다: `personal`(개인) · `team`(팀) ·
     `outsourcing`(외주). 빠뜨리거나 모르는 값이면 개인 프로젝트로 들어갑니다.
-  - `star` 는 Situation · Task · Action · Result 네 단계입니다.
+  - `star` 는 S 문제 상황 · T 목표 · A 해결 과정 · R 결과 네 단계입니다. 단계마다 `title` 과
+    `body` · `points` 를 씁니다. 해결 과정과 결과는 `points` 로 한 줄씩 적습니다.
+  - `focus` 는 그 프로젝트에서 가장 중요하게 본 것 한 가지(`title` · `body`)로, 제목 아래 상자에 나옵니다.
+  - `ui` 는 화면에 쓴 UI 라이브러리입니다. `libs[]`(name · use)는 이름 태그와 쓴 자리로,
+    쓰지 않았으면 `note` 한 줄로 적습니다. 원본 저장소의 import 를 보고 적습니다.
+  - 상세 페이지에서 프로젝트와 상관없이 같은 문구(목차 이름 · 트러블슈팅 머리 등)는 `detailCopy` 에 있습니다.
   - `gallery[].tech` 는 작동 화면마다 붙는 기술 설명이고, 상세 페이지에서
     접이식 ‘구현 메모’ 로 렌더합니다.
   - 이미지는 `public/projects/<slug>/` 에 두고 경로만 적습니다.
@@ -75,7 +82,8 @@ Next.js 기본 영어 404 대신, 같은 머리글 · 바닥글에 한국어 안
     `visual` 은 그 아래 시각 자료입니다(`app/components/TroubleVisual.js`). `type: "compare"` 는
     `rows[]`(label · before · after · beforeText · afterText) 를 전 · 후 막대로, `type: "flow"` 는
     `before[]` · `after[]` 단계를 화살표 흐름으로 그립니다. 변화율은 자동 계산하고, 본문 숫자와
-    반올림이 어긋나면 행에 `change` 를 적어 덮어씁니다.
+    반올림이 어긋나면 행에 `change` 를 적어 덮어씁니다. `more`(href · label)가 있으면 카드 아래에
+    자세한 정리(딥다이브)로 가는 링크가 붙습니다.
 - **딥다이브**: `app/data/viewportCulling.js` · `app/data/arcadeServer.js`
   - 절(`sections`)마다 블록을 쌓습니다. 블록 종류는 text · list · code · table · note 입니다.
   - 오락실 파인더 수치는 원본 저장소(`Desktop/claude/개인 프로젝트`)의 문서에서 옮긴

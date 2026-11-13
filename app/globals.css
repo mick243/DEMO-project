@@ -285,33 +285,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .terminal-body .s { color: var(--code-string); }
  
 /* ---------- About ---------- */
+/* 이력서 · GitHub 두 카드를 같은 크기로 나란히(1:1). 좁은 화면에서는 위아래로 쌓습니다. */
 .about-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 18px;
   align-items: stretch;
 }
 @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
 .about-grid > .reveal { display: flex; }
-.about-links { gap: 18px; grid-template-rows: 1fr 1fr; }
-.about-grid > .about-links { display: grid; }
+/* 카드: 아이콘 · 눈썹 · 제목 · 설명을 위에서부터 쌓아, 두 카드의 같은 줄이 같은 높이에 오게 합니다. */
 .about-card {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-areas: "icon label" "icon value";
-  align-content: center;
-  column-gap: 16px;
-  row-gap: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 6px;
   width: 100%;
-  padding: 22px 24px;
+  padding: 32px;
+  min-height: 240px;
   color: inherit;
 }
 .about-card-icon {
-  grid-area: icon;
-  align-self: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
+  align-self: flex-start;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -319,27 +317,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   color: var(--accent-blue);
   transition: background 0.2s ease, color 0.2s ease;
 }
-.about-card-icon svg { width: 24px; height: 24px; }
+.about-card-icon svg { width: 28px; height: 28px; }
 .about-card:hover .about-card-icon { background: var(--accent-strong); color: var(--on-accent); }
 .about-card-label {
-  grid-area: label;
+  margin-top: 28px;
   font-family: var(--font-body);
   font-size: 12px;
   color: var(--text-muted);
 }
-.about-card-value { grid-area: value; font-size: 16px; font-weight: 600; word-break: break-all; }
-/* 큰 카드: 아이콘은 위, 글은 아래로 쌓습니다. */
-.about-card-lg {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 6px;
-  padding: 32px;
-  min-height: 240px;
+@media (max-width: 760px) {
+  .about-card { min-height: 0; padding: 24px; }
+  .about-card-label { margin-top: 20px; }
 }
-.about-card-lg .about-card-icon { align-self: flex-start; width: 56px; height: 56px; border-radius: 14px; margin-bottom: auto; }
-.about-card-lg .about-card-icon svg { width: 28px; height: 28px; }
-.about-card-lg .about-card-label { margin-top: 28px; }
 .about-card-title {
   font-family: var(--font-display);
   font-size: clamp(22px, 3vw, 28px);
@@ -863,35 +852,50 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   max-width: 680px;
 }
 
-/* 결과 수치판 */
-.metrics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin: 24px 0 32px;
+/* Result 끝에서 트러블슈팅으로 보내는 링크 */
+.star-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 24px;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--accent-strong);
+  border-bottom: 1px solid var(--good-line);
+  padding-bottom: 1px;
 }
-@media (max-width: 760px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 460px) { .metrics { grid-template-columns: 1fr; } }
-.metric { background: var(--bg-surface); padding: 16px 18px; }
-.metric dt {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--text-muted);
+.star-more::after { content: "↓"; font-weight: 400; }
+.star-more:hover { color: var(--accent-strong-hover); border-bottom-color: currentColor; }
+.star-more:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+/* 이 프로젝트에서 가장 중요하게 본 것 — 제목 아래 한 상자 */
+.detail-focus {
+  max-width: 720px;
+  margin: 0 0 32px;
+  padding: 20px 24px;
+  border-left: 3px solid var(--accent-strong);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--accent-tint);
 }
-.metric dd {
-  margin: 2px 0 0;
+.detail-focus-label { display: block; font-size: 12.5px; font-weight: 600; color: var(--accent-strong); }
+.detail-focus-title {
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  margin: 6px 0 8px;
+  word-break: keep-all;
 }
-.metric dd span { font-size: 12.5px; font-weight: 500; color: var(--accent-blue); margin-left: 3px; }
-.metric p { font-size: 12px; line-height: 1.5; color: var(--text-muted); margin-top: 5px; }
+.detail-focus-body { font-size: 15px; line-height: 1.7; color: var(--text-secondary); word-break: keep-all; }
+@media (max-width: 560px) { .detail-focus { padding: 16px 18px; } }
+
+/* 메타 줄의 UI 라이브러리 — 이름 태그와 쓴 자리 */
+.detail-libs { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.detail-libs li { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary); }
+.detail-libs-note { font-size: 14px; color: var(--text-secondary); }
+.detail-libs + .detail-libs-note { margin-top: 8px; }
 
 /* 성능 전후 표 */
 .perf { margin-top: 32px; }
@@ -1015,6 +1019,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   margin-bottom: 6px;
 }
 .trouble-title { font-size: 16.5px; font-weight: 600; line-height: 1.45; margin-bottom: 14px; }
+/* 자세한 정리(딥다이브)로 가는 링크 — 카드 맨 아래 */
+.trouble-more {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--accent-strong);
+  border-bottom: 1px solid var(--good-line);
+  padding-bottom: 1px;
+}
+.trouble-more::after { content: " →"; font-weight: 400; }
+.trouble-more:hover { color: var(--accent-strong-hover); border-bottom-color: currentColor; }
+.trouble-more:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 @media (max-width: 560px) {
   .trouble { padding: 18px 16px; }
   .trouble-steps div { grid-template-columns: 52px 1fr; gap: 10px; }
@@ -1324,13 +1341,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   max-width: 640px;
 }
 .star { scroll-margin-top: 96px; }
-.metrics-asof {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: var(--text-muted);
-  margin-top: 28px;
-}
-.metrics-asof + .metrics { margin-top: 8px; }
 .perf + .perf { margin-top: 36px; }
 
 /* 작업 기록 — 단계 머리 + 날짜/내용 두 칸. */

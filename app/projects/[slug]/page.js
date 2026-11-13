@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { projects } from "../../data/projects";
+import { projects, detailCopy } from "../../data/projects";
 import DataFlowViews from "../../components/DataFlowViews";
 import TroubleVisual from "../../components/TroubleVisual";
 
@@ -46,6 +46,9 @@ function SectionHead({ id, eyebrow, title, desc }) {
 
 /**
  * 성능 표. `href` 가 있으면 제목 옆에 딥다이브로 가는 배지가 붙습니다.
+ *
+ * 지금은 Result 에서 표를 주석 처리해 쓰이지 않습니다(StarBlock 참고). 되살릴 때 그대로 씁니다.
+ * 딥다이브 페이지(components/DeepDive.js)는 같은 project.perf 데이터를 따로 그리므로 영향이 없습니다.
  *
  * 누를 곳은 배지 하나입니다. 제목까지 링크로 묶으면 어디까지가 누르는 자리인지
  * 흐려지고, 표 제목을 읽는 동안에도 호버 표시가 따라붙습니다.
@@ -92,8 +95,9 @@ function PerfTable({ perf }) {
 }
 
 function StarBlock({ step, project }) {
-  // perf 는 표 하나(객체)일 수도, 여러 개(배열)일 수도 있습니다.
-  const perfs = Array.isArray(project.perf) ? project.perf : project.perf ? [project.perf] : [];
+  // 성능 표는 일단 숨겨 둡니다(데이터 project.perf 는 그대로 있습니다).
+  // 되살릴 때는 이 줄과 아래 Result 의 PerfTable 줄 주석을 함께 풉니다.
+  // const perfs = Array.isArray(project.perf) ? project.perf : project.perf ? [project.perf] : [];
 
   return (
     <section className="star-step">
@@ -124,28 +128,18 @@ function StarBlock({ step, project }) {
           </div>
         ))}
 
-        {/* Result 단계에서만 수치판과 성능 표를 함께 보여줍니다. */}
-        {step.key === "R" && project.metrics && (
-          <>
-            {project.updated && <p className="metrics-asof">{project.updated} 기준</p>}
-            <dl className="metrics">
-              {project.metrics.map((m) => (
-                <div key={m.label} className="metric">
-                  <dt>{m.label}</dt>
-                  <dd>
-                    {m.value}
-                    <span>{m.unit}</span>
-                  </dd>
-                  <p>{m.note}</p>
-                </div>
-              ))}
-            </dl>
-          </>
-        )}
-
+        {/* 성능 표 — 일단 숨겨 둡니다.
         {step.key === "R" && perfs.map((perf) => <PerfTable key={perf.title} perf={perf} />)}
+        */}
 
         {step.note && <p className="star-note">{step.note}</p>}
+
+        {/* 결과 아래에서 바로 이어지는 트러블슈팅으로 보냅니다. */}
+        {step.key === "R" && project.troubles?.length > 0 && (
+          <a href="#troubles" className="star-more">
+            {detailCopy.troublesLink(project.troubles.length)}
+          </a>
+        )}
       </div>
     </section>
   );
@@ -166,14 +160,15 @@ export default function ProjectDetail({ params }) {
   // 작업 기록은 일단 숨겨 둡니다. 되살릴 때는 이 줄, 목차의 "작업 기록" 줄, 본문의 작업 기록 블록 주석을 함께 풉니다.
   // const commitCount = project.timeline?.reduce((n, ph) => n + ph.entries.length, 0) ?? 0;
 
-  // 이 페이지에 실제로 있는 섹션만 목차에 올립니다.
+  // 이 페이지에 실제로 있는 섹션만, 본문과 같은 순서로 목차에 올립니다.
+  // 트러블슈팅은 STAR 바로 아래에 둡니다.
   const toc = [
-    project.star && { href: "#star", label: "STAR" },
+    project.star && { href: "#star", label: detailCopy.starToc },
+    project.troubles?.length > 0 && { href: "#troubles", label: detailCopy.troublesTitle },
     project.dataflow && { href: "#dataflow", label: "데이터 흐름" },
     // project.timeline?.length > 0 && { href: "#timeline", label: "작업 기록" },
     project.items?.length > 0 && { href: "#items", label: "진행한 작업" },
     project.gallery?.length > 0 && { href: "#screens", label: "작동 화면" },
-    project.troubles?.length > 0 && { href: "#troubles", label: "트러블슈팅" },
     project.learned?.length > 0 && { href: "#lessons", label: "배운 것과 남은 것" },
   ].filter(Boolean);
 
@@ -190,6 +185,15 @@ export default function ProjectDetail({ params }) {
             <h1 className="detail-title">{project.name}</h1>
             <p className="detail-kind">{project.type}</p>
             <p className="detail-lede">{project.summary}</p>
+
+            {/* 이 프로젝트에서 가장 중요하게 본 것 — 본문을 읽기 전에 한 문장으로 먼저 보여 줍니다. */}
+            {project.focus && (
+              <aside className="detail-focus" aria-label={detailCopy.focusLabel}>
+                <span className="detail-focus-label">{detailCopy.focusLabel}</span>
+                <p className="detail-focus-title">{project.focus.title}</p>
+                <p className="detail-focus-body">{project.focus.body}</p>
+              </aside>
+            )}
 
             <dl className="detail-meta">
               <div>
@@ -218,6 +222,25 @@ export default function ProjectDetail({ params }) {
                   </div>
                 </dd>
               </div>
+              {/* 화면을 만들 때 쓴 UI 라이브러리와 쓴 자리. 쓰지 않은 프로젝트는 note 한 줄로 적습니다. */}
+              {project.ui && (
+                <div className="detail-meta-wide">
+                  <dt>{detailCopy.uiLabel}</dt>
+                  <dd>
+                    {project.ui.libs?.length > 0 && (
+                      <ul className="detail-libs">
+                        {project.ui.libs.map((lib) => (
+                          <li key={lib.name}>
+                            <span className="tag">{lib.name}</span>
+                            <span className="detail-lib-use">{lib.use}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {project.ui.note && <p className="detail-libs-note">{project.ui.note}</p>}
+                  </dd>
+                </div>
+              )}
               {project.links?.length > 0 && (
                 <div>
                   <dt>링크</dt>
@@ -254,6 +277,35 @@ export default function ProjectDetail({ params }) {
                   <StarBlock key={step.key} step={step} project={project} />
                 ))}
               </div>
+            )}
+
+            {/* 트러블슈팅 — STAR 바로 아래에 둡니다. 문제 · 원인 · 해결 · 결과 순서이고, more 가 있으면 자세한 정리로 보냅니다. */}
+            {project.troubles?.length > 0 && (
+              <>
+                <SectionHead id="troubles" title={detailCopy.troublesTitle} desc={detailCopy.troublesDesc} />
+                <ol className="troubles">
+                  {project.troubles.map((t, i) => (
+                    <li key={t.title} className="trouble">
+                      <span className="trouble-no">{String(i + 1).padStart(2, "0")}</span>
+                      <h3 className="trouble-title">{t.title}</h3>
+                      <dl className="resume-star trouble-steps">
+                        {TROUBLE_STEPS.filter(([key]) => t[key]).map(([key, label]) => (
+                          <div key={key}>
+                            <dt>{label}</dt>
+                            <dd>{t[key]}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                      <TroubleVisual visual={t.visual} />
+                      {t.more && (
+                        <Link href={t.more.href} className="trouble-more">
+                          {t.more.label}
+                        </Link>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </>
             )}
 
             {project.dataflow && (
@@ -356,34 +408,6 @@ export default function ProjectDetail({ params }) {
                     </figure>
                   ))}
                 </div>
-              </>
-            )}
-
-            {project.troubles?.length > 0 && (
-              <>
-                <SectionHead
-                  id="troubles"
-                  eyebrow="Troubleshooting"
-                  title="트러블슈팅"
-                  desc="막혔던 문제를 무엇이 보였고 · 원인이 무엇이었고 · 어떻게 고쳤는지 순서로 적었습니다."
-                />
-                <ol className="troubles">
-                  {project.troubles.map((t, i) => (
-                    <li key={t.title} className="trouble">
-                      <span className="trouble-no">{String(i + 1).padStart(2, "0")}</span>
-                      <h3 className="trouble-title">{t.title}</h3>
-                      <dl className="resume-star trouble-steps">
-                        {TROUBLE_STEPS.filter(([key]) => t[key]).map(([key, label]) => (
-                          <div key={key}>
-                            <dt>{label}</dt>
-                            <dd>{t[key]}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                      <TroubleVisual visual={t.visual} />
-                    </li>
-                  ))}
-                </ol>
               </>
             )}
 
