@@ -229,12 +229,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   .hero { grid-template-columns: 1fr; padding-top: 140px; }
 }
  
-.hero-note {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-top: 16px;
-}
- 
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(32px, 5.4vw, 52px);

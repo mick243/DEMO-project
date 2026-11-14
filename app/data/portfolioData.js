@@ -7,7 +7,6 @@ export const profile = {
   tagline: ["강정민"],
   location: "서울, 대한민국",
   email: "kjm3746@gmail.com",
-  availability: "지금 채용 지원을 받고 있어요",
 };
 
 // 히어로 버튼. 주 행동은 프로젝트 보기 하나입니다(DESIGN_PROMPT.md 1화면 1행동).

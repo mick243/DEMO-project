@@ -49,7 +49,6 @@ export default function Hero() {
             {heroActions.secondary}
           </a>
         </div>
-        <p className="hero-note">{profile.availability}</p>
       </div>
 
       <figure className="terminal">

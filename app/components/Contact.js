@@ -37,10 +37,6 @@ export default function Contact() {
               <div className="contact-info-label">위치</div>
               <div className="contact-info-value">{profile.location}</div>
             </div>
-            <div className="contact-info-item">
-              <div className="contact-info-label">채용</div>
-              <div className="contact-info-value">{profile.availability}</div>
-            </div>
           </Reveal>
 
           {/* <Reveal delay={100}>
