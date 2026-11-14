@@ -41,7 +41,6 @@ export default function Hero() {
             ))}
           </span>
         </h1>
-        <p className="hero-summary">{profile.summary}</p>
         <div className="hero-actions">
           <a href="#projects" className="btn btn-primary">
             {heroActions.primary}

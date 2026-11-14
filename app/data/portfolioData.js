@@ -5,9 +5,6 @@ export const profile = {
   role: "Frontend Developer",
   // 히어로 한 줄입니다. 배열 한 칸이 화면의 한 줄입니다.
   tagline: ["강정민"],
-  // 히어로 제목 아래 소개 문장입니다.
-  summary:
-    "화면이 느린 이유를 직접 재서 찾고 고치는 프론트엔드 개발자예요. 원인이 서버에 있으면 거기까지 따라가요.",
   location: "서울, 대한민국",
   email: "kjm3746@gmail.com",
   availability: "지금 채용 지원을 받고 있어요",
@@ -99,11 +96,15 @@ ${stackJson}
   "response_time": "< 24h"
 }`;
 
+// desc 는 문장 하나(문자열)나 글머리표 목록(배열)입니다.
 export const education = [
   {
     period: "2026.07 ~ 2026.11",
     name: "AI Native Career Camp",
-    desc: "AI에게 일을 맡기고 결과를 직접 검증하는 방식을 익혔어요. 프롬프트 설계, 반복 작업 템플릿화, AI 답변 사실 확인을 실습했어요.",
+    desc: [
+      "프롬프트 설계, 반복 작업 템플릿화, MCP 스킬 사용 등 AI와 AX 활용 능력을 교육 받고 실습하였습니다",
+      "교육 내용을 바탕으로 프로젝트를 진행하며 활용능력 강화",
+    ],
     tags: ["AI Native", "생산성"],
   },
   {

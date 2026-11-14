@@ -245,14 +245,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 }
 .hero-title .accent { color: var(--accent-blue); }
  
-.hero-summary {
-  color: var(--text-secondary);
-  font-size: 16px;
-  max-width: 480px;
-  margin-bottom: 32px;
-  word-break: keep-all;
-}
- 
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
  
 /* Signature: terminal JSON panel */
@@ -394,6 +386,26 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 }
 .timeline-company { font-weight: 600; font-size: 16px; margin-bottom: 8px; }
 .timeline-desc { color: var(--text-secondary); font-size: 14.5px; margin-bottom: 12px; max-width: 560px; }
+/* 교육 설명을 글머리표로 쓸 때입니다. 모양은 이력서 .resume-points 와 같습니다. */
+.timeline-points { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; max-width: 560px; }
+.timeline-points li {
+  position: relative;
+  padding-left: 16px;
+  color: var(--text-secondary);
+  font-size: 14.5px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+.timeline-points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 11px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-blue);
+}
 .timeline-tags { display: flex; gap: 8px; flex-wrap: wrap; }
  
 /* ---------- Projects ---------- */
