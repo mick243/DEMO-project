@@ -110,7 +110,10 @@ export const education = [
   {
     period: "2024.04 ~ 2024.10",
     name: "Programmers Dev-Course",
-    desc: "팀원 한 명이 초기에 빠지자 업무를 다시 나누고 매일 함께 일하는 시간을 정해 일정을 지켰어요. Swagger로 API 문서도 만들었어요.",
+    desc: [
+      "Swagger로 API 문서만들기, Docker 실습, React, TypeScript등 풀스택 과정 교육을 이수하였습니다.",
+      "팀프로젝트 진행 중 팀원 한 명이 초기에 빠지는 위기를 팀원과 업무를 다시 나누고 매일 함께 일하는 시간을 정해 해결한 경험이 있습니다.",
+    ],
     tags: ["TypeScript", "Node.js", "MySQL", "Docker"],
   },
 ];
