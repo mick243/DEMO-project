@@ -15,7 +15,15 @@ export default function Education() {
               <span className="timeline-dot" />
               <span className="timeline-period">{e.period}</span>
               <div className="timeline-company">{e.name}</div>
-              <p className="timeline-desc">{e.desc}</p>
+              {Array.isArray(e.desc) ? (
+                <ul className="timeline-points">
+                  {e.desc.map((d) => (
+                    <li key={d}>{d}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="timeline-desc">{e.desc}</p>
+              )}
               <div className="timeline-tags">
                 {e.tags.map((t) => (
                   <span key={t} className="tag">
