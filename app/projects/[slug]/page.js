@@ -106,8 +106,13 @@ function StarBlock({ step, project }) {
         <span className="star-label">{step.label}</span>
       </div>
       <div className="star-body">
-        <h2 className="star-title">{step.title}</h2>
-        {step.body && <p className="detail-text">{step.body}</p>}
+        {step.title && <h2 className="star-title">{step.title}</h2>}
+        {/* body 는 문장 하나이거나, 문단마다 한 줄씩 담은 배열입니다. */}
+        {[step.body].flat().filter(Boolean).map((para) => (
+          <p key={para} className="detail-text">
+            {para}
+          </p>
+        ))}
 
         {step.points && (
           <ul className="star-points">
@@ -183,7 +188,7 @@ export default function ProjectDetail({ params }) {
             </Link>
 
             <h1 className="detail-title">{project.name}</h1>
-            <p className="detail-kind">{project.type}</p>
+            {project.type && <p className="detail-kind">{project.type}</p>}
             <p className="detail-lede">{project.summary}</p>
 
             {/* 이 프로젝트에서 가장 중요하게 본 것 — 본문을 읽기 전에 한 문장으로 먼저 보여 줍니다. */}
