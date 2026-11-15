@@ -1124,7 +1124,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   gap: 22px;
 }
 .df-lanes { display: grid; grid-template-columns: repeat(var(--df-cols), minmax(0, 1fr)); gap: 12px; }
-.df-lane { background: var(--bg-base); border: 1px solid var(--border); border-top: 3px solid var(--df-c); border-radius: 10px; padding: 14px 14px 12px; }
+.df-lane { background: var(--bg-base); border: 1px solid var(--border); border-radius: 10px; padding: 14px 14px 12px; }
 .df-lane.lane-0, .df-chip.lane-0 { --df-c: var(--df-0); --df-bg: var(--df-0-bg); }
 .df-lane.lane-1, .df-chip.lane-1 { --df-c: var(--df-1); --df-bg: var(--df-1-bg); }
 .df-lane.lane-2, .df-chip.lane-2 { --df-c: var(--df-2); --df-bg: var(--df-2-bg); }
@@ -1233,10 +1233,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   padding: 20px 22px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-left: 2px solid var(--accent-blue);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  border-radius: var(--radius);
 }
-.lesson.open { border-left-color: var(--accent-amber); }
 .lesson-flag {
   font-family: var(--font-mono);
   font-size: 10.5px;
