@@ -1,5 +1,6 @@
 import { Fragment } from "react";
-import { profile, profileJson, heroActions } from "../data/portfolioData";
+import Icon from "./Icons";
+import { profile, profileJson, heroActions, heroChecklist } from "../data/portfolioData";
 
 function renderJson(json) {
   // 아주 단순한 하이라이팅: 키는 cyan, 문자열 값은 amber 톤
@@ -41,6 +42,16 @@ export default function Hero() {
             ))}
           </span>
         </h1>
+        {heroChecklist.length > 0 && (
+          <ul className="hero-checklist">
+            {heroChecklist.map((item) => (
+              <li key={item}>
+                <Icon name="check" className="hero-check" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
         <div className="hero-actions">
           <a href="#projects" className="btn btn-primary">
             {heroActions.primary}
