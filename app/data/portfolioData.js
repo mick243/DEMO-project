@@ -5,7 +5,7 @@ export const profile = {
   role: "Frontend Developer",
   // 히어로 한 줄입니다. 배열 한 칸이 화면의 한 줄입니다.
   tagline: ["강정민"],
-  location: "서울, 대한민국",
+  location: "서울특별시 관악구",
   email: "kjm3746@gmail.com",
 };
 
@@ -20,10 +20,9 @@ export const aboutIntro = {
   title: "소개",
 };
 
-// 연락처 섹션 제목과 안내입니다. 답장 시간은 profileJson 의 response_time 과 같습니다.
+// 연락처 섹션 제목입니다. 소개 섹션처럼 제목만 두고 바로 이메일 · 위치로 잇습니다.
 export const contactIntro = {
   title: "연락처",
-  desc: "메일 주시면 하루 안에 답장해요.",
 };
 
 // 없는 주소로 들어왔을 때 보이는 화면(app/not-found.js)의 문구입니다.

@@ -24,7 +24,6 @@ export default function Contact() {
 
         <Reveal>
           <h2 className="section-title">{contactIntro.title}</h2>
-          <p className="section-desc">{contactIntro.desc}</p>
         </Reveal>
 
         <div className="contact-grid">
