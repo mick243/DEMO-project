@@ -5,9 +5,19 @@ export const profile = {
   role: "Frontend Developer",
   // 히어로 한 줄입니다. 배열 한 칸이 화면의 한 줄입니다.
   tagline: ["강정민"],
-  location: "서울, 대한민국",
+  location: "서울특별시 관악구",
   email: "kjm3746@gmail.com",
 };
+
+// 히어로 이름 아래 체크리스트입니다. 한 칸이 화면의 한 줄이고, 비어 있으면 목록을 그리지 않습니다.
+// 주제는 차례로 기억에 남는 것 · 어필할 것 · 성취감 느낀 것입니다.
+// 문장은 아직 정하는 중이라 비워 둡니다. 지어낸 말 대신 프로젝트에서 실제로 한 일을 근거로 씁니다.
+export const heroChecklist = [
+  // 보류한 초안 — 정해지면 주석을 풀어 씁니다.
+  // "2년 전 팀 프로젝트를 혼자 다시 만들어, 그때 넘긴 문제를 고쳤어요", // 기억 — PetMediSearch 1인 재작성
+  // "느린 화면은 짐작하지 않고, 직접 재서 원인을 찾아 고쳐요", // 어필 — 오락실 파인더 · PetMediSearch 성능 개선
+  // "AI를 안전하게 붙인 사내 안내 데스크를 17일 만에 완성했어요", // 성취 — 한 줄 데스크 17일 개발 · 배포
+];
 
 // 히어로 버튼. 주 행동은 프로젝트 보기 하나입니다(DESIGN_PROMPT.md 1화면 1행동).
 export const heroActions = {
@@ -20,10 +30,9 @@ export const aboutIntro = {
   title: "소개",
 };
 
-// 연락처 섹션 제목과 안내입니다. 답장 시간은 profileJson 의 response_time 과 같습니다.
+// 연락처 섹션 제목입니다. 소개 섹션처럼 제목만 두고 바로 이메일 · 위치로 잇습니다.
 export const contactIntro = {
   title: "연락처",
-  desc: "메일 주시면 하루 안에 답장해요.",
 };
 
 // 없는 주소로 들어왔을 때 보이는 화면(app/not-found.js)의 문구입니다.
