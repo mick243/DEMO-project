@@ -1562,13 +1562,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .resume-growth {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   margin-bottom: 20px;
 }
 @media (max-width: 960px) { .resume-growth { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .resume-growth { grid-template-columns: 1fr; } }
-.resume-growth li {
+.resume-growth > li {
   padding: 18px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
@@ -1814,3 +1814,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 @media (max-width: 860px) {
   .shot.portrait img { max-height: 540px; }
 }
+
+/* 이력서 PDF(v10_스크린샷제거)와 같은 모양 : 줄마다 글머리표, 역량 칸 머리의 프로젝트 이름 */
+.resume-path dd .resume-points li,
+.resume-table .resume-points li,
+.resume-star .resume-points li { max-width: none; }
+.resume-path dd { flex: 1; }
+.resume-comp-project { display: block; color: var(--text-primary); font-weight: 600; margin-bottom: 6px; }
+.resume-comp-project .resume-comp-ref { font-weight: 400; }
+.resume-star .resume-points { gap: 2px; }
+.resume-line-more { display: block; }
+.resume-growth > li { display: flex; flex-direction: column; }
+.resume-growth-stage { text-align: center; }
+.resume-growth .resume-points { gap: 4px; }
+.resume-growth .resume-points li { font-size: 13.5px; line-height: 1.6; padding-left: 13px; }
+.resume-growth .resume-points li::before { top: 9px; width: 4px; height: 4px; }
+.resume-strength { color: var(--text-secondary); }
