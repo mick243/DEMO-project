@@ -238,6 +238,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   margin-bottom: 20px;
 }
 .hero-title .accent { color: var(--accent-blue); }
+
+/* 히어로 이름 아래 체크리스트 */
+.hero-checklist {
+  list-style: none;
+  margin: 0 0 32px;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+.hero-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  word-break: keep-all;
+}
+.hero-check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  color: var(--accent-strong);
+}
  
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
  

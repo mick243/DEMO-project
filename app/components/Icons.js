@@ -1,4 +1,4 @@
-// 소개 카드에 쓰는 아이콘. 데이터의 icon 값(resume · github)으로 고릅니다.
+// 소개 카드 · 히어로 체크리스트에 쓰는 아이콘. 이름(resume · github · check)으로 고릅니다.
 // 색은 currentColor 를 따르므로 CSS 의 color 로 칠합니다.
 
 function Resume(props) {
@@ -19,7 +19,15 @@ function Github(props) {
   );
 }
 
-const ICONS = { resume: Resume, github: Github };
+function Check(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  );
+}
+
+const ICONS = { resume: Resume, github: Github, check: Check };
 
 export default function Icon({ name, ...props }) {
   const Svg = ICONS[name];
