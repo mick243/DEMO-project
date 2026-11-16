@@ -85,6 +85,7 @@ export default function Resume() {
                     <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noreferrer">
                       {c.value}
                     </a>
+                    {c.note && <small className="resume-contact-note">{c.note}</small>}
                   </dd>
                 </div>
               ))}
@@ -196,9 +197,11 @@ export default function Resume() {
                     <Link className="resume-entry-link" href={p.detail}>
                       프로젝트 자세히
                     </Link>
-                    <a className="resume-entry-link" href={p.link.href} target="_blank" rel="noreferrer">
-                      {p.link.label}
-                    </a>
+                    {p.link && (
+                      <a className="resume-entry-link" href={p.link.href} target="_blank" rel="noreferrer">
+                        {p.link.label}
+                      </a>
+                    )}
                   </div>
                 </li>
               ))}
