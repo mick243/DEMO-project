@@ -63,7 +63,7 @@ export const resume = {
     },
     {
       skill: "AI 도구 활용",
-      example: "AI를 붙이기 전에 규칙부터 고쳐 담당 부서 오답 5건 → 0건(검증 문장 32개), AI는 해석만 맡기고 쓰기는 사람이 확인",
+      example: "AI를 붙이기 전에 규칙부터 고쳐 담당 부서 오답 5건 → 0건(검증 문장 40개), AI는 해석만 맡기고 쓰기는 사람이 확인",
       ref: "한 줄 데스크",
     },
     {
@@ -154,7 +154,7 @@ export const resume = {
       task: "회의실 · 탕비실 · 문의를 한 줄로 묻고 실행 전 확인 화면으로 받는 사내 안내 데스크를 17일간 개발",
       action:
         "AI는 문장 해석과 항목 고르기만 맡기고 실제 쓰기는 사람이 확인한 뒤에만 실행하며, 역할별 화면을 나눠 불러오고(코드 분할) 설계 결정을 ADR 29건으로 기록",
-      result: "테스트 1,400건(웹 71건) 통과, 첫 JS 372kB → 334kB, 담당 팀 안내 오답 5건 → 0건(검증 문장 32개)",
+      result: "테스트 1,400건(웹 71건) 통과, 첫 JS 372kB → 334kB, 담당 팀 안내 오답 5건 → 0건(검증 문장 40개)",
       stack: "React 19, TypeScript, Vite, Fastify 5, PostgreSQL · PGlite, Vitest, MCP, Fly.io",
       shot: {
         src: "/resume/one-line-desk.jpg",
