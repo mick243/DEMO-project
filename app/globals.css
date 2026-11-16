@@ -1598,7 +1598,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   padding: 18px;
   background: var(--bg-surface);
   border: 1px solid var(--border);
-  border-top: 3px solid var(--accent-blue);
   border-radius: var(--radius);
 }
 .resume-growth-stage { display: block; font-size: 12.5px; font-weight: 600; color: var(--accent-blue); margin-bottom: 10px; }
