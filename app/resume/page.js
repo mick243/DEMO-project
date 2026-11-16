@@ -5,7 +5,9 @@ import { resume } from "../data/resume";
 
 export const metadata = {
   title: `이력서 | ${resume.name}`,
-  description: resume.headline.join(" "),
+  description: resume.headline.length
+    ? resume.headline.join(" ")
+    : `${resume.name} · ${resume.role} 이력서 : 역량, 성장 과정, 프로젝트, 외주 경험, 교육`,
 };
 
 /** 프로젝트 상세와 같은 모양의 섹션 머리를 씁니다. */
@@ -19,7 +21,28 @@ function SectionHead({ id, eyebrow, title, desc }) {
   );
 }
 
-/** 외주 경험 · 교육처럼 "인정받고 싶은 점 + 점 목록" 모양의 항목 */
+/** 한 칸이 한 줄인 글머리표 목록. [첫 줄, 이어지는 줄] 칸은 이어지는 줄을 글머리표 없이 아래에 씁니다. */
+function Lines({ items, className = "resume-points" }) {
+  return (
+    <ul className={className}>
+      {items.map((line) => {
+        const [first, ...rest] = Array.isArray(line) ? line : [line];
+        return (
+          <li key={first}>
+            {first}
+            {rest.map((more) => (
+              <span key={more} className="resume-line-more">
+                {more}
+              </span>
+            ))}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
+/** 외주 경험 · 교육처럼 "점 목록" 모양의 항목 */
 function PointEntry({ item }) {
   return (
     <li className="resume-entry">
@@ -28,14 +51,7 @@ function PointEntry({ item }) {
         {item.name}
         {item.sub && <span className="resume-entry-sub">{item.sub}</span>}
       </h3>
-      <p className="resume-strength">
-        <b>인정받고 싶은 점</b> {item.strength}
-      </p>
-      <ul className="resume-points">
-        {item.points.map((p) => (
-          <li key={p}>{p}</li>
-        ))}
-      </ul>
+      <Lines items={item.points} />
     </li>
   );
 }
@@ -74,26 +90,30 @@ export default function Resume() {
               ))}
             </dl>
 
-            <p className="resume-headline">
-              {resume.headline.map((line) => (
-                <span key={line}>{line}</span>
-              ))}
-            </p>
+            {resume.headline.length > 0 && (
+              <p className="resume-headline">
+                {resume.headline.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </p>
+            )}
             <dl className="resume-path">
               {resume.path.map((p) => (
                 <div key={p.label}>
                   <dt>{p.label}</dt>
-                  <dd>{p.text}</dd>
+                  <dd>
+                    <Lines items={p.items} />
+                  </dd>
                 </div>
               ))}
             </dl>
 
-            <SectionHead id="competencies" eyebrow="Competencies" title="핵심역량" desc="채용 공고에서 찾는 역량과 제 사례" />
+            <SectionHead id="competencies" eyebrow="Competencies" title="역량" />
             <div className="perf-table-wrap resume-table-wrap">
               <table className="perf-table resume-table">
                 <thead>
                   <tr>
-                    <th className="resume-comp-head">요구 역량</th>
+                    <th className="resume-comp-head">역량</th>
                     <th>사례</th>
                   </tr>
                 </thead>
@@ -104,8 +124,11 @@ export default function Resume() {
                         <b className="resume-comp-skill">{c.skill}</b>
                       </td>
                       <td>
-                        {c.example}
-                        {c.ref && <span className="resume-comp-ref">{c.ref}</span>}
+                        <span className="resume-comp-project">
+                          {c.project.name}
+                          <span className="resume-comp-ref">&lt;{c.project.sub}&gt;</span>
+                        </span>
+                        <Lines items={c.lines} />
                       </td>
                     </tr>
                   ))}
@@ -113,14 +136,14 @@ export default function Resume() {
               </table>
             </div>
 
-            <SectionHead id="growth" eyebrow="Growth" title="성장 과정" desc="학교 · 교육 · 외주 · 프로젝트를 한 흐름으로" />
+            <SectionHead id="growth" eyebrow="Growth" title="성장 과정" />
             <ol className="resume-growth">
               {resume.growth.map((g) => (
                 <li key={g.period}>
                   <span className="resume-growth-stage">{g.stage}</span>
                   <span className="resume-entry-period">{g.period}</span>
                   <b className="resume-growth-name">{g.name}</b>
-                  <p className="resume-growth-desc">{g.desc}</p>
+                  <Lines items={g.lines} className="resume-points resume-growth-desc" />
                   {g.stack && <p className="resume-growth-stack">{g.stack}</p>}
                 </li>
               ))}
@@ -152,16 +175,14 @@ export default function Resume() {
                   <span className="resume-entry-period">{p.period}</span>
                   <h3 className="resume-entry-name">
                     {p.name}
-                    <span className="resume-entry-sub">{p.kind}</span>
+                    <span className="resume-entry-sub">&lt;{p.sub}&gt;</span>
                   </h3>
-                  <p className="resume-strength">
-                    <b>보여 주는 역량</b> {p.strength}
-                  </p>
+                  <p className="resume-strength">{p.kind}</p>
                   <dl className="resume-star">
                     {STAR.map(([key, label]) => (
                       <div key={key}>
                         <dt>{label}</dt>
-                        <dd>{p[key]}</dd>
+                        <dd>{Array.isArray(p[key]) ? <Lines items={p[key]} /> : p[key]}</dd>
                       </div>
                     ))}
                   </dl>
