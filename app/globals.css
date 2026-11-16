@@ -1471,6 +1471,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .resume-contacts dd { overflow-wrap: anywhere; }
 .resume-contacts dd a { border-bottom: 1px solid var(--border); padding-bottom: 1px; }
 .resume-contacts dd a:hover { color: var(--accent-blue); border-bottom-color: var(--accent-blue); }
+.resume-contact-note { margin-left: 8px; font-size: 13px; color: var(--text-secondary); }
 
 .resume-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-bottom: 56px; }
 .resume-entry {

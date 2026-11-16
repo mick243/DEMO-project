@@ -8,16 +8,17 @@ export const resume = {
   // 내려받기용 PDF. 원본에서 전화번호와 증명사진을 가리고 public/resume.pdf 로 올렸습니다.
   pdf: "/resume.pdf",
 
+  // 이력서 PDF 머리말과 같은 순서 · 이름입니다. note 는 링크 옆에 작게 붙는 설명입니다.
   contacts: [
     { label: "Email", value: "kjm3746@gmail.com", href: "mailto:kjm3746@gmail.com" },
     { label: "GitHub", value: "github.com/mick243", href: "https://github.com/mick243" },
-    { label: "Portfolio", value: "demo-project-gamma-brown.vercel.app", href: "https://demo-project-gamma-brown.vercel.app" },
-    { label: "solved.ac", value: "solved.ac/profile/mick243", href: "https://solved.ac/profile/mick243" },
     {
-      label: "Notion",
-      value: "app.notion.com/p/18458dde847f82b8a88b811ec6238245",
-      href: "https://app.notion.com/p/18458dde847f82b8a88b811ec6238245",
+      label: "Algorithm",
+      value: "solved.ac/profile/mick243",
+      href: "https://solved.ac/profile/mick243",
+      note: "Gold V · 197문제",
     },
+    { label: "Portfolio", value: "demo-project-gamma-brown.vercel.app", href: "https://demo-project-gamma-brown.vercel.app" },
   ],
 
   // 첫머리 문장. 배열 한 칸이 한 줄입니다. 이력서 PDF의 첫머리는 새 문장을 쓰는 중이라 비워 둡니다.
@@ -222,7 +223,8 @@ export const resume = {
       detail: "/projects/bandit",
       kind: "팀 프로젝트 기반이 되는 서버 생성, DB 구축, 배포 클라우드 담당",
       period: "2026.10",
-      link: { label: "bandit-lovat.vercel.app", href: "https://bandit-lovat.vercel.app" },
+      // 이력서 PDF 는 이 칸을 포트폴리오 상세 페이지(= 위 detail)로 잇습니다. 그래서 바깥 링크는 두지 않습니다.
+      link: null,
       task: [
         "팀 위키 내에 결정 사항을 AI가 MCP로 조회하고, 바뀐 사항이 있다면 해당 사항에 포함되는 담당자에게만 알리는 팀 위키",
       ],
