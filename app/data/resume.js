@@ -121,8 +121,6 @@ export const resume = {
       ],
     },
   ],
-  reached: "화면 성능 개선을 중심으로 서버 병목 추적 · 팀 배포 · AI 결과 검증까지 해 본 단계",
-
   skillGroups: [
     { title: "주력 기술", items: ["React", "Next.js", "TypeScript", "JavaScript", "HTML · CSS", "Vite", "Vitest"] },
     {
