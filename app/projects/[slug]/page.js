@@ -33,10 +33,29 @@ function sentences(text) {
   return parts.map((part, i) => (i < parts.length - 1 ? part + "." : part)).filter(Boolean);
 }
 
-/** 구현 메모를 줄 목록으로. 배열이면 { text, change } 한 줄씩, 문자열이면 문장마다 한 줄(change 없음). */
+/**
+ * 구현 메모를 줄 목록으로. 배열이면 { text, code } 한 줄씩, 문자열이면 문장마다 한 줄(code 없음).
+ * code 가 문자열이면 기능을 움직이는 코드 한 줄, 배열이면 개선 전 > 개선 후 > … 순서의 코드입니다.
+ */
 function techLines(tech) {
   if (Array.isArray(tech)) return tech.map((line) => (typeof line === "string" ? { text: line } : line));
   return sentences(tech).map((text) => ({ text }));
+}
+
+/** 구현 메모 한 줄의 코드. 개선 단계가 둘 이상이면 단계마다 한 줄로 쌓고 앞에 '>' 를 붙입니다. */
+function TechCode({ code }) {
+  if (!code) return null;
+  if (!Array.isArray(code)) return <code className="shot-tech-code">{code}</code>;
+  return (
+    <code className="shot-tech-code is-steps">
+      {code.map((step, i) => (
+        <span key={i} className="shot-tech-step">
+          {i > 0 && <span className="shot-tech-arrow">&gt; </span>}
+          {step}
+        </span>
+      ))}
+    </code>
+  );
 }
 
 /** 상세 페이지의 큰 섹션 머리. 눈썹(mono) · 제목 · 한 줄 설명을 같은 모양으로 맞춥니다. */
@@ -397,7 +416,7 @@ export default function ProjectDetail({ params }) {
                   id="screens"
                   eyebrow="Screens"
                   title="작동 화면"
-                  desc="화면마다 ‘구현 메모’를 펼치면 그 화면을 어떻게 만들었는지와, 줄마다 코드를 어떻게 바꿨는지(이전 > 이후)를 볼 수 있습니다."
+                  desc="화면마다 ‘구현 메모’를 펼치면 그 화면을 어떻게 만들었는지 볼 수 있습니다. 코드를 개선한 곳은 ‘개선 전 > 개선 후’ 순서로, 그 밖에는 기능을 움직이는 코드를 붙였습니다."
                 />
                 <div className="shots">
                   {project.gallery.map((g) => (
@@ -412,7 +431,7 @@ export default function ProjectDetail({ params }) {
                               {techLines(g.tech).map((line, i) => (
                                 <div key={i} className="shot-tech-line">
                                   <p>{line.text}</p>
-                                  {line.change && <code className="shot-tech-change">{line.change}</code>}
+                                  <TechCode code={line.code} />
                                 </div>
                               ))}
                             </div>
