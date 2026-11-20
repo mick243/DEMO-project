@@ -1301,7 +1301,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
-.shot-tech > p + p { margin-top: 1.85em; }
+.shot-tech-line + .shot-tech-line { margin-top: 1.2em; }
+.shot-tech-change {
+  display: block;
+  margin-top: 4px;
+  padding: 4px 8px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
 
 /* ---------- Project detail : 워싱 (2026-09) ---------- */
 /* 메타 줄 — 사용 기술과 링크를 헤더로 올렸습니다. */

@@ -33,6 +33,12 @@ function sentences(text) {
   return parts.map((part, i) => (i < parts.length - 1 ? part + "." : part)).filter(Boolean);
 }
 
+/** 구현 메모를 줄 목록으로. 배열이면 { text, change } 한 줄씩, 문자열이면 문장마다 한 줄(change 없음). */
+function techLines(tech) {
+  if (Array.isArray(tech)) return tech.map((line) => (typeof line === "string" ? { text: line } : line));
+  return sentences(tech).map((text) => ({ text }));
+}
+
 /** 상세 페이지의 큰 섹션 머리. 눈썹(mono) · 제목 · 한 줄 설명을 같은 모양으로 맞춥니다. */
 // eyebrow 는 예전 호출과 맞추려고 받기만 하고 그리지 않습니다(영문 머리말 대신 한글 제목이 섹션 이름입니다).
 function SectionHead({ id, eyebrow, title, desc }) {
@@ -391,7 +397,7 @@ export default function ProjectDetail({ params }) {
                   id="screens"
                   eyebrow="Screens"
                   title="작동 화면"
-                  desc="화면마다 ‘구현 메모’를 펼치면 그 화면이 어떻게 만들어졌는지 적어 두었습니다."
+                  desc="화면마다 ‘구현 메모’를 펼치면 그 화면을 어떻게 만들었는지와, 줄마다 코드를 어떻게 바꿨는지(이전 > 이후)를 볼 수 있습니다."
                 />
                 <div className="shots">
                   {project.gallery.map((g) => (
@@ -403,8 +409,11 @@ export default function ProjectDetail({ params }) {
                           <details className="shot-more">
                             <summary>구현 메모</summary>
                             <div className="shot-tech">
-                              {sentences(g.tech).map((line, i) => (
-                                <p key={i}>{line}</p>
+                              {techLines(g.tech).map((line, i) => (
+                                <div key={i} className="shot-tech-line">
+                                  <p>{line.text}</p>
+                                  {line.change && <code className="shot-tech-change">{line.change}</code>}
+                                </div>
                               ))}
                             </div>
                           </details>
