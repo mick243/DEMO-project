@@ -149,9 +149,6 @@ export default function Resume() {
                 </li>
               ))}
             </ol>
-            <p className="star-note resume-reached">
-              <b>지금 도달한 지점</b> : {resume.reached}
-            </p>
 
             <SectionHead id="skills" eyebrow="Skills" title="스킬" />
             <div className="resume-skills">

@@ -1590,7 +1590,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 56px;
 }
 @media (max-width: 960px) { .resume-growth { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .resume-growth { grid-template-columns: 1fr; } }
@@ -1604,7 +1604,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .resume-growth-name { display: block; font-size: 15px; margin-bottom: 6px; }
 .resume-growth-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; word-break: keep-all; }
 .resume-growth-stack { font-size: 12.5px; color: var(--text-muted); margin-top: 8px; }
-.resume-reached { margin: 0 0 56px; }
 .resume .resume-skills { margin-bottom: 56px; }
 
 .resume-entry-sub { font-family: var(--font-body, inherit); font-size: 13px; font-weight: 400; color: var(--text-muted); margin-left: 10px; }
