@@ -1602,12 +1602,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 .resume-growth {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 12px;
   margin-bottom: 56px;
 }
-@media (max-width: 960px) { .resume-growth { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .resume-growth { grid-template-columns: 1fr; } }
+/* 카드 5장 : 첫 줄 3장, 둘째 줄 2장은 폭을 넓혀 줄을 꽉 채웁니다(이력서 PDF와 같은 배치). */
+.resume-growth > li { grid-column: span 2; }
+.resume-growth > li:nth-child(n + 4) { grid-column: span 3; }
+@media (max-width: 960px) {
+  .resume-growth { grid-template-columns: repeat(2, 1fr); }
+  .resume-growth > li, .resume-growth > li:nth-child(n + 4) { grid-column: span 1; }
+  .resume-growth > li:last-child:nth-child(odd) { grid-column: span 2; }
+}
+@media (max-width: 520px) {
+  .resume-growth { grid-template-columns: 1fr; }
+  .resume-growth > li, .resume-growth > li:nth-child(n + 4), .resume-growth > li:last-child:nth-child(odd) { grid-column: auto; }
+}
 .resume-growth > li {
   padding: 18px;
   background: var(--bg-surface);
