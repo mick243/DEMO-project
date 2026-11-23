@@ -8,6 +8,7 @@
 //   - 서버 SQL: 커밋 5b9bf06 (2026.09.11) · lib/arcades.ts · PERFORMANCE.md 4부
 //
 // 블록 종류는 다섯입니다 — text · list · code · table · note.
+// code 는 lang(ts 기본 · sql)으로 색을 입히고, diff: true 면 + · - 줄에 배경을 깝니다(components/highlight.js).
 // 페이지는 이 배열을 그대로 훑어 그립니다. 내용을 고칠 때 JSX 를 건드릴 일이 없습니다.
 
 export const viewportCulling = {
@@ -395,6 +396,7 @@ export function useCullingOff() {
         {
           kind: "code",
           caption: "이전 : 상관 서브쿼리 (loops=939 · 전체 버퍼의 98%)",
+          lang: "sql",
           code: `SELECT b.*, COALESCE((
   SELECT json_agg(json_build_object(… , 'cabinets', cab.cabinets, …))
   FROM arcade_machines am
@@ -414,6 +416,7 @@ FROM base b`,
         {
           kind: "code",
           caption: "이후 : 집계를 미리 한 번만 하는 CTE 두 개",
+          lang: "sql",
           code: `cab_agg AS (
   SELECT c.arcade_id, c.machine_id, COUNT(c.id)::int AS cabinet_count, json_agg(…) AS cabinets
   FROM arcade_cabinets c
@@ -459,6 +462,8 @@ LEFT JOIN mach_agg ma ON ma.arcade_id = b.id`,
         {
           kind: "code",
           caption: "lib/arcades.ts : 필터 위치를 당기고, 정렬에 타이브레이커를 박았습니다",
+          lang: "sql",
+          diff: true,
           code: `  WITH scored AS (            -- 이름 검색 · 기종 AND 필터 · haversine 거리
     SELECT a.*, 6371 * acos(…) AS distance_km FROM arcades a WHERE …
   ),

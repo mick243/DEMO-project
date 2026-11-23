@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import ScrollStrip from "./ScrollStrip";
 import { projects } from "../data/projects";
+import { highlightLines } from "./highlight";
 
 // 딥다이브 페이지의 몸통입니다. 프로젝트 상세(/projects/<slug>)의 성능 표 제목에서 들어옵니다.
 // 페이지 파일은 metadata 와 데이터(app/data/*.js)만 넘기고, 그리는 일은 여기서 합니다.
@@ -24,11 +25,27 @@ function Block({ block }) {
   }
 
   if (block.kind === "code") {
+    const raw = block.code.split("\n");
+    const lines = highlightLines(block.code, block.lang);
     return (
       <figure className="dd-code">
         {block.caption && <figcaption>{block.caption}</figcaption>}
         <pre>
-          <code>{block.code}</code>
+          <code className={`lang-${block.lang || "ts"}`}>
+            {lines.map((tokens, i) => {
+              const mark = block.diff && /^\+(\s|$)/.test(raw[i]) ? " is-add" : block.diff && /^-(\s|$)/.test(raw[i]) ? " is-del" : "";
+              return (
+                <span key={i} className={`code-line${mark}`}>
+                  {tokens.map(([kind, text], j) => (
+                    <span key={j} className={`tk-${kind}`}>
+                      {text}
+                    </span>
+                  ))}
+                  {"\n"}
+                </span>
+              );
+            })}
+          </code>
         </pre>
       </figure>
     );
