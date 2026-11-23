@@ -824,6 +824,16 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
   color: var(--accent-blue);
   display: block;
 }
+/* 글자 바로 밑의 영문 단어(Problem · Analyze · Action · Result) */
+.star-en {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent-blue);
+  display: block;
+  margin-top: 4px;
+}
 .star-label {
   font-family: var(--font-body);
   font-size: 11.5px;
@@ -833,7 +843,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 }
 @media (max-width: 760px) {
   .star-key { font-size: 28px; }
-  .star-label { margin-top: 0; }
+  .star-en, .star-label { margin-top: 0; }
 }
 .star-title {
   font-family: var(--font-display);

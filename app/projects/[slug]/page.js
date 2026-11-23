@@ -128,6 +128,7 @@ function StarBlock({ step, project }) {
     <section className="star-step">
       <div className="star-mark">
         <span className="star-key">{step.key}</span>
+        {step.en && <span className="star-en">{step.en}</span>}
         <span className="star-label">{step.label}</span>
       </div>
       <div className="star-body">
