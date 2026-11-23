@@ -304,7 +304,7 @@ export default function ProjectDetail({ params }) {
             {project.star && (
               <div className="star" id="star">
                 {project.star.map((step) => (
-                  <StarBlock key={step.key} step={step} project={project} />
+                  <StarBlock key={step.label} step={step} project={project} />
                 ))}
               </div>
             )}
