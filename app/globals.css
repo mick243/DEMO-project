@@ -1708,35 +1708,69 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 }
 .dd-list { margin-top: 18px; max-width: 780px; }
 
-/* 코드 블록 — 본문과 확실히 구분되도록 표면색 위에 모노로 둡니다 */
+/* 코드 블록 — VS Code 기본 다크 테마(Dark+)의 편집기 색을 따릅니다.
+   토큰은 components/highlight.js 가 나누고, 색은 아래 .tk-* 가 정합니다. */
 .dd-code {
+  --vsc-bg: #1e1e1e;
+  --vsc-bar: #252526;
+  --vsc-line: #2d2d2d;
+  --vsc-text: #d4d4d4;
+  --vsc-caption: #cccccc;
+  --vsc-keyword: #569cd6;
+  --vsc-control: #c586c0;
+  --vsc-string: #ce9178;
+  --vsc-number: #b5cea8;
+  --vsc-comment: #6a9955;
+  --vsc-fn: #dcdcaa;
+  --vsc-type: #4ec9b0;
+  --vsc-var: #9cdcfe;
+  --vsc-constant: #4fc1ff;
+  --vsc-add: rgba(70, 149, 74, 0.22);
+  --vsc-add-mark: #81b88b;
+  --vsc-del: rgba(201, 68, 68, 0.22);
+  --vsc-del-mark: #c74e39;
   margin: 22px 0 0;
-  border: 1px solid var(--border);
+  border: 1px solid var(--vsc-line);
   border-radius: var(--radius);
-  background: var(--bg-surface);
+  background: var(--vsc-bg);
   overflow: hidden;
 }
 .dd-code figcaption {
   font-family: var(--font-mono);
   font-size: 11.5px;
-  color: var(--text-secondary);
+  color: var(--vsc-caption);
   padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  background: var(--bg-base);
+  border-bottom: 1px solid var(--vsc-line);
+  background: var(--vsc-bar);
 }
 .dd-code pre {
   margin: 0;
-  padding: 16px;
+  padding: 16px 0;
   overflow-x: auto;
 }
 .dd-code code {
+  display: block;
+  min-width: max-content;
   font-family: var(--font-mono);
   font-size: 12.5px;
   line-height: 1.75;
-  color: var(--text-primary);
+  color: var(--vsc-text);
   white-space: pre;
   tab-size: 2;
 }
+.code-line { display: block; padding: 0 16px; border-left: 3px solid transparent; }
+.code-line.is-add { background: var(--vsc-add); border-left-color: var(--vsc-add-mark); }
+.code-line.is-del { background: var(--vsc-del); border-left-color: var(--vsc-del-mark); }
+.tk-keyword { color: var(--vsc-keyword); }
+.tk-control { color: var(--vsc-control); }
+.tk-string { color: var(--vsc-string); }
+.tk-number { color: var(--vsc-number); }
+.tk-comment { color: var(--vsc-comment); font-style: italic; }
+.tk-fn { color: var(--vsc-fn); }
+.tk-type { color: var(--vsc-type); }
+.tk-var, .tk-prop { color: var(--vsc-var); }
+.tk-constant { color: var(--vsc-constant); }
+.tk-punct, .tk-space { color: var(--vsc-text); }
 
 /* 본문 표 — 성능 표와 같은 틀을 쓰되 왼쪽 정렬입니다 (숫자가 아니라 설명이 들어갑니다) */
 .dd-table-wrap {
