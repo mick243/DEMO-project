@@ -15,7 +15,7 @@ export const viewportCulling = {
   // 상세 페이지 성능 표의 href 와 같아야 그 표를 맨 위에 다시 싣습니다.
   path: "/projects/arcade-finder/viewport-culling",
   eyebrow: "Deep dive",
-  title: "클라이언트: 뷰포트 컬링 전후",
+  title: "클라이언트 : 뷰포트 컬링 전후",
   lede: "전국 마커 1,449개를 화면 안 337개로 줄인 작업입니다. 무엇을 고쳤고, 왜 그만큼 줄었는지를 코드와 함께 정리했습니다.",
 
   meta: [
@@ -27,14 +27,14 @@ export const viewportCulling = {
 
   // 표 자체는 projects.js 의 perf[0].rows 를 그대로 다시 씁니다 (수치를 두 곳에 적지 않습니다).
   summaryNote:
-    "먼저 짚어 둘 것: 이 표의 수치는 SQL 을 고쳐서 나온 것이 아닙니다. 서버 쿼리는 이때 한 줄도 건드리지 않았고, 바뀐 것은 클라이언트가 이미 받아 둔 배열에서 무엇을 그릴지 고르는 필터 한 줄입니다. SQL 을 고쳐 낸 수치는 아래 ‘서버’ 절에 따로 있습니다.",
+    "이 표의 수치는 SQL 을 고쳐서 나온 것이 아닙니다. 서버 쿼리는 이때 한 줄도 건드리지 않았고, 바뀐 것은 클라이언트가 이미 받아 둔 배열에서 무엇을 그릴지 고르는 필터 한 줄입니다. SQL 을 고쳐 낸 수치는 아래 ‘서버’ 절에 따로 있습니다.",
 
   sections: [
     {
       id: "records",
       eyebrow: "01 · Records",
       title: "어디에 남아 있는 기록인가",
-      desc: "수치의 출처를 먼저 밝힙니다. 표의 다섯 줄은 전부 한 장의 작업 메모에서 나왔습니다.",
+      desc: "표의 다섯 줄은 전부 한 장의 작업 메모에서 나왔습니다.",
       blocks: [
         {
           kind: "table",
@@ -73,7 +73,7 @@ export const viewportCulling = {
       blocks: [
         {
           kind: "code",
-          caption: "components/NaverMap.tsx: 그릴 것을 고르는 술어",
+          caption: "components/NaverMap.tsx : 그릴 것을 고르는 술어",
           code: `const CULL_MARGIN = 0.2;
 
 /** 지금 보이는 범위 + 여백. 'idle' 로 지도가 멈춘 뒤에 읽는다 */
@@ -97,9 +97,9 @@ const inView = useMemo(() => {
         {
           kind: "list",
           items: [
-            "CULL_MARGIN 0.2: 히스테리시스입니다. 이름표가 점의 오른쪽으로 뻗으므로 점이 화면 밖 1px 인 곳도 이름표는 보여야 하고, 경계에 걸친 마커가 붙었다 떨어졌다 하는 것도 이 여백이 흡수합니다.",
-            "idle: 작업을 프레임 예산 밖으로 밀어냅니다. bounds_changed 로 받으면 지도를 끄는 동안 매 프레임 재동기화가 돕니다.",
-            "a.id === selectedId: 필터의 정합성 예외입니다. 목록에서 먼 곳을 누르면 지도가 옮겨 가는데, 그 사이 한 프레임 마커가 없으면 선택 표시가 깜빡입니다.",
+            "CULL_MARGIN 0.2 : 히스테리시스입니다. 이름표가 점의 오른쪽으로 뻗으므로 점이 화면 밖 1px 인 곳도 이름표는 보여야 하고, 경계에 걸친 마커가 붙었다 떨어졌다 하는 것도 이 여백이 흡수합니다.",
+            "idle : 작업을 프레임 예산 밖으로 밀어냅니다. bounds_changed 로 받으면 지도를 끌어 옮기는 동안 매 프레임 재동기화가 돕니다.",
+            "a.id === selectedId : 필터의 정합성 예외입니다. 목록에서 먼 곳을 누르면 지도가 옮겨 가는데, 그 사이 한 프레임 마커가 없으면 선택 표시가 깜빡입니다.",
           ],
         },
         {
@@ -113,11 +113,11 @@ const inView = useMemo(() => {
       id: "loop",
       eyebrow: "03 · Before / After",
       title: "마커 동기화 루프",
-      desc: "한 이펙트 안에서 네 가지가 동시에 바뀌었습니다: 순회 대상, 제거 방식, 갱신 판정, 마커 구현체.",
+      desc: "한 이펙트 안에서 네 가지가 동시에 바뀌었습니다 : 순회 대상, 제거 방식, 갱신 판정, 마커 구현체.",
       blocks: [
         {
           kind: "code",
-          caption: "이전: 받은 것을 전부 그린다",
+          caption: "이전 : 받은 것을 전부 그린다",
           code: `useEffect(() => {
   const markers = markersRef.current;
   const nextIds = new Set(arcades.map((a) => a.id));   // ← 전국 1,449곳
@@ -152,7 +152,7 @@ const inView = useMemo(() => {
         },
         {
           kind: "code",
-          caption: "이후: 화면 안의 것만, 떼지 않고, 바뀐 것만",
+          caption: "이후 : 화면 안의 것만, 떼지 않고, 바뀐 것만",
           code: `useEffect(() => {
   const perfT0 = performance.now();                     // 계측 (lib/map-perf.ts)
   const perfDraw0 = drawTally.n;
@@ -227,7 +227,7 @@ const inView = useMemo(() => {
       blocks: [
         {
           kind: "code",
-          caption: "components/NaverMap.tsx: draw · hide · reuse",
+          caption: "components/NaverMap.tsx : draw · hide · reuse",
           code: `draw() {
   if (!this.getMap() || this.isHidden) return;
   drawTally.n += 1;                                     // 계측 카운터
@@ -295,7 +295,7 @@ const offscreen = inRadius.length - inViewport.length;   // "화면 안 N곳 중
       id: "theory",
       eyebrow: "06 · Theory",
       title: "왜 이만큼 줄었나",
-      desc: "핵심 전제는 하나입니다: 비용은 ‘받은 행 수’가 아니라 ‘그린 노드 수’에 비례합니다.",
+      desc: "비용은 ‘받은 행 수’가 아니라 ‘그린 노드 수’에 비례합니다.",
       blocks: [
         {
           kind: "table",
@@ -313,15 +313,15 @@ const offscreen = inRadius.length - inViewport.length;   // "화면 안 N곳 중
         {
           kind: "list",
           items: [
-            "DOM 7,462 → 1,902: 1,112 × 5노드 = 5,560 감소. 산술이 정확히 맞습니다.",
-            "힙 23.68 → 14.32MB: 1,112 × 8.6KB ≈ 9.36MB 감소. 이것도 맞습니다.",
-            "초기 동기화 622 → 156ms: 마커 생성 루프는 O(N) 이고 한 덩어리의 블로킹 작업입니다. 4.0배 감소가 마커비 4.3배와 거의 같습니다. 622ms 는 60fps 기준 37프레임을 통째로 먹습니다.",
-            "draw() 1,449회 → 337회: OverlayView.draw() 는 마커마다 위경도를 화면 픽셀로 투영합니다. 호출 수가 곧 마커 수라 −77% 가 그대로 나옵니다.",
+            "DOM 7,462 → 1,902 : 1,112 × 5노드 = 5,560 감소로 정확히 맞습니다.",
+            "힙 23.68 → 14.32MB : 1,112 × 8.6KB ≈ 9.36MB 감소로 맞습니다.",
+            "초기 동기화 622 → 156ms : 마커 생성 루프는 O(N) 이고 한 덩어리의 블로킹 작업입니다. 4.0배 감소가 마커비 4.3배와 거의 같습니다. 622ms 는 60fps 기준 37프레임을 통째로 먹습니다.",
+            "draw() 1,449회 → 337회 : OverlayView.draw() 는 마커마다 위경도를 화면 픽셀로 투영합니다. 호출 수가 곧 마커 수라 −77% 가 그대로 나옵니다.",
           ],
         },
         {
           kind: "text",
-          text: "강제 스타일·레이아웃만 −63% 로 마커비(−77%)보다 덜 줄었습니다. 여기가 원리를 보여 주는 지점입니다. DOM 에 쓰기를 하면 레이아웃이 무효화되고, 그 직후 기하값을 읽으면 브라우저가 그 자리에서 레이아웃을 다시 계산합니다(layout thrashing). 마커마다 쓰기→읽기가 한 번씩 있으면 플러시가 N회 일어나고 플러시 1회의 비용도 트리 크기에 비례하므로, 이론상 −77%보다 더 줄어야 합니다. −63% 에서 멈춘 이유는 6,445ms 안에 마커 수와 무관한 몫(지도 SDK 자신의 타일·pane, 사이드바·상세 패널)이 섞여 있기 때문입니다. 줄어든 4,048ms 가 마커가 만들던 몫이고, 남은 2,397ms 는 원래부터 마커 것이 아니었습니다.",
+          text: "강제 스타일·레이아웃만 −63% 로 마커비(−77%)보다 덜 줄었습니다. DOM 에 쓰기를 하면 레이아웃이 무효화되고, 그 직후 기하값을 읽으면 브라우저가 그 자리에서 레이아웃을 다시 계산합니다(layout thrashing). 마커마다 쓰기→읽기가 한 번씩 있으면 플러시가 N회 일어나고 플러시 1회의 비용도 트리 크기에 비례하므로, 이론상 −77%보다 더 줄어야 합니다. −63% 에서 멈춘 이유는 6,445ms 안에 마커 수와 무관한 몫(지도 SDK 자신의 타일·pane, 사이드바·상세 패널)이 섞여 있기 때문입니다. 줄어든 4,048ms 가 마커가 만들던 몫이고, 남은 2,397ms 는 원래부터 마커 것이 아니었습니다.",
         },
       ],
     },
@@ -329,7 +329,7 @@ const offscreen = inRadius.length - inViewport.length;   // "화면 안 N곳 중
     {
       id: "tradeoff",
       eyebrow: "07 · Trade-off",
-      title: "공짜는 아니었습니다",
+      title: "컬링이 새로 만든 비용",
       desc: "컬링은 초기 비용을 조작 비용으로 옮기는 거래입니다. 시야가 바뀔 때마다 붙이고 떼는 일이 새로 생깁니다.",
       blocks: [
         {
@@ -347,9 +347,9 @@ const offscreen = inRadius.length - inViewport.length;   // "화면 안 N곳 중
         {
           kind: "list",
           items: [
-            "마커 풀링: setMap(null) 이 개당 1.66ms(142개 제거 = 236ms 멈춤). 떼지 않고 모아 뒀다가 갈아 끼우면 1ms 입니다. 풀 상한 200 은 ‘화면 하나 분량’입니다.",
-            "2단계 셰이프 디핑: 목록을 다시 받으면 1,449개가 전부 새 객체가 되는데 내용은 대개 같습니다. 참조만 보면 화면에 붙은 전부의 innerHTML 을 헛되게 다시 씁니다(실측 200ms). 값 비교를 더해 동기화 64.6 → 30.8ms, draw() 474 → 7회.",
-            "idle 한 번만 도는 설계라 이 작업은 끄는 동안의 프레임에는 들어가지 않습니다. 622ms 짜리 초기 블로킹을 없애는 값으로는 남는 거래라고 판단했습니다.",
+            "마커 풀링 : setMap(null) 이 개당 1.66ms(142개 제거 = 236ms 멈춤). 떼지 않고 모아 뒀다가 갈아 끼우면 1ms 입니다. 풀 상한 200 은 ‘화면 하나 분량’입니다.",
+            "2단계 셰이프 디핑 : 목록을 다시 받으면 1,449개가 전부 새 객체가 되는데 내용은 대개 같습니다. 참조만 보면 화면에 붙은 전부의 innerHTML 을 헛되게 다시 씁니다(실측 200ms). 값 비교를 더해 동기화 64.6 → 30.8ms, draw() 474 → 7회.",
+            "idle 한 번만 도는 설계라 이 작업은 지도를 끌어 옮기는 동안의 프레임에는 들어가지 않습니다. 622ms 짜리 초기 블로킹을 없애는 값으로는 남는 거래라고 판단했습니다.",
           ],
         },
       ],
@@ -358,12 +358,12 @@ const offscreen = inRadius.length - inViewport.length;   // "화면 안 N곳 중
     {
       id: "measure",
       eyebrow: "08 · Method",
-      title: "이 숫자를 믿을 수 있는 이유",
+      title: "같은 화면에서 컬링을 끄고 켜며 측정했습니다",
       desc: "프로파일러 기록 두 개를 나란히 놓지 않았습니다. 지도 위치·줌·그 사이 브라우저 상태가 달라 조건이 같았는지 알 수 없기 때문입니다.",
       blocks: [
         {
           kind: "code",
-          caption: "lib/map-perf.ts: 컬링을 런타임에 끄는 스위치",
+          caption: "lib/map-perf.ts : 컬링을 런타임에 끄는 스위치",
           code: `let cullingOff = false;
 
 export function setCullingOff(next) {
@@ -377,7 +377,7 @@ export function useCullingOff() {
         },
         {
           kind: "text",
-          text: "같은 화면에서 끄고 켜며 같은 기준으로 두 번 측정했습니다. 스토어를 둘로 나눈 것이 요점입니다. 지도가 계측값까지 구독하면 ‘동기화 → 값 갱신 → 재렌더 → 동기화’ 고리가 생겨 화면이 멈춥니다. 지도는 제어값만, 패널은 계측값만 봅니다.",
+          text: "같은 화면에서 끄고 켜며 같은 기준으로 두 번 측정했습니다. 스토어는 둘로 나눴습니다. 지도가 계측값까지 구독하면 ‘동기화 → 값 갱신 → 재렌더 → 동기화’ 고리가 생겨 화면이 멈추므로, 지도는 제어값만, 패널은 계측값만 봅니다.",
         },
       ],
     },
@@ -394,7 +394,7 @@ export function useCullingOff() {
         },
         {
           kind: "code",
-          caption: "이전: 상관 서브쿼리 (loops=939 · 전체 버퍼의 98%)",
+          caption: "이전 : 상관 서브쿼리 (loops=939 · 전체 버퍼의 98%)",
           code: `SELECT b.*, COALESCE((
   SELECT json_agg(json_build_object(… , 'cabinets', cab.cabinets, …))
   FROM arcade_machines am
@@ -413,7 +413,7 @@ FROM base b`,
         },
         {
           kind: "code",
-          caption: "이후: 집계를 미리 한 번만 하는 CTE 두 개",
+          caption: "이후 : 집계를 미리 한 번만 하는 CTE 두 개",
           code: `cab_agg AS (
   SELECT c.arcade_id, c.machine_id, COUNT(c.id)::int AS cabinet_count, json_agg(…) AS cabinets
   FROM arcade_cabinets c
@@ -450,7 +450,7 @@ LEFT JOIN mach_agg ma ON ma.arcade_id = b.id`,
         },
         {
           kind: "text",
-          text: "부하(25.4 req/s) 아래에서 /api/arcades p95 가 130.0 → 70.1ms 였습니다. 단일 요청으로는 −15% 로만 보였습니다. 44,042버퍼는 shared buffer 적중이라 혼자 돌 때는 거의 공짜지만, 20세션이 동시에 돌면 메모리 대역폭을 서로 빼앗습니다. 버퍼를 줄이는 최적화는 부하 아래에서 재야 한다는 기록이 남았습니다.",
+          text: "부하(25.4 req/s) 아래에서 /api/arcades p95 가 130.0 → 70.1ms 였습니다. 단일 요청으로는 −15% 로만 보였습니다. 44,042버퍼는 shared buffer 적중이라 혼자 돌 때는 거의 공짜지만, 20세션이 동시에 돌면 메모리 대역폭을 서로 빼앗습니다. 그래서 버퍼를 줄이는 최적화는 부하 아래에서 측정합니다.",
         },
         {
           kind: "text",
@@ -458,7 +458,7 @@ LEFT JOIN mach_agg ma ON ma.arcade_id = b.id`,
         },
         {
           kind: "code",
-          caption: "lib/arcades.ts: 필터 위치를 당기고, 정렬에 타이브레이커를 박았습니다",
+          caption: "lib/arcades.ts : 필터 위치를 당기고, 정렬에 타이브레이커를 박았습니다",
           code: `  WITH scored AS (            -- 이름 검색 · 기종 AND 필터 · haversine 거리
     SELECT a.*, 6371 * acos(…) AS distance_km FROM arcades a WHERE …
   ),
@@ -477,7 +477,7 @@ LEFT JOIN mach_agg ma ON ma.arcade_id = b.id`,
         },
         {
           kind: "note",
-          text: "덤으로 원래 있던 결함이 드러났습니다: ORDER BY 에 타이브레이커가 없는데 같은 이름을 쓰는 오락실이 267곳(66종류) 있습니다. 사이드바가 10곳씩 페이지를 나누므로 같은 곳이 두 페이지에 나올 수 있었습니다. b.id 를 붙여 못 박았습니다.",
+          text: "덤으로 원래 있던 결함이 드러났습니다 : ORDER BY 에 타이브레이커가 없는데 같은 이름을 쓰는 오락실이 267곳(66종류) 있습니다. 사이드바가 10곳씩 페이지를 나누므로 같은 곳이 두 페이지에 나올 수 있었습니다. b.id 를 붙여 못 박았습니다.",
         },
       ],
     },
@@ -500,11 +500,12 @@ LEFT JOIN mach_agg ma ON ma.arcade_id = b.id`,
             ["SQL", "없음", "lib/arcades.ts 전면"],
             ["효과", "초기 블로킹 622→156ms · DOM −75% · 힙 −40%", "44,042→163버퍼 · p95 130→70ms"],
             ["남은 것", "없음", "/api/arcades 가 아직 전국을 내려보냄 (446KB → 80KB 여지)"],
+            ["그 뒤", "09.30 지도 클러스터링(PR #12). 줌 13 이하는 점 대신 행정구역 묶음", "—"],
           ],
         },
         {
           kind: "text",
-          text: "두 작업의 원리는 사실 같습니다. “많은 것 각각에 한 번씩”을 “한 번에 전부”로 바꾸거나, 아예 “대상을 먼저 줄이는” 것: 컬링은 1,449개 렌더를 337개로 줄였고, CTE 는 939회 집계를 1회로 합쳤습니다.",
+          text: "두 작업은 원리가 같습니다. 하나씩 여러 번 하던 일을 한 번에 하거나, 대상을 먼저 줄였습니다. 컬링은 1,449개 렌더를 337개로 줄였고, CTE 는 939회 집계를 1회로 합쳤습니다.",
         },
       ],
     },
