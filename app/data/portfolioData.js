@@ -15,7 +15,7 @@ export const profile = {
 export const heroChecklist = [
   // 보류한 초안 — 정해지면 주석을 풀어 씁니다.
   // "2년 전 팀 프로젝트를 혼자 다시 만들어, 그때 넘긴 문제를 고쳤어요", // 기억 — PetMediSearch 1인 재작성
-  // "느린 화면은 짐작하지 않고, 직접 재서 원인을 찾아 고쳐요", // 어필 — 오락실 파인더 · PetMediSearch 성능 개선
+  // "느린 화면은 짐작하지 않고, 직접 측정해서 원인을 찾아 고쳐요", // 어필 — 오락실 파인더 · PetMediSearch 성능 개선
   // "AI를 안전하게 붙인 사내 안내 데스크를 17일 만에 완성했어요", // 성취 — 한 줄 데스크 17일 개발 · 배포
 ];
 
@@ -110,8 +110,8 @@ export const education = [
     period: "2026.07 ~ 2026.11",
     name: "AI Native Career Camp",
     desc: [
-      "프롬프트 설계, 반복 작업 템플릿화, MCP 스킬 사용 등 AI와 AX 활용 능력을 교육 받고 실습하였습니다",
-      "교육 내용을 바탕으로 프로젝트를 진행하며 활용능력 강화",
+      "프롬프트 설계, 반복 작업 템플릿화, MCP 스킬 사용 등 AI와 AX 활용 능력을 교육받고 실습했습니다",
+      "교육 내용을 바탕으로 프로젝트를 진행하며 활용 능력을 키웠습니다.",
     ],
     tags: ["AI Native", "생산성"],
   },
@@ -119,8 +119,8 @@ export const education = [
     period: "2024.04 ~ 2024.10",
     name: "Programmers Dev-Course",
     desc: [
-      "Swagger로 API 문서 만들기, Docker 실습, React, TypeScript 등 풀스택 과정 교육을 이수하였습니다.",
-      "팀프로젝트 진행 중 팀원 한 명이 초기에 빠지는 위기를 팀원과 업무를 다시 나누고 매일 함께 일하는 시간을 정해 해결한 경험이 있습니다.",
+      "Swagger로 API 문서 만들기, Docker 실습, React, TypeScript 등 풀스택 과정 교육을 이수했습니다.",
+      "팀 프로젝트 초기에 팀원 한 명이 빠졌지만, 업무를 다시 나누고 매일 함께 일하는 시간을 정해 해결한 경험이 있습니다.",
     ],
     tags: ["TypeScript", "Node.js", "MySQL", "Docker"],
   },
@@ -128,6 +128,6 @@ export const education = [
 
 export const process = [
   { step: "01", title: "짐작 대신 측정", desc: "체감으로 판단하지 않고 성능 계기판부터 붙여 원인을 숫자로 확인합니다." },
-  { step: "02", title: "작게 만들고 크게 재보기", desc: "실제 규모로 부하를 걸어 데이터가 적을 때는 보이지 않던 문제를 미리 찾습니다." },
+  { step: "02", title: "작게 만들고 크게 측정하기", desc: "실제 규모로 부하를 걸어 데이터가 적을 때는 보이지 않던 문제를 미리 찾습니다." },
   { step: "03", title: "상황은 먼저 공유", desc: "일정이 흔들리면 숨기지 않고 리스크와 현재 상태를 그대로 빠르게 전달합니다." },
 ];
