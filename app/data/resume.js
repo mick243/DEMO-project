@@ -150,7 +150,7 @@ export const resume = {
       sub: "위치 기반 서비스",
       detail: "/projects/arcade-finder",
       kind: "개인 프로젝트",
-      period: "2026.08 ~ 2026.09",
+      period: "2026.08 ~ 진행 중",
       link: { label: "github.com/mick243/PrivateProject", href: "https://github.com/mick243/PrivateProject" },
       task: [
         "실시간 제보를 받으며 제보의 내용을 토대로 리듬게임 플레이어가 가고 있는 오락실 현황과 2순위, 3순위로 갈 오락실을 탐색해 선택에 도움을 주는 위치 기반 서비스",
@@ -176,7 +176,7 @@ export const resume = {
         "역할별 화면을 나눠 불러오고(코드 분할) 설계 결정을 ADR로 갱신 및 기록하면서 진행",
       ],
       result: [
-        "1,400건(웹 71건)의 테스트 통과",
+        "1,573건(웹 86건)의 테스트 통과",
         "사이트를 처음 열 때 브라우저가 받는 JS 파일의 용량 372kB → 334kB로 감소",
         "호출되는 AI에게 규칙을 적용하여 담당 팀 안내의 오답을 5건 → 0건(검증 문장 40개)으로 감소",
       ],
@@ -208,7 +208,7 @@ export const resume = {
         "서버가 글을 전부 보내고 화면이 필요한 만큼 잘라 쓰던 것을, 서버가 필요한 쪽만 잘라 보내게 바꿔 게시글 응답을 30.7MB → 4.6KB(글 2만 건 시드)로 줄였습니다.",
         "k6 200 VU 부하에서 실패 0건(로컬 한 대)",
       ],
-      stack: "React, TypeScript, Vite, Redux, Express, MySQL, k6, Kakao Map",
+      stack: "React, TypeScript, Vite, Redux, Express, Prisma, MySQL, k6, Kakao Map",
       shot: {
         src: "/resume/petmedisearch.jpg",
         alt: "PetMediSearch 홈과 지도 화면",
