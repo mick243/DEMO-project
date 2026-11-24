@@ -150,7 +150,7 @@ export const resume = {
       sub: "위치 기반 서비스",
       detail: "/projects/arcade-finder",
       kind: "개인 프로젝트",
-      period: "2026.08 ~ 진행 중",
+      period: "2026.08 ~ 2026.09 후 지속적으로 보수중",
       link: { label: "github.com/mick243/PrivateProject", href: "https://github.com/mick243/PrivateProject" },
       task: [
         "실시간 제보를 받으며 제보의 내용을 토대로 리듬게임 플레이어가 가고 있는 오락실 현황과 2순위, 3순위로 갈 오락실을 탐색해 선택에 도움을 주는 위치 기반 서비스",
