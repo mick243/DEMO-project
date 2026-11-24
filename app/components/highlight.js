@@ -1,6 +1,6 @@
 // 딥다이브 코드 블록의 문법 강조입니다. VS Code 기본 다크 테마(Dark+)의 색 규칙을 따릅니다.
 // 라이브러리 없이 서버에서 한 번 토큰으로 나누고, 색은 globals.css 의 .tk-* 가 정합니다.
-// 지원하는 언어는 화면에 실린 두 가지뿐입니다: ts(TypeScript · JSX) 와 sql.
+// 지원하는 언어: ts(TypeScript · JSX, 기본) · sql · sh(쉘 스크립트).
 // diff: true 면 "+ " · "- " 로 시작하는 줄에 추가 · 삭제 배경을 깝니다.
 
 const TS_KEYWORDS = new Set([
@@ -23,6 +23,22 @@ const SQL_KEYWORDS = new Set([
 const SQL_TYPES = new Set(["int", "integer", "float8", "text", "json", "jsonb", "bigint", "numeric", "boolean"]);
 
 // 정규식은 앞에서부터 처음 맞는 것을 씁니다. 순서가 곧 우선순위입니다.
+// 쉘 스크립트(sh)는 배포 스크립트 발췌에 씁니다
+const SH_KEYWORDS = new Set([
+  "if", "then", "else", "elif", "fi", "for", "do", "done", "while", "case", "esac", "in",
+  "function", "local", "return", "exit", "set", "echo", "cat", "mapfile", "printf", "grep", "find", "sort", "tr",
+]);
+const SH_RULES = [
+  ["comment", /^#[^\n]*/],
+  ["string", /^"(?:\\[\s\S]|[^"\\])*"/],
+  ["string", /^'[^']*'/],
+  ["param", /^\$\{[^}\n]*\}|^\$\([^)\n]*\)|^\$[A-Za-z_]\w*/],
+  ["number", /^\d+/],
+  ["word", /^[A-Za-z_][\w-]*/],
+  ["space", /^\s+/],
+  ["punct", /^[\s\S]/],
+];
+
 const TS_RULES = [
   ["comment", /^\/\/[^\n]*/],
   ["comment", /^\/\*[\s\S]*?\*\//],
@@ -47,7 +63,7 @@ const SQL_RULES = [
 ];
 
 function tokenize(src, lang) {
-  const rules = lang === "sql" ? SQL_RULES : TS_RULES;
+  const rules = lang === "sql" ? SQL_RULES : lang === "sh" ? SH_RULES : TS_RULES;
   const out = [];
   let i = 0;
   while (i < src.length) {
@@ -60,7 +76,7 @@ function tokenize(src, lang) {
       break;
     }
   }
-  return lang === "sql" ? classifySql(out) : classifyTs(out);
+  return lang === "sql" ? classifySql(out) : lang === "sh" ? classifySh(out) : classifyTs(out);
 }
 
 function nextSolid(tokens, k) {
@@ -96,6 +112,14 @@ function classifySql(tokens) {
     if (SQL_KEYWORDS.has(low)) return ["keyword", text];
     if (SQL_TYPES.has(low)) return ["type", text];
     return ["var", text];
+  });
+}
+
+function classifySh(tokens) {
+  return tokens.map(([kind, text]) => {
+    if (kind === "param") return ["constant", text];
+    if (kind !== "word") return [kind, text];
+    return SH_KEYWORDS.has(text) ? ["keyword", text] : ["var", text];
   });
 }
 

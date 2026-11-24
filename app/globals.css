@@ -1708,6 +1708,73 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 }
 .dd-list { margin-top: 18px; max-width: 780px; }
 
+/* 용어 풀이 — 본문 위에서 먼저 읽어 두는 사전. 접으면 제목 줄만 남습니다 */
+.dd-gloss {
+  margin-top: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-surface);
+  padding: 4px 22px 18px;
+}
+.dd-gloss > summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 16px 0 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.dd-gloss > summary::-webkit-details-marker { display: none; }
+.dd-gloss > summary::after {
+  content: "접기";
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.dd-gloss:not([open]) > summary::after { content: "펼치기"; }
+.dd-gloss > summary span { font-size: 12.5px; font-weight: 500; color: var(--text-muted); }
+.dd-gloss > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+/* 한글이 낱말 중간에서 끊기지 않게 하고, 긴 영문 이름은 칸 안에서 접습니다 */
+.dd-gloss-group dt, .dd-gloss-group dd { word-break: keep-all; overflow-wrap: anywhere; }
+.dd-gloss-group { margin-top: 14px; }
+.dd-gloss-group h3 {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--accent-strong);
+  margin: 0 0 8px;
+}
+.dd-gloss-group dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0 28px;
+  margin: 0;
+}
+.dd-gloss-group dl > div {
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  min-width: 0;
+}
+.dd-gloss-group dt {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.dd-gloss-group dd {
+  margin: 3px 0 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+@media (max-width: 560px) {
+  .dd-gloss { padding: 2px 16px 14px; }
+  .dd-gloss-group dl { grid-template-columns: 1fr; }
+}
+
 /* 코드 블록 — VS Code 기본 다크 테마(Dark+)의 편집기 색을 따릅니다.
    토큰은 components/highlight.js 가 나누고, 색은 아래 .tk-* 가 정합니다. */
 .dd-code {
