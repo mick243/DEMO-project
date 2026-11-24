@@ -67,7 +67,7 @@ export const projects = [
     slug: "arcade-finder",
     name: "오락실 파인더",
     group: "personal",
-    period: "2026.08.28 ~ 진행 중",
+    period: "2026.08 ~ 2026.09 후 지속적으로 보수중",
     updated: "2026.11.24",
     thumbnail: "/projects/arcade-finder/thumb.jpg",
     // 홈 프로젝트 카드에 쓰는 한 줄 설명과 대표 성과입니다.
