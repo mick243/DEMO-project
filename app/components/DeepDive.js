@@ -144,6 +144,29 @@ export default function DeepDive({ dd }) {
 
             <p className="star-note dd-lead-note">{dd.summaryNote}</p>
 
+            {/* 처음 보는 용어를 한곳에 풀어 둡니다. 접을 수 있지만 기본은 펼쳐 둡니다. */}
+            {dd.glossary && (
+              <details className="dd-gloss" open>
+                <summary>
+                  처음 보는 용어 풀이
+                  <span>{dd.glossary.reduce((n, g) => n + g.items.length, 0)}개</span>
+                </summary>
+                {dd.glossary.map((g) => (
+                  <div key={g.group} className="dd-gloss-group">
+                    <h3>{g.group}</h3>
+                    <dl>
+                      {g.items.map((it) => (
+                        <div key={it.term}>
+                          <dt>{it.term}</dt>
+                          <dd>{it.plain}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                ))}
+              </details>
+            )}
+
             {/* 절이 열 개 남짓이라 접히게 두면 세 줄이 됩니다. 커뮤니티 게임 탭과 같은 장치로
                 한 줄에 고정하고, 넘치는 쪽에만 화살표를 띄웁니다. */}
             <ScrollStrip
