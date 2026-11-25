@@ -6,6 +6,8 @@
 //   - 데이터 건수: 개발 DB 직접 조회 (2026.09.18) — 문서마다 수가 달라서 DB 를 정본으로 삼았습니다
 //   - 코드 수치: git 추적 파일 기준 집계, 테스트는 vitest 실제 실행 결과 (2026.09.18)
 //   - 2026.11.24 대조: main d7b3303 기준으로 (같은 날 저녁 c3dba72 에서 테스트 수만 다시 잼) 결과 수치(채보 · 테스트)와 '남은 것' 네 줄, DOM 노드 기준 표기를 고쳤습니다.
+//   - 2026.11.25 대조: main 87eb745(11.25 17:28 — Gemini 모델 정리 · 챗봇 채보 도구 · 글 쓰기 상한 · '정보가 달라요' 제보)까지.
+//     테스트 수는 그 커밋 본문 값(1,293 통과 · 4 건너뜀)이고 여기서 다시 돌리지 않았습니다. 이 기능의 작동 화면은 아직 없습니다
 //     작업 기록(화면에서 숨김)은 09.18 까지 그대로입니다
 //
 // PetMediSearch 의 내용과 수치는 원본 저장소(Desktop/claude/PetMediSearch-rebuild)에서 가져왔습니다.
@@ -32,7 +34,10 @@
 //   - 기준 상태: main f8521c0 (PR #48, 2026.11.10) · 커밋 163개(병합 제외 106) · 병합한 PR 48개 · 2026.10.25 ~ 11.10
 //   - 시험 수: 같은 커밋의 GitHub Actions 실행 결과(공용 179 · 서버 1,150 · 웹 71, 서버는 실제 PostgreSQL 에서도 1,150)
 //   - 2026.11.24 대조: 11.20 PR #49(5c869b7) 병합으로 기간 · PR 수 · 시험 수(179 · 1,308 · 86 = 1,573, 같은 CI)만 고쳤습니다.
-//     코드 수치 · ADR · 전후 비교 · 작동 화면은 f8521c0 기준 그대로입니다
+//   - 2026.11.25 대조: PR #51(11.25 서버·운영 검토 후속) · #55(11.25 자동화 14건과 '오늘 우리 팀')까지 병합 51개.
+//     시험 수는 #55 병합 커밋 183857b 의 GitHub Actions 결과(공용 182 · 서버 1,336 · 웹 90 = 1,608, 서버는 실제 PostgreSQL 에서도 1,336).
+//     작동 화면 10 · 11 은 #55 작업 세션이 로컬 개발 서버(가상 자료)에서 찍은 800x562 다크 테마 화면을 그대로 실었습니다
+//     코드 수치 · ADR · 전후 비교 · 작동 화면 01 ~ 09 는 f8521c0 기준 그대로입니다
 //   - 코드 수치: git 추적 파일 집계(시험 제외 TS/TSX 261개 44,147줄, 시험 102개 22,105줄) · ADR 29개(docs/ADR.md)
 //   - 전후 비교: 각 줄의 원래 커밋 본문과 회의록에서 하나씩 다시 찾아 맞췄습니다(dc4dc12 · c1af39f · ace523a · ae77844 ·
 //     7736ba9 · 배포준비회의 A1 · ADR-21)
@@ -68,7 +73,7 @@ export const projects = [
     name: "오락실 파인더",
     group: "personal",
     period: "2026.08 ~ 2026.09 후 지속적으로 보수중",
-    updated: "2026.11.24",
+    updated: "2026.11.25",
     thumbnail: "/projects/arcade-finder/thumb.jpg",
     // 홈 프로젝트 카드에 쓰는 한 줄 설명과 대표 성과입니다.
     cardSummary: "리듬게임 유저를 위한 오락실 지도와 실시간 제보 서비스",
@@ -135,12 +140,12 @@ export const projects = [
           "지도 첫 마커 그리기 622ms → 156ms(−75%), DOM 노드 7,462 → 1,902개",
           "가상 사용자 20명 기준 서버 응답 287ms → 39ms(−86%, 요청 100번 중 95번이 끝나는 시간)",
           "지도 데이터 응답 1.2MB → 90KB(−92.6%), 월 전송량 추정 165GB → 14GB",
-          "오락실 926곳 · 채보 29,178개를 실데이터로 채웠고, 자동 테스트 1,252건 중 1,248건이 통과합니다(4건은 건너뜀, 실패 0).",
+          "오락실 926곳 · 채보 29,178개를 실데이터로 채웠고, 자동 테스트 1,297건 중 1,293건이 통과합니다(4건은 건너뜀, 실패 0).",
         ],
       },
     ],
 
-    // 2026.11.24 기준. 데이터 건수는 개발 DB 읽기 전용 조회, 테스트 수는 원본 main(c3dba72)에서 npx vitest run 으로 잰 값입니다.
+    // 2026.11.24 기준. 데이터 건수는 개발 DB 읽기 전용 조회입니다. 테스트 수는 11.25 main(87eb745) 커밋 본문 값입니다(11.24 c3dba72 실측은 1,252 중 1,248).
     // 나무위키 보유 기종 · 영업시간과 신고 · 차단은 main 에만 있고 운영 DB 에는 아직 반영 전입니다(원본 SSOT 11-21 · R26).
     // dataflow : 목록 보기와 흐름도 보기가 함께 씁니다. node.kind(entity · process · store)가 없으면 칸으로 모양을 정합니다.
     dataflow: {
@@ -428,6 +433,7 @@ export const projects = [
           { text: "범위 밖 질문은 정해 둔 한 문장으로 거절합니다. 거절할 때는 도구도 검색도 부르지 않도록 규칙을 다시 썼습니다.", code: ["…는 도구를 부르지 말고 \"…리듬게임에 대해서만 답할 수 있어요.\" 한 문장으로만 거절","범위 밖 질문은 **도구도 검색도 부르지 말고** 다음 한 문장으로만 거절합니다"] },
           { text: "처음엔 로그인 없이 무제한으로 불리던 대화 API 에 로그인 필수 · 사람당 하루 40회 · 전체 하루 2,000회 한도를 붙였습니다. API 키는 처음부터 서버에만 있습니다.", code: ["export async function POST(request) { … new GoogleGenAI(…) }","consume(`chat:player:${guard.playerId}`, CHAT_DAILY_LIMIT_PER_PLAYER, DAY_MS)"] },
           { text: "기종 추정은 검색과 응답 형식을 한 요청에 묶으면 검색이 아예 돌지 않아, 검색 → 형식 맞추기 두 단계로 나눴습니다.", code: ["config: { tools: [{ googleSearch: {} }], responseSchema: schema, … }","① tools: [{ googleSearch: {} }] → ② responseSchema: schema"] },
+          { text: "쓰던 모델이 지원 종료를 앞둬, 모델 이름을 한 곳에 모으고 배포 없이 환경 변수로 바꿀 수 있게 했습니다. 모든 호출에 응답 대기 상한을 걸고, 크레딧 소진(402)은 키 오류와 따로 알립니다. 챗봇에는 서열표 곡 · 채보 레벨을 찾는 도구를 더했습니다.", code: ["return process.env.GEMINI_MODEL?.trim() || DEFAULT_GEMINI_MODEL;","if (err.status === 402) return 'credit';","search_charts · search_reports(오락실 이름)"] },
         ],
       },
       {
@@ -475,6 +481,7 @@ export const projects = [
           { text: "말머리는 별도 표로 둬서, 고정 목록을 코드에 박지 않았습니다.", code: "category TEXT NOT NULL REFERENCES board_categories(code)," },
           { text: "댓글 수 · 추천 수는 볼 때마다 세지 않고 바뀔 때만 다시 적어 둡니다.", code: "UPDATE posts SET comment_count = s.comments, like_count = s.likes" },
           { text: "전체 글 수를 목록 쿼리에 합쳤더니 5만 건에서 141ms 가 걸려, 다시 따로 세고(5.9ms) 30초 캐시를 붙였습니다.", code: ["SELECT COUNT(*)::int AS total FROM posts p WHERE …","SELECT x.*, (COUNT(*) OVER ())::int AS total_count FROM (…) x","const countPosts = cacheReference(countPostsUncached, 'post-count', 30_000);"] },
+          { text: "게시판 검색은 띄어 쓴 낱말이 모두 든 글을 찾습니다. 전에는 ‘펌프 판정 느림’ 처럼 여러 낱말로 찾으면 0건이었습니다. 글은 한 시간에 10개, 댓글은 60개까지 쓸 수 있습니다.", code: ["post: { … perHour: limitFromEnv('POST_HOURLY_LIMIT', 10) }","comment: { … perHour: limitFromEnv('COMMENT_HOURLY_LIMIT', 60) }"] },
         ],
       },
       {
@@ -691,7 +698,7 @@ export const projects = [
       {
         kind: "open",
         title: "영업시간은 일부만 채웠습니다",
-        desc: "네이버 지역검색 API 응답에 영업시간 필드가 없어 926곳 중 1곳만 채워져 있었습니다. 나무위키 오락실 문서에 적힌 영업시간을 원문 그대로 옮겨 개발 DB 에서 111곳까지 채웠지만, 운영 서버에는 아직 올리지 않았습니다. 나머지는 여전히 데이터 출처의 한계입니다.",
+        desc: "네이버 지역검색 API 응답에 영업시간 필드가 없어 926곳 중 1곳만 채워져 있었습니다. 나무위키 오락실 문서에 적힌 영업시간을 원문 그대로 옮겨 개발 DB 에서 111곳까지 채웠지만, 운영 서버에는 아직 올리지 않았습니다. 11.25 에 상세 화면의 ‘정보가 달라요’로 이용자가 영업시간 · 문 닫음 · 옮김을 알리고 관리자가 확인해 반영하는 길을 더했습니다. 영업시간은 승인하면 출처를 ‘이용자 제보’로 남기고, 문 닫음 · 옮김은 자동으로 바꾸지 않습니다. 이것도 아직 개발 DB 에만 있습니다.",
       },
     ],
   },
@@ -1285,12 +1292,12 @@ export const projects = [
     slug: "one-line-desk",
     name: "한 줄 데스크",
     group: "personal",
-    period: "2026.10.25 ~ 11.20",
-    updated: "2026.11.20",
+    period: "2026.10.25 ~ 11.25",
+    updated: "2026.11.25",
     thumbnail: "/projects/one-line-desk/thumb.jpg",
     // 홈 카드 한 줄 설명과 대표 성과(열린 PR #35 의 칸). 그 PR 이 병합되기 전에는 화면에 쓰이지 않습니다.
     cardSummary: "회의실 · 탕비실 · 문의를 한 줄로 묻고 확인 카드로 받는 사내 안내 데스크",
-    cardHighlight: "AI와 규칙이 같을 때만 바로 예약 · 담당 카드 오답 5 → 0 · 자동 테스트 1,573건",
+    cardHighlight: "AI와 규칙이 같을 때만 바로 예약 · 담당 카드 오답 5 → 0 · 자동 테스트 1,608건",
     hero: "/projects/one-line-desk/01-home.jpg",
     tags: ["TypeScript", "React", "Fastify", "PostgreSQL", "PGlite", "Vitest", "MCP", "Fly.io"],
     type: "개인 프로젝트 (1인 개발 · 에이전트 팀)",
@@ -1355,19 +1362,20 @@ export const projects = [
         key: "R",
         en: "Result",
         label: "결과",
-        title: "담당 팀 오답 5 → 0, 자동 테스트 1,573건 통과",
+        title: "담당 팀 오답 5 → 0, 자동 테스트 1,608건 통과",
         body: "정답을 단 문장으로 낱말 규칙과 AI의 정답률을 따로 세고, 화면과 서버 시험이 CI에서 함께 확인합니다.",
         points: [
           "담당 팀 안내 오답 5건 → 0건 (AI 없이 규칙 보강만으로)",
           "정답을 단 문장 52개로 측정한 정답률 : 낱말 규칙 39/52, AI 51/52",
           "‘잡지 마’ 같은 금지 문장 40개 · 허용 문장 20개를 화면과 서버 시험이 함께 확인합니다.",
-          "PR 49개를 병합했고(마지막 11.20), 자동 테스트 1,573건이 CI에서 모두 통과합니다.",
+          "PR 51개를 병합했고(마지막 11.25), 자동 테스트 1,608건이 CI에서 모두 통과합니다.",
         ],
       },
     ],
 
     // 2026.11.10 main f8521c0 기준. 시험 수는 CI, 코드 수치는 git 추적 파일 집계입니다.
-    // 11.20 PR #49 병합(5c869b7) 뒤 CI 시험 수 : 공용 179 · 서버 1,308 · 웹 86 = 1,573 (그전 179 · 1,150 · 71 = 1,400).
+    // 11.25 PR #55 병합(183857b) 뒤 CI 시험 수 : 공용 182 · 서버 1,336 · 웹 90 = 1,608
+    // (11.20 #49 뒤 179 · 1,308 · 86 = 1,573, 그전 179 · 1,150 · 71 = 1,400).
     dataflow: {
       desc: "AI는 문장을 해석만 하고, 쓰기는 확인 카드를 거치되 회의실 채팅 예약만 AI와 규칙이 같은 일로 볼 때 바로 실행하도록 길을 나눴습니다. 번호는 설계에서 지킨 자리입니다.",
       lanes: [
@@ -1527,7 +1535,7 @@ export const projects = [
         tech: [
           { text: "AI 는 담당 후보 가운데 번호 하나(또는 ‘없음’)만 고르고, 카드에 보이는 글은 서버가 분장표 원문 그대로 그립니다. 그래서 모델이 틀려도 없는 내용을 지어내지 못합니다.", code: "z.enum(['none', ...candidates.map((_, i) => String(i + 1))])" },
           { text: "휴가 질문은 규칙이 먼저 읽고, 규칙이 못 읽을 때만 모델을 부릅니다.", code: ["if (!LEAVE_WORDS.test(text)) return { ...rule, viaAi: false };","if (… || ruleRead || !USE_VERB.test(text)) return { ...rule, viaAi: false };","ruleRead = … || rule.planHours > 0 || rule.holidaysSkipped.length > 0 || …"] },
-          { text: "질문 원문은 DB · 로그 · 브라우저 저장소 어디에도 남기지 않습니다. 감사 로그는 정해 둔 칸만 받습니다.", code: "if (!ALLOWED_KEYS.has(key)) throw new Error(`감사 로그에 없는 칸이에요: ${key}`);" },
+          { text: "질문 원문은 DB · 로그 · 브라우저 저장소 어디에도 남기지 않습니다. 감사 로그는 정해 둔 칸만 받고, 11.24 부터는 값도 코드 모양(120자 이내)인지 검사해 문장이 섞여 들어오지 못하게 했습니다.", code: "if (!ALLOWED_KEYS.has(key)) throw new Error(`감사 로그에 없는 칸이에요: ${key}`);" },
         ],
       },
       {
@@ -1601,6 +1609,24 @@ export const projects = [
           { text: "정답을 달아 둔 가상 문장으로 낱말 규칙과 AI 의 정답률을 따로 셉니다. 직원이 쓴 글은 쓰지 않습니다.", code: "const out: CaseResult[] = cases.map((c) => ({ ...c, rule: byRules(c) }));" },
           { text: "이 화면은 AI 를 붙이지 않은 로컬이라 규칙 칸만 찼습니다(44/56, 79%). 모델을 붙이면 [AI 로 다시 재기]로 AI 칸도 채워집니다.", code: "ai: ran ? rows.filter((r) => r.ai === r.expect).length : null," },
           { text: "‘빔프로젝터’ 문장이 매번 틀리던 원인도 이 표로 찾았습니다. 장비 이름을 정해 둔 목록 대신 글자로 받아 서버 사전으로 다시 맞추고, 실패 종류를 기록합니다.", code: ["kinds: z.array(z.enum(LOAN_KINDS)).max(LOAN_KINDS.length),","const kinds = loanKindsIn(out.kinds.join(' ')).slice(0, MAX_KINDS);"] },
+        ],
+      },
+      {
+        src: "/projects/one-line-desk/10-team-today.jpg",
+        caption: "오늘 우리 팀 한 줄. 홈에는 휴가 · 자리비움 수만 보이고, 펼쳐야 이름이 보입니다.",
+        tech: [
+          { text: "홈에는 같은 부서에서 오늘 빠지는 사람 수만 보여 주고, [누구인지 보기]를 눌러야 이름과 시간을 보여 줍니다. 이름을 볼 때마다 접속기록이 남고, 휴가 종류 · 사유와 회의는 읽지 않습니다.", code: ["return { enabled: true, team: user.department, leave: leave.length, away: away.length, … };","await ctx.access.record({ … action: 'team.headcount', subjectRefs: refs, … });"] },
+          { text: "나를 포함해 3명 이하인 팀은 수만으로도 누구인지 드러나서, 수도 이름도 보여 주지 않습니다.", code: "if (d.members.length <= TEAM_TODAY_SMALL) return { ...off(user), small: true };" },
+          { text: "회사마다 켜는 같은 팀 일정 스위치 아래에 두어, 꺼져 있으면 아무것도 읽지 않습니다. 홈을 열 때마다 근태 시스템을 부르지 않도록 부서마다 5분만 기억합니다.", code: ["if (!ctx.ops.get().teamSchedule || !user.department) return off(user);","const CACHE_MS = 5 * 60_000;"] },
+        ],
+      },
+      {
+        src: "/projects/one-line-desk/11-repeat-missed-week.jpg",
+        caption: "매주 반복 예약에서 이미 차 있어 빠진 주에, 같은 시간 빈 다른 회의실을 버튼으로 붙입니다.",
+        tech: [
+          { text: "반복 예약에서 뺀 주마다, 처음 찾을 때와 같은 조건(인원 · 장비 · 층)으로 같은 시간에 빈 다른 회의실 1순위를 찾아 [그날 ○○ 잡기] 버튼으로 붙입니다. 빈 곳이 없는 주는 버튼이 없고, 버튼은 4개까지입니다.", code: ["const MISSED_WEEK_ACTIONS = 4;","searchSlots({ rooms, busy, query: weekQuery, start: w.start, end: w.end, now, home: user.floor }).candidates[0]"] },
+          { text: "버튼을 눌러도 바로 잡지 않고, 다른 예약처럼 확인 시트를 한 번 거칩니다.", code: "out.push(this.primaryFor(user, best, weekQuery, `${dayLabel(date)} ${best.room.name} 잡기`));" },
+          { text: "같은 날 초대에 답하지 않은 사람에게 다시 알리는 버튼과 회의 10분 전 알림도 더했습니다. 둘 다 한 사람에게 한 번만 갑니다.", code: "note: '앱 알림만 한 번 더 가요. 한 사람에게 한 번만 보낼 수 있어요'" },
         ],
       },
     ],
@@ -1707,7 +1733,7 @@ export const projects = [
       {
         kind: "learned",
         title: "연결이 하나뿐인 시험 DB 는 경쟁 조건을 보지 못한다",
-        desc: "PGlite 는 빠르지만 연결이 하나라 동시 실행 경쟁을 재현하지 못합니다. 같은 서버 시험을 실제 PostgreSQL 에서도 돌리는 CI 잡을 따로 두었고, 지금 1,308개가 두 DB 에서 모두 통과합니다.",
+        desc: "PGlite 는 빠르지만 연결이 하나라 동시 실행 경쟁을 재현하지 못합니다. 같은 서버 시험을 실제 PostgreSQL 에서도 돌리는 CI 잡을 따로 두었고, 지금 1,336개가 두 DB 에서 모두 통과합니다.",
       },
       {
         kind: "learned",
